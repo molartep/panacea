@@ -325,11 +325,12 @@ totalH1AHours <- c(first_H1A$`Total therapy duration (Hrs)`[nrow(first_H1A)],
 totalL1JHours <- L1_J_first_session$`Total therapy duration (Hrs)`[nrow(L1_J_first_session)]
 
 totalL2EHours <- c(first_L2E$`Total therapy duration (Hrs)`[nrow(first_L2E)],
-                   second_L2E$`Total therapy duration (Hrs)`[nrow(second_L2E)])
+                   second_L2E$`Total therapy duration (Hrs)`[nrow(second_L2E)],
+                   third_L2E$`Total therapy duration (Hrs)`[nrow(third_L2E)])
 
 totalL3KHours <- L3_K_first_session$`Total therapy duration (Hrs)`[nrow(L3_K_first_session)]
 
-days <- list(B1S = totalB1SHours, C1J = totalC1JHours, G1D = totalG1DHours, H1A = totalH1AHours,
+hours <- list(B1S = totalB1SHours, C1J = totalC1JHours, G1D = totalG1DHours, H1A = totalH1AHours,
            L1J = totalL1JHours, L2E = totalL2EHours, L3K = totalL3KHours)
 
 ################################################################################################################
