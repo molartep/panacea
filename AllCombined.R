@@ -18,7 +18,7 @@ G1D <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Daryl",
 L3K <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Kevin", 
                   col_types = c("date", "numeric", "numeric"))
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-01 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-15 01:00"), format = "%Y-%m-%d %H:%M"))
 
 B1S_dates <- B1S[,c(1,3)] %>% mutate(Patient= "B1S")
 L2E_dates <- L2E[,c(1,3)] %>% mutate(Patient= "L2E")
@@ -72,6 +72,11 @@ G1D_segment1 <- list(x1 = G1D_dates$date[4], y1 = G1D_dates$p_level[4],
                      x2 = G1D_dates$date[39], y2 = G1D_dates$p_level[39]) 
 G1D_lab1x <- as.POSIXct((as.numeric(G1D_segment1$x1) + as.numeric(G1D_segment1$x2)) / 2, origin = '1970-01-01')
 G1D_lab1y <- (G1D_segment1$y1 + G1D_segment1$y2)/2
+
+L3K_segment1 <- list(x1 = L3K_dates$date[7], y1 = L3K_dates$p_level[7],
+                     x2 = L3K_dates$date[38], y2 = L3K_dates$p_level[38]) 
+L3K_lab1x <- as.POSIXct((as.numeric(L3K_segment1$x1) + as.numeric(L3K_segment1$x2)) / 2, origin = '1970-01-01')
+L3K_lab1y <- (L3K_segment1$y1 + L3K_segment1$y2)/2
 
 patients <- rbind(B1S_dates, L2E_dates, L1J_dates, H1A_dates, C1J_dates, G1D_dates, L3K_dates)
 
@@ -139,6 +144,14 @@ patients %>% group_by(Patient) %>%
                 angle = 1), size = 3) +
   
   #L3K Segments
+  
+  geom_segment(aes(x = L3K_segment1$x1, y = L3K_segment1$y1,
+                   xend = L3K_segment1$x2, yend = L3K_segment1$y2, color = "L3K"),
+               linetype = "dashed") +
+  geom_text(aes(x = L3K_lab1x, y = L3K_lab1y + 5, color = "L3K", label = "+ 11.7 in 30 days",
+                angle = 4), size = 3) +
+  
+  #Labels
   
   labs(title = "Polarity Levels", x = "Months",  y = "Polarity Levels")
 
