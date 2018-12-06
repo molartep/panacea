@@ -2,38 +2,72 @@ library("dplyr")
 library("ggplot2")
 library(readxl)
 library(gridExtra)
-H1_A <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Anna",
-                   col_types = c("text", "numeric", "numeric", 
-                                 "numeric", "numeric", "numeric"), skip = 2)
+library(bizdays)
+H1_A_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Anna",
+                         col_types = c("text", "numeric", "numeric", 
+                                       "numeric", "numeric", "numeric"), skip = 2)
 
-first <- H1_A[1:9,] %>% mutate(days_after = 0:8)
-second <- H1_A[11:23,] %>% mutate(days_after = 0:12)
+H1_A_dates <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Anna",
+                         col_types = c("date", "numeric", "numeric"))
 
-x_max <- max(c(max(first$days_after), max(second$days_after)))
-y_max1 <- max(first$`Polarity level`, na.rm = T)
 
-f1 <- max(first$days_after) + 1
-s1 <- max(second[complete.cases(second),]$days_after) + 1
+H1_A_first_hours <- H1_A_hours[1:9, c(2,6)]
+H1_A_second_hours <- H1_A_hours[11:23, c(2,6)]
+H1_A_third_hours <- H1_A_hours[25:26, c(2,6)]
+H1_A_fourth_hours <- H1_A_hours[28:39, c(2,6)]
+H1_A_first_hours[,2] <- cumsum(H1_A_first_hours[,2])
+H1_A_second_hours[,2] <- cumsum(H1_A_second_hours[,2])
+H1_A_third_hours[,2] <- cumsum(H1_A_third_hours[,2])
+H1_A_fourth_hours[,2] <- cumsum(H1_A_fourth_hours[,2])
 
-first_graph <- first %>% select(days_after, `Polarity level`) %>%
-  ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  scale_x_continuous(limits = c(0, x_max), breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
-  labs(subtitle = "First Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = first[c(2,f1),c(7,2)],
-            label = first$`Polarity level`[c(2, f1)],
-            nudge_y = -4)
+maxP1 <- max(H1_A_first_hours$`Polarity level`, na.rm = T)
+minP1 <- min(H1_A_first_hours$`Polarity level`, na.rm = T)
+maxP2 <- max(H1_A_second_hours$`Polarity level`, na.rm = T)
+minP2 <- min(H1_A_second_hours$`Polarity level`, na.rm = T)
+maxP3 <- max(H1_A_third_hours$`Polarity level`, na.rm = T)
+minP3 <- min(H1_A_third_hours$`Polarity level`, na.rm = T)
+#maxP4 <- max(H1_A_fourth_hours$`Polarity level`, na.rm = T)
+#minP4 <- min(H1_A_fourth_hours$`Polarity level`, na.rm = T)
 
-second_graph <- second %>% select(days_after, `Polarity level`) %>%
-  ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  scale_x_continuous(limits = c(0, x_max), breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
-  labs(subtitle = "Second Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = second[c(1,s1),c(7,2)],
-            label = second$`Polarity level`[c(1, s1)],
-            nudge_y = 3)
+holidays <- c("2017-12-08", "2018-12-08", "2019-12-08")
+create.calendar("Default", holidays, weekdays = c("sunday"), adjust.from = adjust.next, adjust.to = adjust.previous)
+bizdays.options$set(default.calendar="Default")
+H1A_dates1 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP1),1]$date,
+                      H1_A_dates[which(H1_A_dates$p_level == minP1),1]$date[1])
+H1A_dates2 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP2),1]$date,
+                      H1_A_dates[which(H1_A_dates$p_level == minP2),1]$date)
+H1A_dates3 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP3),1]$date,
+                      H1_A_dates[which(H1_A_dates$p_level == minP3),1]$date)
+#H1A_dates4 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP4),1]$date,
+                      #H1_A_dates[which(H1_A_dates$p_level == minP4),1]$date)
 
-grid.arrange(top = "H1-A Polarity", first_graph, second_graph, ncol=2)
+totalH1AHours <- c(max(H1_A_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA,
+                   max(H1_A_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA,
+                   max(H1_A_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   #NA,
+                   #max(H1_A_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA)
+
+totalH1ADays <- c(H1A_dates1, #No therapies on saturdays 
+                  H1_A_dates[which(H1_A_dates$p_level == maxP2),1]$date -
+                    H1_A_dates[which(H1_A_dates$p_level == minP1),1]$date[1],
+                  H1A_dates2 + 1,
+                  (H1_A_dates[which(H1_A_dates$p_level == maxP3),1] -
+                    H1_A_dates[which(H1_A_dates$p_level == minP2),1])$date,
+                  H1A_dates3 + 1,
+                  #(H1_A_dates[which(H1_A_dates$p_level == maxP4),1] -
+                     #H1_A_dates[which(H1_A_dates$p_level == minP3),1])$date,
+                  #H1A_dates4 + 1,
+                  NA)
+
+
+data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break"),
+                        #"4th session", "4th break"),
+           Hours = totalH1AHours,
+           Days = totalH1ADays,
+           Polarity = c(maxP1,minP1,maxP2,minP2,maxP3,minP3),#maxP4,minP4),
+           Change = c(minP1-maxP1, maxP2-minP1, minP2-maxP2, maxP3-minP2, minP3-maxP3, NA))
+                      #,maxP4-minP3, minP4-maxP4, NA))
 

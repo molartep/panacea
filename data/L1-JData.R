@@ -2,39 +2,39 @@ library("dplyr")
 library("ggplot2")
 library(readxl)
 library(gridExtra)
-L1_J <- read_excel("~/Desktop/Electronegatividad.xlsx", 
-                      sheet = "Jeff", col_types = c("text", "numeric", 
-                          "numeric", "numeric", "numeric", "numeric"), skip = 2)
+library(bizdays)
+L1_J_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Jeff",
+                         col_types = c("text", "numeric", "numeric", 
+                                       "numeric", "numeric", "numeric"), skip = 2)
 
-L1_J_first_session <- L1_J[1:20,] %>% mutate(days_after = 0:19)
-
-x_max <- max(L1_J_first_session$days_after)
-y_max1 <- max(L1_J_first_session$`Polarity level`, na.rm = T)
-
-f1 <- max(L1_J_first_session$days_after) + 1
-#s1 <- max(L1_J_second_session$days_after) + 1
-
-L1_J_first_progress <- L1_J_first_session %>% select(days_after, `Polarity level`) %>%
-  ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  scale_x_continuous(limits = c(0, x_max), breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
-  labs(subtitle = "First Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = L1_J_first_session[c(1,f1),c(7,2)],
-            label = L1_J_first_session$`Polarity level`[c(1, f1)],
-            nudge_y = -6)
-
-L1_J_first_progress + labs(title = "L1-J Polarity")
-
-#L1_J_second_progress <- L1_J_second_session %>% select(days_after, `Polarity level`) %>%
- # ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  #scale_x_continuous(limits = c(0, x_max)) +
-  #scale_y_continuous(limits = c(0, y_max1)) +
-  #labs(subtitle = "Second Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  #geom_smooth(size = 0.5) +
-  #geom_text(data = L1_J_first_session[c(1,f1),c(7,2)],
-            #label = L1_J_first_session$`Polarity level`[c(1, f1)],
-            #nudge_y = -6)
+L1_J_dates <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Jeff",
+                         col_types = c("date", "numeric", "numeric"))
 
 
-#grid.arrange(top = "L1-J Polarity", L1_J_first_progress, L1_J_second_progress, ncol=2)
+L1_J_first_hours <- L1_J_hours[1:20, c(2,6)]
+L1_J_first_hours[,2] <- cumsum(L1_J_first_hours[,2])
+
+maxP1 <- max(L1_J_first_hours$`Polarity level`, na.rm = T)
+minP1 <- min(L1_J_first_hours$`Polarity level`, na.rm = T)
+
+holidays <- c("2017-12-08", "2018-12-08", "2019-12-08")
+create.calendar("Default", holidays, weekdays = c("sunday"), adjust.from = adjust.next, adjust.to = adjust.previous)
+bizdays.options$set(default.calendar="Default")
+L1J_dates1 <- bizdays(L1_J_dates[which(L1_J_dates$p_level == maxP1),1]$date,
+                      L1_J_dates[which(L1_J_dates$p_level == minP1),1]$date[1])
+
+totalL1JHours <- c(max(L1_J_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA)
+
+totalL1JDays <- c(L1J_dates1 - 3, #No therapies on Saturday
+                  L1_J_dates[which(L1_J_dates$p_level == maxP2),1]$date -
+                  L1_J_dates[which(L1_J_dates$p_level == minP1),1]$date[1],
+                  NA)
+
+
+data.frame(Interval = c("1st session", "1st break"),
+           Hours = totalL1JHours,
+           Days = totalL1JDays,
+           Polarity = c(maxP1,minP1),
+           Change = c(minP1-maxP1, NA))
+

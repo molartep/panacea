@@ -2,52 +2,71 @@ library("dplyr")
 library("ggplot2")
 library(readxl)
 library(gridExtra)
-C1_J <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Jim",
-                   col_types = c("text", "numeric", "numeric", 
-                                 "numeric", "numeric", "numeric", "numeric", "numeric"), skip = 2)
+library(bizdays)
+C1_J_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Jim",
+                         col_types = c("text", "numeric", "numeric", "numeric",
+                                       "numeric", "numeric", "numeric", "numeric"), skip = 2)
 
-first_C1_J <- C1_J[1:18,] %>% mutate(days_after = 0:17)
-second_C1_J <- C1_J[20:32,] %>% mutate(days_after = 0:12)
-third_C1_J <- C1_J[34:46,] %>% mutate(days_after = 0:12)
+C1_J_dates <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Jim",
+                         col_types = c("date", "numeric", "numeric"))
 
-x_max <- max(c(max(first_C1_J$days_after), max(second_C1_J$days_after)))
-y_max1 <- max(first_C1_J$`Polarity level`, na.rm = T)
 
-f1 <- max(first_C1_J$days_after) + 1
-s1 <- max(second_C1_J$days_after) + 1
-t1 <- max(third_C1_J$days_after) + 1
+C1_J_first_hours <- C1_J_hours[1:18, c(2,8)]
+C1_J_second_hours <- C1_J_hours[20:32, c(2,8)]
+C1_J_third_hours <- C1_J_hours[34:45, c(2,8)]
+C1_J_fourth_hours <- C1_J_hours[47:59, c(2,8)]
+C1_J_first_hours[,2] <- cumsum(C1_J_first_hours[,2])
+C1_J_second_hours[,2] <- cumsum(C1_J_second_hours[,2])
+C1_J_third_hours[,2] <- cumsum(C1_J_third_hours[,2])
+C1_J_fourth_hours[,2] <- cumsum(C1_J_fourth_hours[,2])
 
-first_graph_C1_J <- first_C1_J %>% select(days_after, `Polarity level`) %>%
-  ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  scale_x_continuous(limits = c(0, x_max), breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
-  labs(subtitle = "First Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = first_C1_J[c(1,f1),c(9,2)],
-            label = first_C1_J$`Polarity level`[c(1, f1)],
-            nudge_y = -9,
-            size = 2.9)
+maxP1 <- max(C1_J_first_hours$`Polarity level`, na.rm = T)
+minP1 <- min(C1_J_first_hours$`Polarity level`, na.rm = T)
+maxP2 <- max(C1_J_second_hours$`Polarity level`, na.rm = T)
+minP2 <- min(C1_J_second_hours$`Polarity level`, na.rm = T)
+maxP3 <- max(C1_J_third_hours$`Polarity level`, na.rm = T)
+minP3 <- min(C1_J_third_hours$`Polarity level`, na.rm = T)
+maxP4 <- max(C1_J_fourth_hours$`Polarity level`, na.rm = T)
+minP4 <- min(C1_J_fourth_hours$`Polarity level`, na.rm = T)
 
-second_graph_C1_J <- second_C1_J %>% select(days_after, `Polarity level`) %>%
-  ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  scale_x_continuous(limits = c(0, x_max), breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
-  labs(subtitle = "Second Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = second_C1_J[c(2,s1),c(9,2)],
-            label = second_C1_J$`Polarity level`[c(2, s1)],
-            nudge_y = -8,
-            size = 3)
+holidays <- c("2017-12-08", "2018-12-08", "2019-12-08")
+create.calendar("Default", holidays, weekdays = c("sunday"), adjust.from = adjust.next, adjust.to = adjust.previous)
+bizdays.options$set(default.calendar="Default")
+C1J_dates1 <- bizdays(C1_J_dates[which(C1_J_dates$p_level == maxP1),1]$date,
+                      C1_J_dates[which(C1_J_dates$p_level == minP1),1]$date)
+C1J_dates2 <- bizdays(C1_J_dates[which(C1_J_dates$p_level == maxP2),1]$date,
+                      C1_J_dates[which(C1_J_dates$p_level == minP2),1]$date)
+C1J_dates3 <- bizdays(C1_J_dates[which(C1_J_dates$p_level == maxP3),1]$date,
+                      C1_J_dates[which(C1_J_dates$p_level == minP3),1]$date)
+C1J_dates4 <- bizdays(C1_J_dates[which(C1_J_dates$p_level == maxP4),1]$date,
+                      C1_J_dates[which(C1_J_dates$p_level == minP4),1]$date)
 
-third_graph_C1_J <- third_C1_J %>% select(days_after, `Polarity level`) %>%
-  ggplot(aes(x=days_after, y= `Polarity level`)) + geom_point() + 
-  scale_x_continuous(limits = c(0, x_max), breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
-  labs(subtitle = "Third Session Results", x = "Days of Treatment", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = third_C1_J[c(2,s1),c(9,2)],
-            label = third_C1_J$`Polarity level`[c(2, s1)],
-            nudge_y = -8,
-            size = 3)
+totalC1JHours <- c(max(C1_J_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA,
+                   max(C1_J_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA,
+                   max(C1_J_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA,
+                   max(C1_J_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   NA)
 
-grid.arrange(top = "C1-J Polarity", first_graph_C1_J, second_graph_C1_J, third_graph_C1_J, ncol=3)
+totalC1JDays <- c(C1J_dates1 + 1,
+                  (C1_J_dates[which(C1_J_dates$p_level == maxP2),1] -
+                     C1_J_dates[which(C1_J_dates$p_level == minP1),1])$date,
+                  C1J_dates2 + 1,
+                  (C1_J_dates[which(C1_J_dates$p_level == maxP3),1] -
+                     C1_J_dates[which(C1_J_dates$p_level == minP2),1])$date,
+                  C1J_dates3 + 1,
+                  (C1_J_dates[which(C1_J_dates$p_level == maxP4),1] -
+                     C1_J_dates[which(C1_J_dates$p_level == minP3),1])$date,
+                  C1J_dates4 + 3, #First two days of 4th session had no polarity value
+                  NA)
+
+
+data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break",
+                        "4th session", "4th break"),
+           Hours = totalC1JHours,
+           Days = totalC1JDays,
+           Polarity = c(maxP1,minP1,maxP2,minP2,maxP3,minP3,maxP4,minP4),
+           Change = c(minP1-maxP1, maxP2-minP1, minP2-maxP2, maxP3-minP2, minP3-maxP3, maxP4-minP3, minP4-maxP4, NA))
+
