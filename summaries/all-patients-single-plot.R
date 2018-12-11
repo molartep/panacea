@@ -83,6 +83,11 @@ G1D_segment1 <- list(x1 = G1D_dates$date[4], y1 = G1D_dates$p_level[4],
 G1D_lab1x <- as.POSIXct((as.numeric(G1D_segment1$x1) + as.numeric(G1D_segment1$x2)) / 2, origin = '1970-01-01')
 G1D_lab1y <- (G1D_segment1$y1 + G1D_segment1$y2)/2
 
+G1D_segment2 <- list(x1 = G1D_dates$date[42], y1 = G1D_dates$p_level[42],
+                     x2 = G1D_dates$date[79], y2 = G1D_dates$p_level[79]) 
+G1D_lab2x <- as.POSIXct((as.numeric(G1D_segment2$x1) + as.numeric(G1D_segment2$x2)) / 2, origin = '1970-01-01')
+G1D_lab2y <- (G1D_segment2$y1 + G1D_segment2$y2)/2
+
 L3K_segment1 <- list(x1 = L3K_dates$date[7], y1 = L3K_dates$p_level[7],
                      x2 = L3K_dates$date[38], y2 = L3K_dates$p_level[38]) 
 L3K_lab1x <- as.POSIXct((as.numeric(L3K_segment1$x1) + as.numeric(L3K_segment1$x2)) / 2, origin = '1970-01-01')
@@ -161,6 +166,11 @@ patients %>% group_by(Patient) %>%
                      xend = G1D_segment1$x2, yend = G1D_segment1$y2, color = "G1D"),
                  linetype = "dashed") +
   geom_text(aes(x = G1D_lab1x, y = G1D_lab1y + 5, color = "G1D", label = "+ 2.4 in 35 days",
+                angle = 1), size = 3) +
+  geom_segment(aes(x = G1D_segment2$x1, y = G1D_segment2$y1,
+                   xend = G1D_segment2$x2, yend = G1D_segment2$y2, color = "G1D"),
+               linetype = "dashed") +
+  geom_text(aes(x = G1D_lab2x, y = G1D_lab2y - 5, color = "G1D", label = "+ 1.1 in 37 days",
                 angle = 1), size = 3) +
   
   #L3K Segments
