@@ -28,7 +28,7 @@ B1_S_first_progress <- B1_S_first_session %>% select(`Total therapy duration (Hr
   geom_smooth(size = 0.5) +
   geom_text(data = B1_S_first_session[c(1,f1),c(7,2)],
             label = B1_S_first_session$`Polarity level`[c(1, f1)],
-            nudge_y = -6)
+            nudge_y = -12)
 
 B1_S_second_progress <- B1_S_second_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -38,7 +38,7 @@ B1_S_second_progress <- B1_S_second_session %>% select(`Total therapy duration (
   geom_smooth(size = 0.5) +
   geom_text(data = B1_S_second_session[c(1,s1),c(7,2)],
             label = B1_S_second_session$`Polarity level`[c(1, s1)],
-            nudge_y = 5,
+            nudge_y = 12,
             nudge_x = 0.8)
 
 B1_S_third_progress <- B1_S_third_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
@@ -49,7 +49,7 @@ B1_S_third_progress <- B1_S_third_session %>% select(`Total therapy duration (Hr
   geom_smooth(size = 0.5) +
   geom_text(data = B1_S_third_session[c(2,t1),c(7,2)],
             label = B1_S_third_session$`Polarity level`[c(2, t1)],
-            nudge_y = -6)
+            nudge_y = -12)
 
-grid.arrange(top = "B1-S Polarity", B1_S_first_progress, B1_S_second_progress, B1_S_third_progress, ncol=3)
+grid.arrange(top = "B1-S Polarity", B1_S_first_progress, B1_S_second_progress, B1_S_third_progress, ncol=2)
 
