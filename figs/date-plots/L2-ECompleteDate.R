@@ -6,7 +6,7 @@ library(scales)
 L2E <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Eric", 
                   col_types = c("date", "numeric", "numeric"))
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-01 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-15 01:00"), format = "%Y-%m-%d %H:%M"))
 
 L2E_dates <- L2E[,c(1,3)]
 
@@ -31,6 +31,11 @@ L2E_segment2 <- list(x1 = L2E_dates$date[48], y1 = L2E_dates$p_level[48],
 L2E_lab2x <- as.POSIXct((as.numeric(L2E_segment2$x1) + as.numeric(L2E_segment2$x2)) / 2, origin = '1970-01-01')
 L2E_lab2y <- (L2E_segment2$y1 + L2E_segment2$y2)/2
 
+L2E_segment3 <- list(x1 = L2E_dates$date[76], y1 = L2E_dates$p_level[76],
+                     x2 = L2E_dates$date[108], y2 = L2E_dates$p_level[108]) 
+L2E_lab3x <- as.POSIXct((as.numeric(L2E_segment3$x1) + as.numeric(L2E_segment3$x2)) / 2, origin = '1970-01-01')
+L2E_lab3y <- (L2E_segment3$y1 + L2E_segment3$y2)/2
+
 L2E_dategraph + geom_segment(aes(x = L2E_segment1$x1, y = L2E_segment1$y1,
                                  xend = L2E_segment1$x2, yend = L2E_segment1$y2, color = "22"),
                              linetype = "dashed") +
@@ -40,4 +45,9 @@ L2E_dategraph + geom_segment(aes(x = L2E_segment1$x1, y = L2E_segment1$y1,
                    xend = L2E_segment2$x2, yend = L2E_segment2$y2, color = "15"),
                linetype = "dashed") +
   geom_text(aes(x = L2E_lab2x, y = L2E_lab2y + 5, color = "15", label = "+ 8.6",
-                angle = 9)) + labs(color = "Days Without\nTreatment")
+                angle = 9)) + 
+  geom_segment(aes(x = L2E_segment3$x1, y = L2E_segment3$y1,
+                   xend = L2E_segment3$x2, yend = L2E_segment3$y2, color = "31"),
+               linetype = "dashed") +
+  geom_text(aes(x = L2E_lab3x, y = L2E_lab3y + 5, color = "31", label = "+ 5.2",
+                angle = 4)) + labs(color = "Days Without\nTreatment") 
