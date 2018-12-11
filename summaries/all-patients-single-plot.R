@@ -63,6 +63,11 @@ H1A_segment2 <- list(x1 = H1A_dates$date[46], y1 = H1A_dates$p_level[46],
 H1A_lab2x <- as.POSIXct((as.numeric(H1A_segment2$x1) + as.numeric(H1A_segment2$x2)) / 2, origin = '1970-01-01')
 H1A_lab2y <- (H1A_segment2$y1 + H1A_segment2$y2)/2
 
+H1A_segment3 <- list(x1 = H1A_dates$date[72], y1 = H1A_dates$p_level[72],
+                     x2 = H1A_dates$date[111], y2 = H1A_dates$p_level[111]) 
+H1A_lab3x <- as.POSIXct((as.numeric(H1A_segment3$x1) + as.numeric(H1A_segment3$x2)) / 2, origin = '1970-01-01')
+H1A_lab3y <- (H1A_segment3$y1 + H1A_segment3$y2)/2
+
 C1J_segment1 <- list(x1 = C1J_dates$date[20], y1 = C1J_dates$p_level[20],
                      x2 = C1J_dates$date[30], y2 = C1J_dates$p_level[30]) 
 C1J_lab1x <- as.POSIXct((as.numeric(C1J_segment1$x1) + as.numeric(C1J_segment1$x2)) / 2, origin = '1970-01-01')
@@ -142,6 +147,11 @@ patients %>% group_by(Patient) %>%
                linetype = "dashed") +
   geom_text(aes(x = H1A_lab2x, y = H1A_lab2y - 5, color = "H1A", label = "+ 2 in 25 days",
                 angle = 2), size = 3) +
+  geom_segment(aes(x = H1A_segment3$x1, y = H1A_segment3$y1,
+                   xend = H1A_segment3$x2, yend = H1A_segment3$y2, color = "H1A"),
+               linetype = "dashed") +
+  geom_text(aes(x = H1A_lab3x, y = H1A_lab3y + 8, color = "H1A", label = "+ 8.9 in 38 days",
+                angle = 4), size = 3) +
   
   #C1J Segments
   geom_segment(aes(x = C1J_segment1$x1, y = C1J_segment1$y1,
