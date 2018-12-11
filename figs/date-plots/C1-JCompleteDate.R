@@ -13,6 +13,7 @@ C1J_dates <- C1J[,c(1,3)]
 C1J_max <- max(C1J$p_level, na.rm = T)
 
 #C1-J DATE GRAPH 
+
 C1J_dategraph <- C1J_dates %>%
   ggplot(aes(x=date, y= p_level)) + geom_point() + 
   scale_x_datetime(date_breaks = "1 month", date_labels =  "%b %Y", limits = lims) +
