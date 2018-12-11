@@ -21,7 +21,7 @@ L1_J <- read_excel("~/Desktop/Electronegatividad.xlsx",
                                                  "numeric", "numeric", "numeric", "numeric"), skip = 2)
 L2_E <- read_excel("~/Desktop/Electronegatividad.xlsx", 
                    sheet = "Eric", col_types = c("text", "numeric", 
-                                                 "numeric", "numeric", "numeric", "numeric"), skip = 2)
+                                                 "numeric", "numeric", "numeric", "numeric", "numeric"), skip = 2)
 L3_K <- read_excel("~/Desktop/Electronegatividad.xlsx", 
                    sheet = "Kevin", col_types = c("text", "numeric", 
                                                   "numeric", "numeric",
@@ -55,7 +55,7 @@ B1_S_first_progress <- B1_S_first_session %>% select(`Total therapy duration (Hr
   geom_smooth(size = 0.5) +
   geom_text(data = B1_S_first_session[c(1,f1),c(7,2)],
             label = B1_S_first_session$`Polarity level`[c(1, f1)],
-            nudge_y = -6)
+            nudge_y = -15)
 
 B1_S_second_progress <- B1_S_second_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -65,7 +65,7 @@ B1_S_second_progress <- B1_S_second_session %>% select(`Total therapy duration (
   geom_smooth(size = 0.5) +
   geom_text(data = B1_S_second_session[c(1,s1),c(7,2)],
             label = B1_S_second_session$`Polarity level`[c(1, s1)],
-            nudge_y = 5,
+            nudge_y = 15,
             nudge_x = 0.8)
 
 B1_S_third_progress <- B1_S_third_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
@@ -76,11 +76,11 @@ B1_S_third_progress <- B1_S_third_session %>% select(`Total therapy duration (Hr
   geom_smooth(size = 0.5) +
   geom_text(data = B1_S_third_session[c(2,t1),c(7,2)],
             label = B1_S_third_session$`Polarity level`[c(2, t1)],
-            nudge_y = -6)
+            nudge_y = -15)
 
 grobsB1S <- list(B1_S_first_progress, B1_S_second_progress, B1_S_third_progress)
 
-B1SFINAL <- grid.arrange(top = "B1-S Polarity", grobs = lapply(grobsB1S, "+", margin), ncol=3)
+B1SFINAL <- grid.arrange(top = "B1-S Polarity", grobs = lapply(grobsB1S, "+", margin), ncol=2)
 
 ###############################################################################################################
 
@@ -99,7 +99,7 @@ fo1 <- max(fourth_C1_J$days_after) + 1
 first_C1_J[,8] <- cumsum(first_C1_J[,8])
 second_C1_J[,8] <- cumsum(second_C1_J[,8])
 third_C1_J[,8] <- cumsum(third_C1_J[,8])
-fourth_C1_J[,8] <- cumsum(fourthC1_J[,8])
+fourth_C1_J[,8] <- cumsum(fourth_C1_J[,8])
 
 first_graph_C1_J <- first_C1_J %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -111,7 +111,7 @@ first_graph_C1_J <- first_C1_J %>% select(`Total therapy duration (Hrs)`, `Polar
             label = first_C1_J$`Polarity level`[c(1, f1)],
             nudge_y = -15,
             nudge_x = 1.5,
-            size = 2.9)
+            size = 3.5)
 
 second_graph_C1_J <- second_C1_J %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -122,7 +122,7 @@ second_graph_C1_J <- second_C1_J %>% select(`Total therapy duration (Hrs)`, `Pol
   geom_text(data = second_C1_J[c(2,s1),c(8,2)],
             label = second_C1_J$`Polarity level`[c(2, s1)],
             nudge_y = -14,
-            size = 3)
+            size = 3.5)
 
 third_graph_C1_J <- third_C1_J %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -134,7 +134,7 @@ third_graph_C1_J <- third_C1_J %>% select(`Total therapy duration (Hrs)`, `Polar
             label = third_C1_J$`Polarity level`[c(2, t1)],
             nudge_y = -14,
             nudge_x = -3,
-            size = 3)
+            size = 3.5)
 
 fourth_graph_C1_J <- fourth_C1_J %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -142,15 +142,15 @@ fourth_graph_C1_J <- fourth_C1_J %>% select(`Total therapy duration (Hrs)`, `Pol
   scale_y_continuous(limits = c(0, y_maxC1J)) +
   labs(subtitle = "Fourth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = fourth_C1_J[c(2,fo1),c(8,2)],
-            label = fourth_C1_J$`Polarity level`[c(2, fo1)],
-            nudge_y = -8,
-            size = 3)
+  geom_text(data = fourth_C1_J[c(4,fo1),c(8,2)],
+            label = fourth_C1_J$`Polarity level`[c(4, fo1)],
+            nudge_y = -14,
+            size = 3.5)
 
 first_grobsC1J <- list(first_graph_C1_J, second_graph_C1_J, third_graph_C1_J)
 second_grobsC1J <- list(fourth_graph_C1_J)
 
-C1JFINAL <- grid.arrange(top = "C1-J Polarity", ncol=3,
+C1JFINAL <- grid.arrange(top = "C1-J Polarity", ncol=2,
                          grobs = c(lapply(first_grobsC1J, "+", margin_top),
                                    lapply(second_grobsC1J, "+", margin_bottom)))
 
@@ -265,10 +265,10 @@ s1 <- max(second_L2E$days_after) + 1
 t1 <- max(third_L2E$days_after) + 1
 fo1 <- max(fourth_L2E$days_after) + 1
 
-first_L2E[,6] <- cumsum(first_L2E[,6])
-second_L2E[,6] <- cumsum(second_L2E[,6])
-third_L2E[,6] <- cumsum(third_L2E[,6])
-fourth_L2E[,6] <- cumsum(fourth_L2E[,6])
+first_L2E[,7] <- cumsum(first_L2E[,7])
+second_L2E[,7] <- cumsum(second_L2E[,7])
+third_L2E[,7] <- cumsum(third_L2E[,7])
+fourth_L2E[,7] <- cumsum(fourth_L2E[,7])
 
 first_graph_L2E <- first_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -276,10 +276,10 @@ first_graph_L2E <- first_L2E %>% select(`Total therapy duration (Hrs)`, `Polarit
   scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "First Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = first_L2E[c(1,f1),c(6,2)],
+  geom_text(data = first_L2E[c(1,f1),c(7,2)],
             label = first_L2E$`Polarity level`[c(1, f1)],
             nudge_y = -14,
-            size = 2.8)
+            size = 3.5)
 
 second_graph_L2E <- second_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -287,11 +287,11 @@ second_graph_L2E <- second_L2E %>% select(`Total therapy duration (Hrs)`, `Polar
   scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "Second Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = second_L2E[c(1,s1),c(6,2)],
+  geom_text(data = second_L2E[c(1,s1),c(7,2)],
             label = second_L2E$`Polarity level`[c(1, s1)],
             nudge_y = -14,
             nudge_x = 1,
-            size = 2.7)
+            size = 3.5)
 
 third_graph_L2E <- third_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -299,11 +299,11 @@ third_graph_L2E <- third_L2E %>% select(`Total therapy duration (Hrs)`, `Polarit
   scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "Third Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = third_L2E[c(2,t1),c(6,2)],
+  geom_text(data = third_L2E[c(2,t1),c(7,2)],
             label = third_L2E$`Polarity level`[c(2, t1)],
             nudge_y = 14,
             nudge_x = -1,
-            size = 3)
+            size = 3.5)
 
 fourth_graph_L2E <- fourth_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -311,15 +311,15 @@ fourth_graph_L2E <- fourth_L2E %>% select(`Total therapy duration (Hrs)`, `Polar
   scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "Fourth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = fourth_L2E[c(2,fo1),c(6,2)],
-            label = fourth_L2E$`Polarity level`[c(2, fo1)],
-            nudge_y = 6,
-            size = 3)
+  geom_text(data = fourth_L2E[c(4,fo1),c(7,2)],
+            label = fourth_L2E$`Polarity level`[c(4, fo1)],
+            nudge_y = 14,
+            size = 3.5)
 
 first_grobsL2E <- list(first_graph_L2E, second_graph_L2E, third_graph_L2E)
 second_grobsL2E <- list(fourth_graph_L2E)
 
-L2EFINAL <- grid.arrange(top = "L2-E Polarity", ncol=3,
+L2EFINAL <- grid.arrange(top = "L2-E Polarity", ncol=2,
                          grobs = c(lapply(first_grobsL2E, "+", margin_top),
                                    lapply(second_grobsL2E, "+", margin_bottom)))
 
