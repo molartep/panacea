@@ -7,52 +7,68 @@ L2_E <- read_excel("~/Desktop/Electronegatividad.xlsx",
                    sheet = "Eric", col_types = c("text", "numeric", 
                                                  "numeric", "numeric", "numeric", "numeric"), skip = 2)
 
-first <- L2_E[1:11,] %>% mutate(days_after = 0:10)
-second <- L2_E[13:25,] %>% mutate(days_after = 0:12)
-third <- L2_E[27:39,] %>% mutate(days_after = 0:12)
+first_L2E <- L2_E[1:11,] %>% mutate(days_after = 0:10)
+second_L2E <- L2_E[13:25,] %>% mutate(days_after = 0:12)
+third_L2E <- L2_E[27:39,] %>% mutate(days_after = 0:12)
+fourth_L2E <- L2_E[41:53,] %>% mutate(days_after = 0:12)
 
-y_max1 <- max(first$`Polarity level`, na.rm = T)
+y_maxL2E <- max(first_L2E$`Polarity level`, na.rm = T)
 
-f1 <- max(first$days_after) + 1
-s1 <- max(second$days_after) + 1
-t1 <- max(third$days_after) + 1
+f1 <- max(first_L2E$days_after) + 1
+s1 <- max(second_L2E$days_after) + 1
+t1 <- max(third_L2E$days_after) + 1
+fo1 <- max(fourth_L2E$days_after) + 1
 
-first[,6] <- cumsum(first[,6])
-second[,6] <- cumsum(second[,6])
-third[,6] <- cumsum(third[,6])
+first_L2E[,7] <- cumsum(first_L2E[,7])
+second_L2E[,7] <- cumsum(second_L2E[,7])
+third_L2E[,7] <- cumsum(third_L2E[,7])
+fourth_L2E[,7] <- cumsum(fourth_L2E[,7])
 
-first_graph <- first %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+first_graph_L2E <- first_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
   scale_x_continuous(breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
+  scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "First Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = first[c(1,f1),c(6,2)],
-            label = first$`Polarity level`[c(1, f1)],
-            nudge_y = -6,
-            size = 3)
+  geom_text(data = first_L2E[c(1,f1),c(7,2)],
+            label = first_L2E$`Polarity level`[c(1, f1)],
+            nudge_y = -14,
+            size = 3.5)
 
-second_graph <- second %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+second_graph_L2E <- second_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
   scale_x_continuous(breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
+  scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "Second Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = second[c(1,s1),c(6,2)],
-            label = second$`Polarity level`[c(1, s1)],
-            nudge_y = -6,
-            size = 3)
+  geom_text(data = second_L2E[c(1,s1),c(7,2)],
+            label = second_L2E$`Polarity level`[c(1, s1)],
+            nudge_y = -14,
+            nudge_x = 1,
+            size = 3.5)
 
-third_graph <- third %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+third_graph_L2E <- third_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
   scale_x_continuous(breaks = pretty_breaks()) +
-  scale_y_continuous(limits = c(0, y_max1)) +
+  scale_y_continuous(limits = c(0, y_maxL2E)) +
   labs(subtitle = "Third Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = third[c(2,t1),c(6,2)],
-            label = third$`Polarity level`[c(2, t1)],
-            nudge_y = 6,
-            size = 3)
+  geom_text(data = third_L2E[c(2,t1),c(7,2)],
+            label = third_L2E$`Polarity level`[c(2, t1)],
+            nudge_y = 14,
+            size = 3.5)
 
-grid.arrange(top = "L2-E Polarity", first_graph, second_graph, third_graph, ncol=3)
+fourth_graph_L2E <- fourth_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_maxL2E)) +
+  labs(subtitle = "Fourth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(size = 0.5) +
+  geom_text(data = fourth_L2E[c(4,fo1),c(7,2)],
+            label = fourth_L2E$`Polarity level`[c(4, fo1)],
+            nudge_y = 14,
+            size = 3.5)
 
+grobsL2E <- list(first_graph_L2E, second_graph_L2E, third_graph_L2E, fourth_graph_L2E)
+
+grid.arrange(top = "L2-E Polarity", ncol=2, grobs = grobsL2E)
