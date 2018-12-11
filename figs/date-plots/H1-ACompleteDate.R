@@ -6,7 +6,7 @@ library(scales)
 H1A <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Anna", 
                   col_types = c("date", "numeric", "numeric"))
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-01 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-15 01:00"), format = "%Y-%m-%d %H:%M"))
 
 H1A_dates <- H1A[,c(1,3)]
 
@@ -31,6 +31,11 @@ H1A_segment2 <- list(x1 = H1A_dates$date[46], y1 = H1A_dates$p_level[46],
 H1A_lab2x <- as.POSIXct((as.numeric(H1A_segment2$x1) + as.numeric(H1A_segment2$x2)) / 2, origin = '1970-01-01')
 H1A_lab2y <- (H1A_segment2$y1 + H1A_segment2$y2)/2
 
+H1A_segment3 <- list(x1 = H1A_dates$date[72], y1 = H1A_dates$p_level[72],
+                     x2 = H1A_dates$date[111], y2 = H1A_dates$p_level[111]) 
+H1A_lab3x <- as.POSIXct((as.numeric(H1A_segment3$x1) + as.numeric(H1A_segment3$x2)) / 2, origin = '1970-01-01')
+H1A_lab3y <- (H1A_segment3$y1 + H1A_segment3$y2)/2
+
 H1A_dategraph + geom_segment(aes(x = H1A_segment1$x1, y = H1A_segment1$y1,
                                  xend = H1A_segment1$x2, yend = H1A_segment1$y2, color = "22"),
                              linetype = "dashed") +
@@ -40,4 +45,9 @@ H1A_dategraph + geom_segment(aes(x = H1A_segment1$x1, y = H1A_segment1$y1,
                    xend = H1A_segment2$x2, yend = H1A_segment2$y2, color = "25"),
                linetype = "dashed") +
   geom_text(aes(x = H1A_lab2x, y = H1A_lab2y + 2, color = "25", label = "+ 2",
+                angle = 4)) +
+  geom_segment(aes(x = H1A_segment3$x1, y = H1A_segment3$y1,
+                 xend = H1A_segment3$x2, yend = H1A_segment3$y2, color = "38"),
+             linetype = "dashed") +
+  geom_text(aes(x = H1A_lab3x, y = H1A_lab3y + 2, color = "38", label = "+ 8.9",
                 angle = 4)) + labs(color = "Days Without\nTreatment")
