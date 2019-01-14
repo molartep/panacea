@@ -90,14 +90,14 @@ B1SFINAL <- grid.arrange(top = "B1-S Polarity", ncol=2,
 first_C1_J <- C1_J[1:18,] %>% mutate(days_after = 0:17)
 second_C1_J <- C1_J[20:32,] %>% mutate(days_after = 0:12)
 third_C1_J <- C1_J[34:45,] %>% mutate(days_after = 0:11)
-fourth_C1_J <- C1_J[47:59,] %>% mutate(days_after = 0:12)
+fourth_C1_J <- C1_J[47:62,] %>% mutate(days_after = 0:15)
 
 y_maxC1J <- max(first_C1_J$`Polarity level`, na.rm = T)
 
 f1 <- max(first_C1_J$days_after) + 1
 s1 <- max(second_C1_J$days_after) + 1
 t1 <- max(third_C1_J$days_after) + 1
-fo1 <- max(fourth_C1_J$days_after) + 1
+fo1 <- max(fourth_C1_J[complete.cases(fourth_C1_J[,2]),]$days_after) + 1
 
 first_C1_J[,8] <- cumsum(first_C1_J[,8])
 second_C1_J[,8] <- cumsum(second_C1_J[,8])
@@ -147,7 +147,7 @@ fourth_graph_C1_J <- fourth_C1_J %>% select(`Total therapy duration (Hrs)`, `Pol
   geom_smooth(size = 0.5) +
   geom_text(data = fourth_C1_J[c(4,fo1),c(8,2)],
             label = fourth_C1_J$`Polarity level`[c(4, fo1)],
-            nudge_y = -14,
+            nudge_y = 14,
             size = 3.5)
 
 first_grobsC1J <- list(first_graph_C1_J, second_graph_C1_J)
