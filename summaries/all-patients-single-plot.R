@@ -18,7 +18,7 @@ G1D <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Daryl",
 L3K <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Kevin", 
                   col_types = c("date", "numeric", "numeric"))
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-15 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-01-19 01:00"), format = "%Y-%m-%d %H:%M"))
 
 B1S_dates <- B1S[,c(1,3)] %>% mutate(Patient= "B1S")
 L2E_dates <- L2E[,c(1,3)] %>% mutate(Patient= "L2E")
