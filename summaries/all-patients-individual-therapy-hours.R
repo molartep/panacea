@@ -161,13 +161,13 @@ C1JFINAL <- grid.arrange(top = "C1-J Polarity", ncol=2,
 
 first <- G1_D[1:4,] %>% mutate(days_after = 0:3)
 second <- G1_D[6:9,] %>% mutate(days_after = 0:3)
-third <- G1_D[11:13,] %>% mutate(days_after = 0:2)
+third <- G1_D[11:14,] %>% mutate(days_after = 0:3)
 
 y_max1 <- max(first$`Polarity level`, na.rm = T)
 
 f1 <- max(first$days_after) + 1
 s1 <- max(second$days_after) + 1
-t1 <- max(third$days_after) + 1
+t1 <- max(third[complete.cases(third[,2]),]$days_after) + 1
 
 first[,6] <- cumsum(first[,6])
 second[,6] <- cumsum(second[,6])
