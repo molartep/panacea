@@ -401,15 +401,18 @@ L2EFINAL <- grid.arrange(top = "L2-E Polarity", ncol=2,
 ################################################################################################################
 
 L3_K_first_session <- L3_K[1:7,] %>% mutate(days_after = 0:6)
-L3_K_second_session <- L3_K[9:21,] %>% mutate(days_after = 0:12)
+L3_K_second_session <- L3_K[9:20,] %>% mutate(days_after = 0:11)
+L3_K_third_session <- L3_K[22:28,] %>% mutate(days_after = 0:6)
 
 y_maxL3K <- max(L3_K_first_session$`Polarity level`, na.rm = T)
 
-f1 <- max(L3_K_first_session$days_after) + 1
-s1 <- max(L3_K_second_session$days_after) + 1
+f1 <- max(L3_K_first_session[complete.cases(L3_K_first_session[,2]),]$days_after) + 1
+s1 <- max(L3_K_second_session[complete.cases(L3_K_second_session[,2]),]$days_after) + 1
+t1 <- max(L3_K_third_session[complete.cases(L3_K_third_session[,2]),]$days_after) + 1
 
 L3_K_first_session[,6] <- cumsum(L3_K_first_session[,6])
 L3_K_second_session[,6] <- cumsum(L3_K_second_session[,6])
+L3_K_third_session[,6] <- cumsum(L3_K_third_session[,6])
 
 L3_K_first_progress <- L3_K_first_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -431,9 +434,22 @@ L3_K_second_progress <- L3_K_second_session %>% select(`Total therapy duration (
             label = L3_K_second_session$`Polarity level`[c(3, s1)],
             nudge_y = -8)
 
-grobsL3K <- list(L3_K_first_progress, L3_K_second_progress)
+L3_K_third_progress <- L3_K_third_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_maxL3K)) +
+  labs(subtitle = "Third Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(size = 0.5) +
+  geom_text(data = L3_K_third_session[c(3,s1),c(6,2)],
+            label = L3_K_third_session$`Polarity level`[c(3, s1)],
+            nudge_y = -8)
 
-L3KFINAL <- grid.arrange(top = "L3-K Polarity", grobs = lapply(grobsL3K, "+", margin), ncol=2)
+first_grobsL3K <- list(L3_K_first_progress, L3_K_second_progress)
+second_grobsL3K <- list(L3_K_third_progress)
+
+L3KFINAL <- grid.arrange(top = "L3-K Polarity", ncol=2,
+                         grobs = c(lapply(first_grobsL3K, "+", margin_top),
+                                   lapply(second_grobsL3K, "+", margin_bottom)))
 
 ################################################################################################################
 
