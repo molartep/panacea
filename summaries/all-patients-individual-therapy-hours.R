@@ -453,36 +453,6 @@ L3KFINAL <- grid.arrange(top = "L3-K Polarity", ncol=2,
 
 ################################################################################################################
 
-totalB1SHours <- c(B1_S_first_session$`Total therapy duration (Hrs)`[nrow(B1_S_first_session)],
-                   B1_S_second_session$`Total therapy duration (Hrs)`[nrow(B1_S_second_session)],
-                   B1_S_third_session$`Total therapy duration (Hrs)`[nrow(B1_S_third_session)])
-
-totalC1JHours <- c(first_C1_J$`Total therapy duration (Hrs)`[nrow(first_C1_J)],
-                   second_C1_J$`Total therapy duration (Hrs)`[nrow(second_C1_J)],
-                   third_C1_J$`Total therapy duration (Hrs)`[nrow(third_C1_J)],
-                   fourth_C1_J$`Total therapy duration (Hrs)`[nrow(fourth_C1_J)])
-
-totalG1DHours <- c(first_G1D$`Total therapy duration (Hrs)`[nrow(first_G1D)],
-                   second_G1D$`Total therapy duration (Hrs)`[nrow(second_G1D)])
-
-totalH1AHours <- c(first_H1A$`Total therapy duration (Hrs)`[nrow(first_H1A)],
-                   second_H1A$`Total therapy duration (Hrs)`[nrow(second_H1A)])
-
-totalL1JHours <- L1_J_first_session$`Total therapy duration (Hrs)`[nrow(L1_J_first_session)]
-
-totalL2EHours <- c(first_L2E$`Total therapy duration (Hrs)`[nrow(first_L2E)],
-                   second_L2E$`Total therapy duration (Hrs)`[nrow(second_L2E)],
-                   third_L2E$`Total therapy duration (Hrs)`[nrow(third_L2E)],
-                   fourth_L2E$`Total therapy duration (Hrs)`[nrow(fourth_L2E)])
-
-totalL3KHours <- c(L3_K_first_session$`Total therapy duration (Hrs)`[nrow(L3_K_first_session)],
-                   L3_K_second_session$`Total therapy duration (Hrs)`[nrow(L3_K_second_session)])
-
-hours <- list(B1S = totalB1SHours, C1J = totalC1JHours, G1D = totalG1DHours, H1A = totalH1AHours,
-           L1J = totalL1JHours, L2E = totalL2EHours, L3K = totalL3KHours)
-
-################################################################################################################
-
 label <- paste("All Patients Therapy Hours ", Sys.Date(), ".pdf", sep = "")
 path <- "~/Desktop/PDFs All Patient Therapy Hours"
 
