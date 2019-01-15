@@ -440,8 +440,8 @@ L3_K_third_progress <- L3_K_third_session %>% select(`Total therapy duration (Hr
   scale_y_continuous(limits = c(0, y_maxL3K)) +
   labs(subtitle = "Third Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = L3_K_third_session[c(3,s1),c(6,2)],
-            label = L3_K_third_session$`Polarity level`[c(3, s1)],
+  geom_text(data = L3_K_third_session[c(2,t1),c(6,2)],
+            label = L3_K_third_session$`Polarity level`[c(2, t1)],
             nudge_y = -8)
 
 first_grobsL3K <- list(L3_K_first_progress, L3_K_second_progress)
