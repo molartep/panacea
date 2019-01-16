@@ -162,16 +162,19 @@ C1JFINAL <- grid.arrange(top = "C1-J Polarity", ncol=2,
 first <- G1_D[1:4,] %>% mutate(days_after = 0:3)
 second <- G1_D[6:9,] %>% mutate(days_after = 0:3)
 third <- G1_D[11:14,] %>% mutate(days_after = 0:3)
+fourth <- G1_D[16:19,] %>% mutate(days_after = 0:3)
 
 y_max1 <- max(first$`Polarity level`, na.rm = T)
 
-f1 <- max(first$days_after) + 1
-s1 <- max(second$days_after) + 1
+f1 <- max(first[complete.cases(first[,2]),]$days_after) + 1
+s1 <- max(second[complete.cases(second[,2]),]$days_after) + 1
 t1 <- max(third[complete.cases(third[,2]),]$days_after) + 1
+fo1 <- max(fourth[complete.cases(fourth[,2]),]$days_after) + 1
 
 first[,6] <- cumsum(first[,6])
 second[,6] <- cumsum(second[,6])
 third[,6] <- cumsum(third[,6])
+fourth[,6] <- cumsum(fourth[,6])
 
 first_graph_G1_D <- first %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -203,8 +206,18 @@ third_graph_G1_D <- third %>% select(`Total therapy duration (Hrs)`, `Polarity l
             label = third$`Polarity level`[c(1, t1)],
             nudge_y = -0.7)
 
+fourth_graph_G1_D <- fourth %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_max1)) +
+  labs(subtitle = "Fourth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(size = 0.5) +
+  geom_text(data = fourth[c(2,fo1),c(6,2)],
+            label = fourth$`Polarity level`[c(2, fo1)],
+            nudge_y = -0.7)
+
 first_grobsG1D <- list(first_graph_G1_D, second_graph_G1_D)
-second_grobsG1D <- list(third_graph_G1_D)
+second_grobsG1D <- list(third_graph_G1_D, fourth_graph_G1_D)
 
 G1DFINAL <- grid.arrange(top = "G1-D Polarity", ncol=2,
                          grobs = c(lapply(first_grobsG1D, "+", margin_top),
