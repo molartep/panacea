@@ -279,8 +279,8 @@ fifth_graph_H1A <- fifth_H1A %>% select(`Total therapy duration (Hrs)`, `Polarit
   scale_y_continuous(limits = c(0, y_maxH1A)) +
   labs(subtitle = "Fifth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(size = 0.5) +
-  geom_text(data = fifth_H1A[c(7,fi1),c(6,2)],
-            label = fifth_H1A$`Polarity level`[c(7, fi1)],
+  geom_text(data = fifth_H1A[c(2,fi1),c(6,2)],
+            label = fifth_H1A$`Polarity level`[c(2, fi1)],
             nudge_y = 6)
 
 first_grobsH1A <- list(first_graph_H1A, second_graph_H1A, third_graph_H1A)
