@@ -240,7 +240,8 @@ first_graph_H1A <- first_H1A %>% select(`Total therapy duration (Hrs)`, `Polarit
   geom_smooth(size = 0.5) +
   geom_text(data = first_H1A[c(2,f1),c(6,2)],
             label = first_H1A$`Polarity level`[c(2, f1)],
-            nudge_y = -4)
+            nudge_y = -4,
+            size = 3.5)
 
 second_graph_H1A <- second_H1A %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -250,7 +251,7 @@ second_graph_H1A <- second_H1A %>% select(`Total therapy duration (Hrs)`, `Polar
   geom_smooth(size = 0.5) +
   geom_text(data = second_H1A[c(1,s1),c(6,2)],
             label = second_H1A$`Polarity level`[c(1, s1)],
-            nudge_y = 5)
+            nudge_y = 6)
 
 third_graph_H1A <- third_H1A %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -260,7 +261,7 @@ third_graph_H1A <- third_H1A %>% select(`Total therapy duration (Hrs)`, `Polarit
   geom_smooth(size = 0.5) +
   geom_text(data = third_H1A[c(1,t1),c(6,2)],
             label = third_H1A$`Polarity level`[c(1, t1)],
-            nudge_y = 5)
+            nudge_y = 6)
 
 fourth_graph_H1A <- fourth_H1A %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -270,7 +271,7 @@ fourth_graph_H1A <- fourth_H1A %>% select(`Total therapy duration (Hrs)`, `Polar
   geom_smooth(size = 0.5) +
   geom_text(data = fourth_H1A[c(7,fo1),c(6,2)],
             label = fourth_H1A$`Polarity level`[c(7, fo1)],
-            nudge_y = 5)
+            nudge_y = 6)
 
 fifth_graph_H1A <- fifth_H1A %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -280,12 +281,12 @@ fifth_graph_H1A <- fifth_H1A %>% select(`Total therapy duration (Hrs)`, `Polarit
   geom_smooth(size = 0.5) +
   geom_text(data = fifth_H1A[c(7,fi1),c(6,2)],
             label = fifth_H1A$`Polarity level`[c(7, fi1)],
-            nudge_y = 5)
+            nudge_y = 6)
 
 first_grobsH1A <- list(first_graph_H1A, second_graph_H1A, third_graph_H1A)
 second_grobsH1A <- list(fourth_graph_H1A, fifth_graph_H1A)
 
-H1AFINAL <- grid.arrange(top = "H1-A Polarity", ncol=2,
+H1AFINAL <- grid.arrange(top = "H1-A Polarity", ncol=3,
                          grobs = c(lapply(first_grobsH1A, "+", margin_top),
                                    lapply(second_grobsH1A, "+", margin_bottom)))
 
