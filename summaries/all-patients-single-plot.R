@@ -53,6 +53,11 @@ L2E_segment3 <- list(x1 = L2E_dates$date[76], y1 = L2E_dates$p_level[76],
 L2E_lab3x <- as.POSIXct((as.numeric(L2E_segment3$x1) + as.numeric(L2E_segment3$x2)) / 2, origin = '1970-01-01')
 L2E_lab3y <- (L2E_segment3$y1 + L2E_segment3$y2)/2
 
+L2E_segment4 <- list(x1 = L2E_dates$date[117], y1 = L2E_dates$p_level[117],
+                     x2 = L2E_dates$date[142], y2 = L2E_dates$p_level[142]) 
+L2E_lab4x <- as.POSIXct((as.numeric(L2E_segment4$x1) + as.numeric(L2E_segment4$x2)) / 2, origin = '1970-01-01')
+L2E_lab4y <- (L2E_segment4$y1 + L2E_segment4$y2)/2
+
 H1A_segment1 <- list(x1 = H1A_dates$date[11], y1 = H1A_dates$p_level[11],
                      x2 = H1A_dates$date[33], y2 = H1A_dates$p_level[33]) 
 H1A_lab1x <- as.POSIXct((as.numeric(H1A_segment1$x1) + as.numeric(H1A_segment1$x2)) / 2, origin = '1970-01-01')
@@ -67,6 +72,11 @@ H1A_segment3 <- list(x1 = H1A_dates$date[72], y1 = H1A_dates$p_level[72],
                      x2 = H1A_dates$date[111], y2 = H1A_dates$p_level[111]) 
 H1A_lab3x <- as.POSIXct((as.numeric(H1A_segment3$x1) + as.numeric(H1A_segment3$x2)) / 2, origin = '1970-01-01')
 H1A_lab3y <- (H1A_segment3$y1 + H1A_segment3$y2)/2
+
+H1A_segment4 <- list(x1 = H1A_dates$date[115], y1 = H1A_dates$p_level[115],
+                     x2 = H1A_dates$date[140], y2 = H1A_dates$p_level[140]) 
+H1A_lab4x <- as.POSIXct((as.numeric(H1A_segment4$x1) + as.numeric(H1A_segment4$x2)) / 2, origin = '1970-01-01')
+H1A_lab4y <- (H1A_segment4$y1 + H1A_segment4$y2)/2
 
 C1J_segment1 <- list(x1 = C1J_dates$date[20], y1 = C1J_dates$p_level[20],
                      x2 = C1J_dates$date[30], y2 = C1J_dates$p_level[30]) 
@@ -97,6 +107,11 @@ L3K_segment1 <- list(x1 = L3K_dates$date[7], y1 = L3K_dates$p_level[7],
                      x2 = L3K_dates$date[38], y2 = L3K_dates$p_level[38]) 
 L3K_lab1x <- as.POSIXct((as.numeric(L3K_segment1$x1) + as.numeric(L3K_segment1$x2)) / 2, origin = '1970-01-01')
 L3K_lab1y <- (L3K_segment1$y1 + L3K_segment1$y2)/2
+
+L3K_segment2 <- list(x1 = L3K_dates$date[48], y1 = L3K_dates$p_level[48],
+                     x2 = L3K_dates$date[79], y2 = L3K_dates$p_level[79]) 
+L3K_lab2x <- as.POSIXct((as.numeric(L3K_segment2$x1) + as.numeric(L3K_segment2$x2)) / 2, origin = '1970-01-01')
+L3K_lab2y <- (L3K_segment2$y1 + L3K_segment2$y2)/2
 
 patients <- rbind(B1S_dates, L2E_dates, L1J_dates, H1A_dates, C1J_dates, G1D_dates, L3K_dates)
 
@@ -134,6 +149,11 @@ patients %>% group_by(Patient) %>%
                linetype = "dashed") +
   geom_text(aes(x = L2E_lab3x, y = L2E_lab3y + 5, color = "L2E", label = "+ 5.2 in 31 days",
                 angle = 2), size = 3) +
+  geom_segment(aes(x = L2E_segment4$x1, y = L2E_segment4$y1,
+                   xend = L2E_segment4$x2, yend = L2E_segment4$y2, color = "L2E"),
+               linetype = "dashed") +
+  geom_text(aes(x = L2E_lab4x, y = L2E_lab4y + 3, color = "L2E", label = "+ 2.4 in 24 days",
+                angle = 2), size = 3) +
   
   #H1A Segments
   
@@ -151,6 +171,11 @@ patients %>% group_by(Patient) %>%
                    xend = H1A_segment3$x2, yend = H1A_segment3$y2, color = "H1A"),
                linetype = "dashed") +
   geom_text(aes(x = H1A_lab3x, y = H1A_lab3y + 8, color = "H1A", label = "+ 8.9 in 38 days",
+                angle = 4), size = 3) +
+  geom_segment(aes(x = H1A_segment4$x1, y = H1A_segment4$y1,
+                   xend = H1A_segment4$x2, yend = H1A_segment4$y2, color = "H1A"),
+               linetype = "dashed") +
+  geom_text(aes(x = H1A_lab4x, y = H1A_lab4y + 8, color = "H1A", label = "+ 1.7 in 24 days",
                 angle = 4), size = 3) +
   
   #C1J Segments
@@ -189,6 +214,11 @@ patients %>% group_by(Patient) %>%
                    xend = L3K_segment1$x2, yend = L3K_segment1$y2, color = "L3K"),
                linetype = "dashed") +
   geom_text(aes(x = L3K_lab1x, y = L3K_lab1y + 5, color = "L3K", label = "+ 11.7 in 30 days",
+                angle = 4), size = 3) +
+  geom_segment(aes(x = L3K_segment2$x1, y = L3K_segment2$y1,
+                   xend = L3K_segment2$x2, yend = L3K_segment2$y2, color = "L3K"),
+               linetype = "dashed") +
+  geom_text(aes(x = L3K_lab2x, y = L3K_lab2y + 5, color = "L3K", label = "+ 13.2 in 30 days",
                 angle = 4), size = 3) +
   
   #Labels
