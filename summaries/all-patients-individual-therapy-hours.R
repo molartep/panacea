@@ -344,7 +344,7 @@ first_graph_L2E <- first_L2E %>% select(`Total therapy duration (Hrs)`, `Polarit
   geom_text(data = first_L2E[c(1,f1),c(7,2)],
             label = first_L2E$`Polarity level`[c(1, f1)],
             nudge_y = -14,
-            size = 3.5)
+            size = 2.8)
 
 second_graph_L2E <- second_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -356,7 +356,7 @@ second_graph_L2E <- second_L2E %>% select(`Total therapy duration (Hrs)`, `Polar
             label = second_L2E$`Polarity level`[c(1, s1)],
             nudge_y = -14,
             nudge_x = 1,
-            size = 3.5)
+            size = 3)
 
 third_graph_L2E <- third_L2E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -395,7 +395,7 @@ fifth_graph_L2E <- fifth_L2E %>% select(`Total therapy duration (Hrs)`, `Polarit
 first_grobsL2E <- list(first_graph_L2E, second_graph_L2E, third_graph_L2E)
 second_grobsL2E <- list(fourth_graph_L2E, fifth_graph_L2E)
 
-L2EFINAL <- grid.arrange(top = "L2-E Polarity", ncol=2,
+L2EFINAL <- grid.arrange(top = "L2-E Polarity", ncol=3,
                          grobs = c(lapply(first_grobsL2E, "+", margin_top),
                                    lapply(second_grobsL2E, "+", margin_bottom)))
 
@@ -423,7 +423,7 @@ L3_K_first_progress <- L3_K_first_session %>% select(`Total therapy duration (Hr
   geom_smooth(size = 0.5) +
   geom_text(data = L3_K_first_session[c(2,f1),c(6,2)],
             label = L3_K_first_session$`Polarity level`[c(2, f1)],
-            nudge_y = -8)
+            nudge_y = -16)
 
 L3_K_second_progress <- L3_K_second_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -433,7 +433,7 @@ L3_K_second_progress <- L3_K_second_session %>% select(`Total therapy duration (
   geom_smooth(size = 0.5) +
   geom_text(data = L3_K_second_session[c(3,s1),c(6,2)],
             label = L3_K_second_session$`Polarity level`[c(3, s1)],
-            nudge_y = -8)
+            nudge_y = -16)
 
 L3_K_third_progress <- L3_K_third_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -443,7 +443,7 @@ L3_K_third_progress <- L3_K_third_session %>% select(`Total therapy duration (Hr
   geom_smooth(size = 0.5) +
   geom_text(data = L3_K_third_session[c(2,t1),c(6,2)],
             label = L3_K_third_session$`Polarity level`[c(2, t1)],
-            nudge_y = -8)
+            nudge_y = -16)
 
 first_grobsL3K <- list(L3_K_first_progress, L3_K_second_progress)
 second_grobsL3K <- list(L3_K_third_progress)
