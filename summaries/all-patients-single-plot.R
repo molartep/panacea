@@ -125,12 +125,12 @@ patients %>% group_by(Patient) %>%
                      xend = B1S_segment1$x2, yend = B1S_segment1$y2, color = "B1S"),
                  linetype = "dashed") +
   geom_text(aes(x = B1S_lab1x, y = B1S_lab1y + 5, label = "+ 16.1 in 15 days", color = "B1S",
-                angle = 16), size = 3) + 
+                angle = 22), size = 3) + 
   geom_segment(aes(x = B1S_segment2$x1, y = B1S_segment2$y1,
                    xend = B1S_segment2$x2, yend = B1S_segment2$y2, color = "B1S"),
                linetype = "dashed") +
   geom_text(aes(x = B1S_lab2x, y = B1S_lab2y + 5, label = "+ 56.4 in 38 days", color = "B1S",
-                angle = 23), size = 3) + 
+                angle = 30), size = 3) + 
   
   #L2E Segments
   
@@ -183,12 +183,12 @@ patients %>% group_by(Patient) %>%
                      xend = C1J_segment1$x2, yend = C1J_segment1$y2, color = "C1J"),
                  linetype = "dashed") +
   geom_text(aes(x = C1J_lab1x, y = C1J_lab1y + 5, color = "C1J", label = "+ 18.1 / 9 days",
-                angle = 27), size = 3) + 
+                angle = 35), size = 3) + 
   geom_segment(aes(x = C1J_segment2$x1, y = C1J_segment2$y1,
                    xend = C1J_segment2$x2, yend = C1J_segment2$y2, color = "C1J"),
                linetype = "dashed") +
   geom_text(aes(x = C1J_lab2x, y = C1J_lab2y + 5, color = "C1J", label = "+ 19.1 / 9 days",
-                angle = 29), size = 3) +
+                angle = 40), size = 3) +
   geom_segment(aes(x = C1J_segment3$x1, y = C1J_segment3$y1,
                    xend = C1J_segment3$x2, yend = C1J_segment3$y2, color = "C1J"),
                linetype = "dashed") +
@@ -214,12 +214,12 @@ patients %>% group_by(Patient) %>%
                    xend = L3K_segment1$x2, yend = L3K_segment1$y2, color = "L3K"),
                linetype = "dashed") +
   geom_text(aes(x = L3K_lab1x, y = L3K_lab1y + 5, color = "L3K", label = "+ 11.7 in 30 days",
-                angle = 4), size = 3) +
+                angle = 8), size = 3) +
   geom_segment(aes(x = L3K_segment2$x1, y = L3K_segment2$y1,
                    xend = L3K_segment2$x2, yend = L3K_segment2$y2, color = "L3K"),
                linetype = "dashed") +
   geom_text(aes(x = L3K_lab2x, y = L3K_lab2y + 5, color = "L3K", label = "+ 13.2 in 30 days",
-                angle = 4), size = 3) +
+                angle = 9), size = 3) +
   
   #Labels
   
