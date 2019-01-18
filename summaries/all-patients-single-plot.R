@@ -103,6 +103,11 @@ G1D_segment2 <- list(x1 = G1D_dates$date[42], y1 = G1D_dates$p_level[42],
 G1D_lab2x <- as.POSIXct((as.numeric(G1D_segment2$x1) + as.numeric(G1D_segment2$x2)) / 2, origin = '1970-01-01')
 G1D_lab2y <- (G1D_segment2$y1 + G1D_segment2$y2)/2
 
+G1D_segment3 <- list(x1 = G1D_dates$date[82], y1 = G1D_dates$p_level[82],
+                     x2 = G1D_dates$date[115], y2 = G1D_dates$p_level[115]) 
+G1D_lab3x <- as.POSIXct((as.numeric(G1D_segment3$x1) + as.numeric(G1D_segment3$x2)) / 2, origin = '1970-01-01')
+G1D_lab3y <- (G1D_segment3$y1 + G1D_segment3$y2)/2
+
 L3K_segment1 <- list(x1 = L3K_dates$date[7], y1 = L3K_dates$p_level[7],
                      x2 = L3K_dates$date[38], y2 = L3K_dates$p_level[38]) 
 L3K_lab1x <- as.POSIXct((as.numeric(L3K_segment1$x1) + as.numeric(L3K_segment1$x2)) / 2, origin = '1970-01-01')
@@ -115,7 +120,7 @@ L3K_lab2y <- (L3K_segment2$y1 + L3K_segment2$y2)/2
 
 patients <- rbind(B1S_dates, L2E_dates, L1J_dates, H1A_dates, C1J_dates, G1D_dates, L3K_dates)
 
-patients %>% group_by(Patient) %>%
+graph <- patients %>% group_by(Patient) %>%
   ggplot(aes(x=date, y= p_level, color = Patient)) + geom_point() + 
   scale_x_datetime(date_breaks = "1 month", date_labels =  "%b %Y", limits = lims) +
   
@@ -129,7 +134,7 @@ patients %>% group_by(Patient) %>%
   geom_segment(aes(x = B1S_segment2$x1, y = B1S_segment2$y1,
                    xend = B1S_segment2$x2, yend = B1S_segment2$y2, color = "B1S"),
                linetype = "dashed") +
-  geom_text(aes(x = B1S_lab2x, y = B1S_lab2y + 5, label = "+ 56.4 in 38 days", color = "B1S",
+  geom_text(aes(x = B1S_lab2x, y = B1S_lab2y + 14, label = "+ 56.4 in 38 days", color = "B1S",
                 angle = 30), size = 3) + 
   
   #L2E Segments
@@ -152,7 +157,7 @@ patients %>% group_by(Patient) %>%
   geom_segment(aes(x = L2E_segment4$x1, y = L2E_segment4$y1,
                    xend = L2E_segment4$x2, yend = L2E_segment4$y2, color = "L2E"),
                linetype = "dashed") +
-  geom_text(aes(x = L2E_lab4x, y = L2E_lab4y + 3, color = "L2E", label = "+ 2.4 in 24 days",
+  geom_text(aes(x = L2E_lab4x, y = L2E_lab4y - 5, color = "L2E", label = "+ 2.4 in 24 days",
                 angle = 2), size = 3) +
   
   #H1A Segments
@@ -170,25 +175,25 @@ patients %>% group_by(Patient) %>%
   geom_segment(aes(x = H1A_segment3$x1, y = H1A_segment3$y1,
                    xend = H1A_segment3$x2, yend = H1A_segment3$y2, color = "H1A"),
                linetype = "dashed") +
-  geom_text(aes(x = H1A_lab3x, y = H1A_lab3y + 8, color = "H1A", label = "+ 8.9 in 38 days",
+  geom_text(aes(x = H1A_lab3x, y = H1A_lab3y + 12, color = "H1A", label = "+ 8.9 in 38 days",
                 angle = 4), size = 3) +
   geom_segment(aes(x = H1A_segment4$x1, y = H1A_segment4$y1,
                    xend = H1A_segment4$x2, yend = H1A_segment4$y2, color = "H1A"),
                linetype = "dashed") +
   geom_text(aes(x = H1A_lab4x, y = H1A_lab4y + 8, color = "H1A", label = "+ 1.7 in 24 days",
-                angle = 4), size = 3) +
+                angle = 2), size = 3) +
   
   #C1J Segments
   geom_segment(aes(x = C1J_segment1$x1, y = C1J_segment1$y1,
                      xend = C1J_segment1$x2, yend = C1J_segment1$y2, color = "C1J"),
                  linetype = "dashed") +
-  geom_text(aes(x = C1J_lab1x, y = C1J_lab1y + 5, color = "C1J", label = "+ 18.1 / 9 days",
+  geom_text(aes(x = C1J_lab1x, y = C1J_lab1y + 7, color = "C1J", label = "+ 18.1 / 9 days",
                 angle = 35), size = 3) + 
   geom_segment(aes(x = C1J_segment2$x1, y = C1J_segment2$y1,
                    xend = C1J_segment2$x2, yend = C1J_segment2$y2, color = "C1J"),
                linetype = "dashed") +
   geom_text(aes(x = C1J_lab2x, y = C1J_lab2y + 5, color = "C1J", label = "+ 19.1 / 9 days",
-                angle = 40), size = 3) +
+                angle = 35), size = 3) +
   geom_segment(aes(x = C1J_segment3$x1, y = C1J_segment3$y1,
                    xend = C1J_segment3$x2, yend = C1J_segment3$y2, color = "C1J"),
                linetype = "dashed") +
@@ -207,6 +212,11 @@ patients %>% group_by(Patient) %>%
                linetype = "dashed") +
   geom_text(aes(x = G1D_lab2x, y = G1D_lab2y - 5, color = "G1D", label = "+ 1.1 in 37 days",
                 angle = 1), size = 3) +
+  geom_segment(aes(x = G1D_segment3$x1, y = G1D_segment3$y1,
+                   xend = G1D_segment3$x2, yend = G1D_segment3$y2, color = "G1D"),
+               linetype = "dashed") +
+  geom_text(aes(x = G1D_lab3x, y = G1D_lab3y - 10, color = "G1D", label = "+ 1.5 in 32 days",
+                angle = 1), size = 3) +
   
   #L3K Segments
   
@@ -224,4 +234,13 @@ patients %>% group_by(Patient) %>%
   #Labels
   
   labs(title = "Polarity Levels", x = "Months",  y = "Polarity Levels")
+
+#Print graph
+graph
+
+#Save plot in Desktop folder
+label <- paste("All Patients Single Plot ", Sys.Date(), ".pdf", sep = "")
+path <- "~/Desktop/PDFs All Patients Single Plot"
+
+ggsave(label, graph, path = path, height = 6, width = 12)
 
