@@ -100,6 +100,13 @@ L3K_dategraph <- L3K_dates %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 grobs <- list(B1S_dategraph, L2E_dategraph,H1A_dategraph, C1J_dategraph, G1D_dategraph, L3K_dategraph, L1J_dategraph)
-grid.arrange(top = "Polarity Values with Dates", grobs = grobs, ncol=4, scales = "", left = "Polarity Level",
+graph <- grid.arrange(top = "Polarity Values with Dates", grobs = grobs, ncol=4, scales = "", left = "Polarity Level",
              bottom = "Month")
 
+######################################################################################################################
+
+#Save plot in Desktop folder
+label <- paste("All Patients Individual Plots ", Sys.Date(), ".pdf", sep = "")
+path <- "~/Desktop/PDFs All Patients Individual Plots/Single Page"
+
+ggsave(label, graph, path = path, height = 6, width = 12)
