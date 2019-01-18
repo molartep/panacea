@@ -28,6 +28,7 @@ C1J_dates <- C1J[,c(1,3)] %>% mutate(Patient= "C1J")
 G1D_dates <- G1D[,c(1,3)] %>% mutate(Patient= "G1D")
 L3K_dates <- L3K[,c(1,3)] %>% mutate(Patient= "L3K")
 
+#B1S's segments and labels
 B1S_segment1 <- list(x1 = B1S_dates$date[20], y1 = B1S_dates$p_level[20],
                      x2 = B1S_dates$date[35], y2 = B1S_dates$p_level[35]) 
 B1S_lab1x <- as.POSIXct((as.numeric(B1S_segment1$x1) + as.numeric(B1S_segment1$x2)) / 2, origin = '1970-01-01')
@@ -38,6 +39,7 @@ B1S_segment2 <- list(x1 = B1S_dates$date[47], y1 = B1S_dates$p_level[47],
 B1S_lab2x <- as.POSIXct((as.numeric(B1S_segment2$x1) + as.numeric(B1S_segment2$x2)) / 2, origin = '1970-01-01')
 B1S_lab2y <- (B1S_segment2$y1 + B1S_segment2$y2)/2
 
+#L2E's segments and labels
 L2E_segment1 <- list(x1 = L2E_dates$date[13], y1 = L2E_dates$p_level[13],
                      x2 = L2E_dates$date[35], y2 = L2E_dates$p_level[35]) 
 L2E_lab1x <- as.POSIXct((as.numeric(L2E_segment1$x1) + as.numeric(L2E_segment1$x2)) / 2, origin = '1970-01-01')
@@ -58,6 +60,7 @@ L2E_segment4 <- list(x1 = L2E_dates$date[117], y1 = L2E_dates$p_level[117],
 L2E_lab4x <- as.POSIXct((as.numeric(L2E_segment4$x1) + as.numeric(L2E_segment4$x2)) / 2, origin = '1970-01-01')
 L2E_lab4y <- (L2E_segment4$y1 + L2E_segment4$y2)/2
 
+#H1A's segments and labels
 H1A_segment1 <- list(x1 = H1A_dates$date[11], y1 = H1A_dates$p_level[11],
                      x2 = H1A_dates$date[33], y2 = H1A_dates$p_level[33]) 
 H1A_lab1x <- as.POSIXct((as.numeric(H1A_segment1$x1) + as.numeric(H1A_segment1$x2)) / 2, origin = '1970-01-01')
@@ -78,6 +81,7 @@ H1A_segment4 <- list(x1 = H1A_dates$date[115], y1 = H1A_dates$p_level[115],
 H1A_lab4x <- as.POSIXct((as.numeric(H1A_segment4$x1) + as.numeric(H1A_segment4$x2)) / 2, origin = '1970-01-01')
 H1A_lab4y <- (H1A_segment4$y1 + H1A_segment4$y2)/2
 
+#C1J's segments and labels
 C1J_segment1 <- list(x1 = C1J_dates$date[20], y1 = C1J_dates$p_level[20],
                      x2 = C1J_dates$date[30], y2 = C1J_dates$p_level[30]) 
 C1J_lab1x <- as.POSIXct((as.numeric(C1J_segment1$x1) + as.numeric(C1J_segment1$x2)) / 2, origin = '1970-01-01')
@@ -93,6 +97,7 @@ C1J_segment3 <- list(x1 = C1J_dates$date[63], y1 = C1J_dates$p_level[63],
 C1J_lab3x <- as.POSIXct((as.numeric(C1J_segment3$x1) + as.numeric(C1J_segment3$x2)) / 2, origin = '1970-01-01')
 C1J_lab3y <- (C1J_segment3$y1 + C1J_segment3$y2)/2
 
+#G1D's segments and labels
 G1D_segment1 <- list(x1 = G1D_dates$date[4], y1 = G1D_dates$p_level[4],
                      x2 = G1D_dates$date[39], y2 = G1D_dates$p_level[39]) 
 G1D_lab1x <- as.POSIXct((as.numeric(G1D_segment1$x1) + as.numeric(G1D_segment1$x2)) / 2, origin = '1970-01-01')
@@ -108,6 +113,7 @@ G1D_segment3 <- list(x1 = G1D_dates$date[82], y1 = G1D_dates$p_level[82],
 G1D_lab3x <- as.POSIXct((as.numeric(G1D_segment3$x1) + as.numeric(G1D_segment3$x2)) / 2, origin = '1970-01-01')
 G1D_lab3y <- (G1D_segment3$y1 + G1D_segment3$y2)/2
 
+#L3K's segments and labels
 L3K_segment1 <- list(x1 = L3K_dates$date[7], y1 = L3K_dates$p_level[7],
                      x2 = L3K_dates$date[38], y2 = L3K_dates$p_level[38]) 
 L3K_lab1x <- as.POSIXct((as.numeric(L3K_segment1$x1) + as.numeric(L3K_segment1$x2)) / 2, origin = '1970-01-01')
@@ -118,6 +124,7 @@ L3K_segment2 <- list(x1 = L3K_dates$date[48], y1 = L3K_dates$p_level[48],
 L3K_lab2x <- as.POSIXct((as.numeric(L3K_segment2$x1) + as.numeric(L3K_segment2$x2)) / 2, origin = '1970-01-01')
 L3K_lab2y <- (L3K_segment2$y1 + L3K_segment2$y2)/2
 
+#Plot
 patients <- rbind(B1S_dates, L2E_dates, L1J_dates, H1A_dates, C1J_dates, G1D_dates, L3K_dates)
 
 graph <- patients %>% group_by(Patient) %>%
@@ -125,7 +132,6 @@ graph <- patients %>% group_by(Patient) %>%
   scale_x_datetime(date_breaks = "1 month", date_labels =  "%b %Y", limits = lims) +
   
   #B1S Segments
-  
   geom_segment(aes(x = B1S_segment1$x1, y = B1S_segment1$y1,
                      xend = B1S_segment1$x2, yend = B1S_segment1$y2, color = "B1S"),
                  linetype = "dashed") +
@@ -138,7 +144,6 @@ graph <- patients %>% group_by(Patient) %>%
                 angle = 30), size = 3) + 
   
   #L2E Segments
-  
   geom_segment(aes(x = L2E_segment1$x1, y = L2E_segment1$y1,
                      xend = L2E_segment1$x2, yend = L2E_segment1$y2, color = "L2E"),
                  linetype = "dashed") +
@@ -161,7 +166,6 @@ graph <- patients %>% group_by(Patient) %>%
                 angle = 2), size = 3) +
   
   #H1A Segments
-  
   geom_segment(aes(x = H1A_segment1$x1, y = H1A_segment1$y1,
                      xend = H1A_segment1$x2, yend = H1A_segment1$y2, color = "H1A"),
                  linetype = "dashed") +
@@ -201,7 +205,6 @@ graph <- patients %>% group_by(Patient) %>%
                 angle = 1), size = 3) +
   
   #G1D Segments
-  
   geom_segment(aes(x = G1D_segment1$x1, y = G1D_segment1$y1,
                      xend = G1D_segment1$x2, yend = G1D_segment1$y2, color = "G1D"),
                  linetype = "dashed") +
@@ -219,7 +222,6 @@ graph <- patients %>% group_by(Patient) %>%
                 angle = 1), size = 3) +
   
   #L3K Segments
-  
   geom_segment(aes(x = L3K_segment1$x1, y = L3K_segment1$y1,
                    xend = L3K_segment1$x2, yend = L3K_segment1$y2, color = "L3K"),
                linetype = "dashed") +
@@ -232,8 +234,9 @@ graph <- patients %>% group_by(Patient) %>%
                 angle = 9), size = 3) +
   
   #Labels
-  
   labs(title = "Polarity Levels", x = "Months",  y = "Polarity Levels")
+
+###############################################################################################################
 
 #Print graph
 graph
