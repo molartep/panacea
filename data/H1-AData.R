@@ -4,24 +4,30 @@ library(readxl)
 library(gridExtra)
 library(bizdays)
 H1_A_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Anna",
-                         col_types = c("text", "numeric", "numeric", 
+                         col_types = c("date", "numeric", "numeric", 
                                        "numeric", "numeric", "numeric"), skip = 2)
 
 H1_A_dates <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Anna",
                          col_types = c("date", "numeric", "numeric"))
 
 
-H1_A_first_hours <- H1_A_hours[1:9, c(2,6)]
-H1_A_second_hours <- H1_A_hours[11:23, c(2,6)]
-H1_A_third_hours <- H1_A_hours[25:26, c(2,6)]
-H1_A_fourth_hours <- H1_A_hours[28:39, c(2,6)]
-H1_A_fifth_hours <- H1_A_hours[41:52, c(2,6)]
+H1_A_first_hours <- H1_A_hours[1:9, c(1,2,6)]
+H1_A_second_hours <- H1_A_hours[11:23, c(1,2,6)]
+H1_A_third_hours <- H1_A_hours[25:26, c(1,2,6)]
+H1_A_fourth_hours <- H1_A_hours[28:39, c(1,2,6)]
+H1_A_fifth_hours <- H1_A_hours[41:52, c(1,2,6)]
 
-H1_A_first_hours[,2] <- cumsum(H1_A_first_hours[,2])
-H1_A_second_hours[,2] <- cumsum(H1_A_second_hours[,2])
-H1_A_third_hours[,2] <- cumsum(H1_A_third_hours[,2])
-H1_A_fourth_hours[,2] <- cumsum(H1_A_fourth_hours[,2])
-H1_A_fifth_hours[,2] <- cumsum(H1_A_fifth_hours[,2])
+H1A_dates1 <- sum(H1_A_first_hours[,3] > 0)
+H1A_dates2 <- sum(H1_A_second_hours[,3] > 0)
+H1A_dates3 <- sum(H1_A_third_hours[,3] > 0)
+H1A_dates4 <- sum(H1_A_fourth_hours[,3] > 0)
+H1A_dates5 <- sum(H1_A_fifth_hours[,3] > 0)
+
+H1_A_first_hours[,3] <- cumsum(H1_A_first_hours[,3])
+H1_A_second_hours[,3] <- cumsum(H1_A_second_hours[,3])
+H1_A_third_hours[,3] <- cumsum(H1_A_third_hours[,3])
+H1_A_fourth_hours[,3] <- cumsum(H1_A_fourth_hours[,3])
+H1_A_fifth_hours[,3] <- cumsum(H1_A_fifth_hours[,3])
 
 maxP1 <- max(H1_A_first_hours$`Polarity level`, na.rm = T)
 minP1 <- min(H1_A_first_hours$`Polarity level`, na.rm = T)
@@ -34,20 +40,6 @@ minP4 <- min(H1_A_fourth_hours$`Polarity level`, na.rm = T)
 maxP5 <- max(H1_A_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(H1_A_fifth_hours$`Polarity level`, na.rm = T)
 
-holidays <- c("2017-12-08", "2018-12-08", "2019-12-08")
-create.calendar("Default", holidays, weekdays = c("sunday"), adjust.from = adjust.next, adjust.to = adjust.previous)
-bizdays.options$set(default.calendar="Default")
-H1A_dates1 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP1),1]$date,
-                      H1_A_dates[which(H1_A_dates$p_level == minP1),1]$date[1])
-H1A_dates2 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP2),1]$date,
-                      H1_A_dates[which(H1_A_dates$p_level == minP2),1]$date)
-H1A_dates3 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP3),1]$date,
-                      H1_A_dates[which(H1_A_dates$p_level == minP3),1]$date)
-H1A_dates4 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP4),1]$date,
-                      H1_A_dates[which(H1_A_dates$p_level == minP4),1]$date)
-H1A_dates5 <- bizdays(H1_A_dates[which(H1_A_dates$p_level == maxP5),1]$date,
-                      H1_A_dates[which(H1_A_dates$p_level == minP5),1]$date)
-
 totalH1AHours <- c(max(H1_A_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    NA,
                    max(H1_A_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
@@ -59,22 +51,20 @@ totalH1AHours <- c(max(H1_A_first_hours$`Total therapy duration (Hrs)`, na.rm = 
                    max(H1_A_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    NA)
 
-totalH1ADays <- c(H1A_dates1,
-                  H1_A_dates[which(H1_A_dates$p_level == maxP2),1]$date -
-                    H1_A_dates[which(H1_A_dates$p_level == minP1),1]$date[1],
-                  H1A_dates2 + 1,
-                  (H1_A_dates[which(H1_A_dates$p_level == maxP3),1] -
-                    H1_A_dates[which(H1_A_dates$p_level == minP2),1])$date,
-                  H1A_dates3 + 1,
-                  (H1_A_dates[which(H1_A_dates$p_level == maxP4),1] -
-                     H1_A_dates[which(H1_A_dates$p_level == minP3),1])$date,
-                  H1A_dates4 + 1,
-                  (H1_A_dates[which(H1_A_dates$p_level == maxP5),1] -
-                     H1_A_dates[which(H1_A_dates$p_level == minP4),1])$date,
-                  H1A_dates5 + 1,
+totalH1ADays <- c(H1A_dates1, 
+                  (H1_A_second_hours[H1_A_second_hours[,3] > 0, 1][1,1]-
+                     tail(H1_A_first_hours[H1_A_first_hours[,3] > 0, 1], n = 1))$Day,
+                  H1A_dates2,
+                  (H1_A_third_hours[H1_A_third_hours[,3] > 0, 1][1,1]-
+                     tail(H1_A_second_hours[H1_A_second_hours[,3] > 0, 1], n = 1))$Day,
+                  H1A_dates3,
+                  (H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]-
+                     tail(H1_A_third_hours[H1_A_third_hours[,3] > 0, 1], n = 1))$Day,
+                  H1A_dates4,
+                  (H1_A_fifth_hours[H1_A_fifth_hours[,3] > 0, 1][1,1]-
+                     tail(H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1))$Day,
+                  H1A_dates5,
                   NA)
-
-#Final addition in order to correct session limits
 
 data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break", "4th session", "4th break", "5th session", "5th break"),
            Hours = totalH1AHours,
