@@ -6,7 +6,7 @@ library(scales)
 C1J <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Jim", 
                   col_types = c("date", "numeric", "numeric"))
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2018-12-15 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 C1J_dates <- C1J[,c(1,3)]
 
@@ -18,22 +18,26 @@ C1J_dategraph <- C1J_dates %>%
   ggplot(aes(x=date, y= p_level)) + geom_point() + 
   scale_x_datetime(date_breaks = "1 month", date_labels =  "%b %Y", limits = lims) +
   scale_y_continuous(limits = c(0, C1J_max)) +
-  labs(subtitle = "C1-J", x = "",  y = "") +
-  #geom_smooth(size = 0.5) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  labs(x = "Date",  y = "Polarity")
 
-C1J_segment1 <- list(x1 = C1J_dates$date[20], y1 = C1J_dates$p_level[20],
-                     x2 = C1J_dates$date[30], y2 = C1J_dates$p_level[30]) 
+C1J_segment1 <- list(x1 = first_C1_J$Day[which.min(first_C1_J$`Polarity level`)], 
+                     y1 = first_C1_J$`Polarity level`[which.min(first_C1_J$`Polarity level`)],
+                     x2 = second_C1_J$Day[which.max(second_C1_J$`Polarity level`)],
+                     y2 = second_C1_J$`Polarity level`[which.max(second_C1_J$`Polarity level`)]) 
 C1J_lab1x <- as.POSIXct((as.numeric(C1J_segment1$x1) + as.numeric(C1J_segment1$x2)) / 2, origin = '1970-01-01')
 C1J_lab1y <- (C1J_segment1$y1 + C1J_segment1$y2)/2
 
-C1J_segment2 <- list(x1 = C1J_dates$date[42], y1 = C1J_dates$p_level[42],
-                     x2 = C1J_dates$date[52], y2 = C1J_dates$p_level[52]) 
+C1J_segment2 <- list(x1 = second_C1_J$Day[which.min(second_C1_J$`Polarity level`)], 
+                     y1 = second_C1_J$`Polarity level`[which.min(second_C1_J$`Polarity level`)],
+                     x2 = third_C1_J$Day[which.max(third_C1_J$`Polarity level`)],
+                     y2 = third_C1_J$`Polarity level`[which.max(third_C1_J$`Polarity level`)]) 
 C1J_lab2x <- as.POSIXct((as.numeric(C1J_segment2$x1) + as.numeric(C1J_segment2$x2)) / 2, origin = '1970-01-01')
 C1J_lab2y <- (C1J_segment2$y1 + C1J_segment2$y2)/2
 
-C1J_segment3 <- list(x1 = C1J_dates$date[63], y1 = C1J_dates$p_level[63],
-                     x2 = C1J_dates$date[74], y2 = C1J_dates$p_level[74]) 
+C1J_segment3 <- list(x1 = third_C1_J$Day[which.min(third_C1_J$`Polarity level`)], 
+                     y1 = third_C1_J$`Polarity level`[which.min(third_C1_J$`Polarity level`)],
+                     x2 = fourth_C1_J$Day[which.max(fourth_C1_J$`Polarity level`)],
+                     y2 = fourth_C1_J$`Polarity level`[which.max(fourth_C1_J$`Polarity level`)]) 
 C1J_lab3x <- as.POSIXct((as.numeric(C1J_segment3$x1) + as.numeric(C1J_segment3$x2)) / 2, origin = '1970-01-01')
 C1J_lab3y <- (C1J_segment3$y1 + C1J_segment3$y2)/2
 

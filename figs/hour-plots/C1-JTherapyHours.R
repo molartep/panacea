@@ -28,7 +28,7 @@ first_graph_C1_J <- first_C1_J %>% select(`Total therapy duration (Hrs)`, `Polar
   scale_x_continuous(breaks = pretty_breaks()) +
   scale_y_continuous(limits = c(0, y_max1)) +
   labs(subtitle = "First Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
+  geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = first_C1_J[c(1,f1),c(8,2)],
             label = first_C1_J$`Polarity level`[c(1, f1)],
             nudge_y = -12,
@@ -39,7 +39,7 @@ second_graph_C1_J <- second_C1_J %>% select(`Total therapy duration (Hrs)`, `Pol
   scale_x_continuous(breaks = pretty_breaks()) +
   scale_y_continuous(limits = c(0, y_max1)) +
   labs(subtitle = "Second Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
+  geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = second_C1_J[c(2,s1),c(8,2)],
             label = second_C1_J$`Polarity level`[c(2, s1)],
             nudge_y = -12,
@@ -50,7 +50,7 @@ third_graph_C1_J <- third_C1_J %>% select(`Total therapy duration (Hrs)`, `Polar
   scale_x_continuous(breaks = pretty_breaks()) +
   scale_y_continuous(limits = c(0, y_max1)) +
   labs(subtitle = "Third Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
+  geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = third_C1_J[c(2,t1),c(8,2)],
             label = third_C1_J$`Polarity level`[c(2, t1)],
             nudge_y = -12,
@@ -61,7 +61,7 @@ fourth_graph_C1_J <- fourth_C1_J %>% select(`Total therapy duration (Hrs)`, `Pol
   scale_x_continuous(breaks = pretty_breaks()) +
   scale_y_continuous(limits = c(0, y_max1)) +
   labs(subtitle = "Fourth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
+  geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = fourth_C1_J[c(4,fo1),c(8,2)],
             label = fourth_C1_J$`Polarity level`[c(4, fo1)],
             nudge_y = 12,

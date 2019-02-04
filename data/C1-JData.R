@@ -41,13 +41,9 @@ maxP5 <- max(C1_J_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(C1_J_fifth_hours$`Polarity level`, na.rm = T)
 
 totalC1JHours <- c(max(C1_J_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(C1_J_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(C1_J_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
-                   max(C1_J_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA)
+                   max(C1_J_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalC1JDays <- c(C1J_dates1, 
                   (C1_J_second_hours[C1_J_second_hours[,3] > 0, 1][1,1]-
@@ -58,12 +54,15 @@ totalC1JDays <- c(C1J_dates1,
                   C1J_dates3,
                   (C1_J_fourth_hours[C1_J_fourth_hours[,3] > 0, 1][1,1]-
                      tail(C1_J_third_hours[C1_J_third_hours[,3] > 0, 1], n = 1))$Day,
-                  C1J_dates4,
-                  NA)
+                  C1J_dates4)
 
-data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break", "4th session", "4th break"),
+data.frame(Interval = c("1st session", "2nd session", "3rd session", "4th session"),
            Hours = totalC1JHours,
-           Days = totalC1JDays,
-           Polarity = c(maxP1,minP1,maxP2,minP2,maxP3,minP3,maxP4,minP4),
-           Change = c(minP1-maxP1, maxP2-minP1, minP2-maxP2, maxP3-minP2, minP3-maxP3, maxP4-minP3, minP4-maxP4, NA))
+           Days = totalC1JDays[seq(1, length(totalC1JDays), 2)],
+           Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4),
+           Final_Polarity = c(minP1,minP2,minP3,minP4),
+           Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4))
 
+data.frame(Interval = c("1st break", "2nd break", "3rd break"),
+           Days = totalC1JDays[seq(2, length(totalC1JDays), 2)],
+           Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3))
