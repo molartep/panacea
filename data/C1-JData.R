@@ -45,24 +45,37 @@ totalC1JHours <- c(max(C1_J_first_hours$`Total therapy duration (Hrs)`, na.rm = 
                    max(C1_J_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(C1_J_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
+start1 <- C1_J_first_hours[C1_J_first_hours[,3] > 0, 1][1,1]
+end1 <- tail(C1_J_first_hours[C1_J_first_hours[,3] > 0, 1], n = 1)
+start2 <- C1_J_second_hours[C1_J_second_hours[,3] > 0, 1][1,1]
+end2 <- tail(C1_J_second_hours[C1_J_second_hours[,3] > 0, 1], n = 1)
+start3 <- C1_J_third_hours[C1_J_third_hours[,3] > 0, 1][1,1]
+end3 <- tail(C1_J_third_hours[C1_J_third_hours[,3] > 0, 1], n = 1)
+start4 <- C1_J_fourth_hours[C1_J_fourth_hours[,3] > 0, 1][1,1]
+end4 <- tail(C1_J_fourth_hours[C1_J_fourth_hours[,3] > 0, 1], n = 1)
+
+
 totalC1JDays <- c(C1J_dates1, 
-                  (C1_J_second_hours[C1_J_second_hours[,3] > 0, 1][1,1]-
-                     tail(C1_J_first_hours[C1_J_first_hours[,3] > 0, 1], n = 1))$Day,
+                  (start2 - end1)$Day,
                   C1J_dates2,
-                  (C1_J_third_hours[C1_J_third_hours[,3] > 0, 1][1,1]-
-                     tail(C1_J_second_hours[C1_J_second_hours[,3] > 0, 1], n = 1))$Day,
+                  (start3 - end2)$Day,
                   C1J_dates3,
-                  (C1_J_fourth_hours[C1_J_fourth_hours[,3] > 0, 1][1,1]-
-                     tail(C1_J_third_hours[C1_J_third_hours[,3] > 0, 1], n = 1))$Day,
+                  (start4 - end3)$Day,
                   C1J_dates4)
 
-data.frame(Interval = c("1st session", "2nd session", "3rd session", "4th session"),
-           Hours = totalC1JHours,
-           Days = totalC1JDays[seq(1, length(totalC1JDays), 2)],
-           Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4),
-           Final_Polarity = c(minP1,minP2,minP3,minP4),
-           Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4))
 
-data.frame(Interval = c("1st break", "2nd break", "3rd break"),
-           Days = totalC1JDays[seq(2, length(totalC1JDays), 2)],
-           Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3))
+df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+                          start_date = mapply(format, c(start1, start2, start3, start4), format = "%b %d %Y"),
+                          end_date = mapply(format, c(end1, end2, end3, end4), format = "%b %d %Y"),
+                          Hours = totalC1JHours,
+                          Days = totalC1JDays[seq(1, length(totalC1JDays), 2)],
+                          Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4),
+                          Final_Polarity = c(minP1,minP2,minP3,minP4),
+                          Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4))
+
+df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd"),
+                        Days = totalC1JDays[seq(2, length(totalC1JDays), 2)],
+                        Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3))
+
+df_sessions
+df_breaks
