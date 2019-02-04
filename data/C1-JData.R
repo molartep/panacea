@@ -14,17 +14,20 @@ C1_J_dates <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Jim",
 C1_J_first_hours <- C1_J_hours[1:18, c(1,2,8)]
 C1_J_second_hours <- C1_J_hours[20:32, c(1,2,8)]
 C1_J_third_hours <- C1_J_hours[34:45, c(1,2,8)]
-C1_J_fourth_hours <- C1_J_hours[47:59, c(1,2,8)]
+C1_J_fourth_hours <- C1_J_hours[47:62, c(1,2,8)]
+C1_J_fifth_hours <- C1_J_hours[64:79, c(1,2,8)]
 
 C1J_dates1 <- sum(C1_J_first_hours[,3] > 0)
 C1J_dates2 <- sum(C1_J_second_hours[,3] > 0)
 C1J_dates3 <- sum(C1_J_third_hours[,3] > 0)
 C1J_dates4 <- sum(C1_J_fourth_hours[,3] > 0)
+C1J_dates5 <- sum(C1_J_fifth_hours[,3] > 0)
 
 C1_J_first_hours[,3] <- cumsum(C1_J_first_hours[,3])
 C1_J_second_hours[,3] <- cumsum(C1_J_second_hours[,3])
 C1_J_third_hours[,3] <- cumsum(C1_J_third_hours[,3])
 C1_J_fourth_hours[,3] <- cumsum(C1_J_fourth_hours[,3])
+C1_J_fifth_hours[,3] <- cumsum(C1_J_fifth_hours[,3])
 
 maxP1 <- max(C1_J_first_hours$`Polarity level`, na.rm = T)
 minP1 <- min(C1_J_first_hours$`Polarity level`, na.rm = T)
@@ -34,6 +37,8 @@ maxP3 <- max(C1_J_third_hours$`Polarity level`, na.rm = T)
 minP3 <- min(C1_J_third_hours$`Polarity level`, na.rm = T)
 maxP4 <- max(C1_J_fourth_hours$`Polarity level`, na.rm = T)
 minP4 <- min(C1_J_fourth_hours$`Polarity level`, na.rm = T)
+maxP5 <- max(C1_J_fifth_hours$`Polarity level`, na.rm = T)
+minP5 <- min(C1_J_fifth_hours$`Polarity level`, na.rm = T)
 
 totalC1JHours <- c(max(C1_J_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    NA,
