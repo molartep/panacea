@@ -5,10 +5,20 @@ library(gridExtra)
 library(scales)
 C1J <- read_excel("~/Desktop/PATIENT_DATA.xlsx", sheet = "Jim", 
                   col_types = c("date", "numeric", "numeric"))
+C1_J <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Jim",
+                   col_types = c("date", "numeric", "numeric", 
+                                 "numeric", "numeric", "numeric", "numeric", "numeric"), skip = 2)
+
+first_C1_J <- C1_J[1:18,] %>% mutate(days_after = 0:17)
+second_C1_J <- C1_J[20:32,] %>% mutate(days_after = 0:12)
+third_C1_J <- C1_J[34:45,] %>% mutate(days_after = 0:11)
+fourth_C1_J <- C1_J[47:62,] %>% mutate(days_after = 0:15)
+fifth_C1_J <- C1_J[64:79,] %>% mutate(days_after = 0:15)
 
 lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 C1J_dates <- C1J[,c(1,3)]
+
 
 C1J_max <- max(C1J$p_level, na.rm = T)
 
@@ -41,18 +51,44 @@ C1J_segment3 <- list(x1 = third_C1_J$Day[which.min(third_C1_J$`Polarity level`)]
 C1J_lab3x <- as.POSIXct((as.numeric(C1J_segment3$x1) + as.numeric(C1J_segment3$x2)) / 2, origin = '1970-01-01')
 C1J_lab3y <- (C1J_segment3$y1 + C1J_segment3$y2)/2
 
-C1J_dategraph + geom_segment(aes(x = C1J_segment1$x1, y = C1J_segment1$y1,
+C1J_segment4 <- list(x1 = fourth_C1_J$Day[which.min(fourth_C1_J$`Polarity level`)], 
+                     y1 = fourth_C1_J$`Polarity level`[which.min(fourth_C1_J$`Polarity level`)],
+                     x2 = fifth_C1_J$Day[which.max(fifth_C1_J$`Polarity level`)],
+                     y2 = fifth_C1_J$`Polarity level`[which.max(fifth_C1_J$`Polarity level`)]) 
+C1J_lab4x <- as.POSIXct((as.numeric(C1J_segment4$x1) + as.numeric(C1J_segment4$x2)) / 2, origin = '1970-01-01')
+C1J_lab4y <- (C1J_segment4$y1 + C1J_segment4$y2)/2
+
+first_day <- as.POSIXct(first_C1_J$Day[which(first_C1_J$`Total therapy duration (Hrs)`>0)][1],
+           origin = '1970-01-01')
+last_day <- as.POSIXct(tail(fifth_C1_J$Day[which(fifth_C1_J$`Total therapy duration (Hrs)`>0)],1),
+           origin = '1970-01-01')
+
+label_first <- first_day %>% format(., "%B %d %Y")
+label_last <- last_day %>% format(., "%B %d %Y")
+
+graph <- C1J_dategraph + geom_text(aes(x = first_day, y = first_C1_J$`Polarity level`[which(first_C1_J$`Polarity level`>0)][1],
+                                      label = label_first), hjust = -0.1, vjust = 0, size = 3.5) +
+                         geom_text(aes(x = last_day, y = tail(fifth_C1_J$`Polarity level`[which(fifth_C1_J$`Polarity level`>0)],1),
+                                      label = label_last), hjust = -0.1, vjust = 0, size = 3.5) +
+  geom_segment(aes(x = C1J_segment1$x1, y = C1J_segment1$y1,
                                  xend = C1J_segment1$x2, yend = C1J_segment1$y2, color = "9"),
                              linetype = "dashed") +
   geom_text(aes(x = C1J_lab1x, y = C1J_lab1y + 5, color = "9", label = "+ 18.1",
-                angle = 29)) + 
+                angle = 36)) + 
   geom_segment(aes(x = C1J_segment2$x1, y = C1J_segment2$y1,
                    xend = C1J_segment2$x2, yend = C1J_segment2$y2, color = "9 "),
                linetype = "dashed") +
   geom_text(aes(x = C1J_lab2x, y = C1J_lab2y + 5, color = "9 ", label = "+ 19.1",
-                angle = 30)) +
+                angle = 39)) +
   geom_segment(aes(x = C1J_segment3$x1, y = C1J_segment3$y1,
                    xend = C1J_segment3$x2, yend = C1J_segment3$y2, color = "10"),
                linetype = "dashed") +
   geom_text(aes(x = C1J_lab3x, y = C1J_lab3y + 5, color = "10", label = "+ 1.1",
-                angle = 1)) + labs(color = "Days Without\nTreatment")
+                angle = 1)) + 
+  geom_segment(aes(x = C1J_segment4$x1, y = C1J_segment4$y1,
+                   xend = C1J_segment4$x2, yend = C1J_segment4$y2, color = "46"),
+               linetype = "dashed") +
+  geom_text(aes(x = C1J_lab4x, y = C1J_lab4y + 5, color = "46", label = "+ 26.7",
+                angle = 14)) + labs(color = "Days Without\nTreatment")
+
+graph
