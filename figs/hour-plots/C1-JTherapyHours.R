@@ -76,8 +76,8 @@ fifth_graph_C1_J <- fifth_C1_J %>% select(`Total therapy duration (Hrs)`, `Polar
   scale_y_continuous(limits = c(0, y_max1)) +
   labs(subtitle = "Fifth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
   geom_smooth(method = "lm", size = 0.5) +
-  geom_text(data = fifth_C1_J[c(1,fi1),c(8,2)],
-            label = fifth_C1_J$`Polarity level`[c(1, fi1)],
+  geom_text(data = fifth_C1_J[c(2,fi1),c(8,2)],
+            label = fifth_C1_J$`Polarity level`[c(2, fi1)],
             nudge_y = 18,
             size = 3.5)
 
