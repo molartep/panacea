@@ -68,7 +68,7 @@ totalC1JDays <- c(C1J_dates1,
                   C1J_dates5)
 
 
-df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+C1J_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                           start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
                           end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
                           Hours = totalC1JHours,
@@ -77,13 +77,13 @@ df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                           Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
                           Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
 
-df_sessions <- df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
+C1J_df_sessions <- C1J_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
 
-df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+C1J_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
                         Days = totalC1JDays[seq(2, length(totalC1JDays), 2)],
                         Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
 
-df_breaks <- df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
+C1J_df_breaks <- C1J_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
 
-df_sessions
-df_breaks
+C1J_df_sessions
+C1J_df_breaks
