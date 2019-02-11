@@ -2,7 +2,6 @@ library("dplyr")
 library("ggplot2")
 library(readxl)
 library(gridExtra)
-library(bizdays)
 L2_E_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Eric",
                          col_types = c("date", "numeric", "numeric", "numeric",
                                        "numeric", "numeric", "numeric"), skip = 2)
@@ -16,6 +15,17 @@ L2_E_second_hours <- L2_E_hours[13:25, c(1,2,7)]
 L2_E_third_hours <- L2_E_hours[27:39, c(1,2,7)]
 L2_E_fourth_hours <- L2_E_hours[41:52, c(1,2,7)]
 L2_E_fifth_hours <- L2_E_hours[54:65, c(1,2,7)]
+
+start1 <- L2_E_first_hours[L2_E_first_hours[,3] > 0, 1][1,1]
+end1 <- tail(L2_E_first_hours[L2_E_first_hours[,3] > 0, 1], n = 1)
+start2 <- L2_E_second_hours[L2_E_second_hours[,3] > 0, 1][1,1]
+end2 <- tail(L2_E_second_hours[L2_E_second_hours[,3] > 0, 1], n = 1)
+start3 <- L2_E_third_hours[L2_E_third_hours[,3] > 0, 1][1,1]
+end3 <- tail(L2_E_third_hours[L2_E_third_hours[,3] > 0, 1], n = 1)
+start4 <- L2_E_fourth_hours[L2_E_fourth_hours[,3] > 0, 1][1,1]
+end4 <- tail(L2_E_fourth_hours[L2_E_fourth_hours[,3] > 0, 1], n = 1)
+start5 <- L2_E_fifth_hours[L2_E_fourth_hours[,3] > 0, 1][1,1]
+end5 <- tail(L2_E_fifth_hours[L2_E_fourth_hours[,3] > 0, 1], n = 1)
 
 L2E_dates1 <- sum(L2_E_first_hours[,3] > 0)
 L2E_dates2 <- sum(L2_E_second_hours[,3] > 0)
@@ -41,35 +51,37 @@ maxP5 <- max(L2_E_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(L2_E_fifth_hours$`Polarity level`, na.rm = T)
 
 totalL2EHours <- c(max(L2_E_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(L2_E_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(L2_E_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(L2_E_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
-                   max(L2_E_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA)
+                   max(L2_E_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalL2EDays <- c(L2E_dates1, 
-                  (L2_E_second_hours[L2_E_second_hours[,3] > 0, 1][1,1]-
-                     tail(L2_E_first_hours[L2_E_first_hours[,3] > 0, 1], n = 1))$Day,
+                  (start2 - end1)$Day,
                   L2E_dates2,
-                  (L2_E_third_hours[L2_E_third_hours[,3] > 0, 1][1,1]-
-                     tail(L2_E_second_hours[L2_E_second_hours[,3] > 0, 1], n = 1))$Day,
+                  (start3 - end2)$Day,
                   L2E_dates3,
-                  (L2_E_fourth_hours[L2_E_fourth_hours[,3] > 0, 1][1,1]-
-                     tail(L2_E_third_hours[L2_E_third_hours[,3] > 0, 1], n = 1))$Day,
+                  (start4 - end3)$Day,
                   L2E_dates4,
-                  (L2_E_fifth_hours[L2_E_fifth_hours[,3] > 0, 1][1,1]-
-                     tail(L2_E_fourth_hours[L2_E_fourth_hours[,3] > 0, 1], n = 1))$Day,
-                  L2E_dates5,
-                  NA)
+                  (start5 - end4)$Day,
+                  L2E_dates5)
 
-data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break",
-                        "4th session", "4th break", "5th session", "5th break"),
-           Hours = totalL2EHours,
-           Days = totalL2EDays,
-           Polarity = c(maxP1,minP1,maxP2,minP2,maxP3,minP3,maxP4,minP4,maxP5,minP5),
-           Change = c(minP1-maxP1, maxP2-minP1, minP2-maxP2, maxP3-minP2, minP3-maxP3, maxP4-minP3, minP4-maxP4, maxP5-minP4, minP5-maxP5, NA))
+L2E_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
+                              Hours = totalL2EHours,
+                              Days = totalL2EDays[seq(1, length(totalL2EDays), 2)],
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
 
+L2E_df_sessions <- L2E_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
+
+L2E_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+                            Days = totalL2EDays[seq(2, length(totalL2EDays), 2)],
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
+
+L2E_df_breaks <- L2E_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
+
+L2E_df_sessions
+L2E_df_breaks
