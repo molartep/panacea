@@ -17,6 +17,17 @@ H1_A_third_hours <- H1_A_hours[25:26, c(1,2,6)]
 H1_A_fourth_hours <- H1_A_hours[28:39, c(1,2,6)]
 H1_A_fifth_hours <- H1_A_hours[41:52, c(1,2,6)]
 
+start1 <- H1_A_first_hours[H1_A_first_hours[,3] > 0, 1][1,1]
+end1 <- tail(H1_A_first_hours[H1_A_first_hours[,3] > 0, 1], n = 1)
+start2 <- H1_A_second_hours[H1_A_second_hours[,3] > 0, 1][1,1]
+end2 <- tail(H1_A_second_hours[H1_A_second_hours[,3] > 0, 1], n = 1)
+start3 <- H1_A_third_hours[H1_A_third_hours[,3] > 0, 1][1,1]
+end3 <- tail(H1_A_third_hours[H1_A_third_hours[,3] > 0, 1], n = 1)
+start4 <- H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]
+end4 <- tail(H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1)
+start5 <- H1_A_fifth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]
+end5 <- tail(H1_A_fifth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1)
+
 H1A_dates1 <- sum(H1_A_first_hours[,3] > 0)
 H1A_dates2 <- sum(H1_A_second_hours[,3] > 0)
 H1A_dates3 <- sum(H1_A_third_hours[,3] > 0)
@@ -41,34 +52,38 @@ maxP5 <- max(H1_A_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(H1_A_fifth_hours$`Polarity level`, na.rm = T)
 
 totalH1AHours <- c(max(H1_A_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(H1_A_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(H1_A_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(H1_A_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
-                   max(H1_A_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA)
+                   max(H1_A_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalH1ADays <- c(H1A_dates1, 
-                  (H1_A_second_hours[H1_A_second_hours[,3] > 0, 1][1,1]-
-                     tail(H1_A_first_hours[H1_A_first_hours[,3] > 0, 1], n = 1))$Day,
+                  (start2 - end1)$Day,
                   H1A_dates2,
-                  (H1_A_third_hours[H1_A_third_hours[,3] > 0, 1][1,1]-
-                     tail(H1_A_second_hours[H1_A_second_hours[,3] > 0, 1], n = 1))$Day,
+                  (start3 - end2)$Day,
                   H1A_dates3,
-                  (H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]-
-                     tail(H1_A_third_hours[H1_A_third_hours[,3] > 0, 1], n = 1))$Day,
+                  (start4 - end3)$Day,
                   H1A_dates4,
-                  (H1_A_fifth_hours[H1_A_fifth_hours[,3] > 0, 1][1,1]-
-                     tail(H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1))$Day,
-                  H1A_dates5,
-                  NA)
+                  (start5 - end4)$Day,
+                  H1A_dates5)
 
-data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break", "4th session", "4th break", "5th session", "5th break"),
-           Hours = totalH1AHours,
-           Days = totalH1ADays,
-           Polarity = c(maxP1,minP1,maxP2,minP2,maxP3,minP3,maxP4,minP4,maxP5,minP5),
-           Change = c(minP1-maxP1, maxP2-minP1, minP2-maxP2, maxP3-minP2, minP3-maxP3, maxP4-minP3, minP4-maxP4, maxP5-minP4, minP5-maxP5, NA))
 
+H1A_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
+                              Hours = totalH1AHours,
+                              Days = totalH1ADays[seq(1, length(totalH1ADays), 2)],
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
+
+H1A_df_sessions <- H1A_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
+
+H1A_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+                            Days = totalH1ADays[seq(2, length(totalH1ADays), 2)],
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
+
+H1A_df_breaks <- H1A_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
+
+H1A_df_sessions
+H1A_df_breaks
