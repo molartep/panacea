@@ -72,4 +72,15 @@ fourth_graph_L2E <- fourth_L2_E %>% select(`Total therapy duration (Hrs)`, `Pola
             nudge_y = 14,
             size = 3.5)
 
-grid.arrange(top = "L2-E Polarity", first_graph_L2E, second_graph_L2E, third_graph_L2E, fourth_graph_L2E, ncol=2)
+fifth_graph_L2E <- fifth_L2_E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_maxL2E)) +
+  labs(subtitle = "Fifth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = fifth_L2_E[c(2,fi1),c(7,2)],
+            label = fifth_L2_E$`Polarity level`[c(2, fi1)],
+            nudge_y = 14,
+            size = 3.5)
+
+grid.arrange(top = "L2-E Polarity", first_graph_L2E, second_graph_L2E, third_graph_L2E, fourth_graph_L2E, fifth_graph_L2E, ncol=2)
