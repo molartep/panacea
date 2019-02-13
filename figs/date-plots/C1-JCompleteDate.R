@@ -21,7 +21,7 @@ third_C1_J_dates <- C1_J_dates[52:63,]
 fourth_C1_J_dates <- C1_J_dates[74:88,]
 fifth_C1_J_dates <- C1_J_dates[135:146,]
 
-lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-03-10 01:00"), format = "%Y-%m-%d %H:%M"))
 
 C1J_dates <- C1_J_dates[,c(1,3)]
 
