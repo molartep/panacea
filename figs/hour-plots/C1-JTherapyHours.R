@@ -1,5 +1,5 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
 C1_J <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Jim",
