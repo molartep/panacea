@@ -1,28 +1,30 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
-L1_J <- read_excel("~/Desktop/Electronegatividad.xlsx", 
+L1_J_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", 
                    sheet = "Jeff", col_types = c("text", "numeric", 
                                                  "numeric", "numeric", "numeric", "numeric"), skip = 2)
 
-L1_J_first_session <- L1_J[1:20,] %>% mutate(days_after = 0:19)
+first_L1_J <- L1_J_hours[1:20,] %>% mutate(days_after = 0:19)
 
-y_max1 <- max(L1_J_first_session$`Polarity level`, na.rm = T)
+y_max1 <- max(first_L1_J$`Polarity level`, na.rm = T)
 
-f1 <- max(L1_J_first_session$days_after) + 1
-#s1 <- max(L1_J_second_session$days_after) + 1
+f1 <- max(first_L1_J[complete.cases(first_L1_J[,2]),]$days_after) + 1
 
-L1_J_first_session[,6] <- cumsum(L1_J_first_session[,6])
+first_L1_J[,6] <- cumsum(first_L1_J[,6])
 
-L1_J_first_progress <- L1_J_first_session %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+first_graph_L1_J <- first_L1_J %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
   scale_x_continuous(breaks = pretty_breaks()) +
   scale_y_continuous(limits = c(0, y_max1)) +
   labs(subtitle = "First Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
-  geom_smooth(size = 0.5) +
-  geom_text(data = L1_J_first_session[c(1,f1),c(6,2)],
-            label = L1_J_first_session$`Polarity level`[c(1, f1)],
-            nudge_y = -8)
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = first_L1_J[1, c(6,2)],
+            label = first_L1_J$`Polarity level`[1],
+            nudge_y = -16) +
+  geom_text(data = first_L1_J[f1, c(6,2)],
+            label = first_L1_J$`Polarity level`[f1],
+            nudge_y = 10)
 
-L1_J_first_progress + labs(title = "L1-J Polarity")
+grid.arrange(top = "L1-J Polarity", first_graph_L1_J, ncol=1)
