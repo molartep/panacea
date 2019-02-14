@@ -1,8 +1,7 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
-library(bizdays)
 G1_D_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Daryl",
                          col_types = c("date", "numeric", "numeric", 
                                        "numeric", "numeric", "numeric"), skip = 2)
@@ -15,6 +14,15 @@ G1_D_first_hours <- G1_D_hours[1:4, c(1,2,6)]
 G1_D_second_hours <- G1_D_hours[6:9, c(1,2,6)]
 G1_D_third_hours <- G1_D_hours[11:14, c(1,2,6)]
 G1_D_fourth_hours <- G1_D_hours[16:19, c(1,2,6)]
+
+start1 <- G1_D_first_hours[G1_D_first_hours[,3] > 0, 1][1,1]
+end1 <- tail(G1_D_first_hours[G1_D_first_hours[,3] > 0, 1], n = 1)
+start2 <- G1_D_second_hours[G1_D_second_hours[,3] > 0, 1][1,1]
+end2 <- tail(G1_D_second_hours[G1_D_second_hours[,3] > 0, 1], n = 1)
+start3 <- G1_D_third_hours[G1_D_third_hours[,3] > 0, 1][1,1]
+end3 <- tail(G1_D_third_hours[G1_D_third_hours[,3] > 0, 1], n = 1)
+start4 <- G1_D_fourth_hours[G1_D_fourth_hours[,3] > 0, 1][1,1]
+end4 <- tail(G1_D_fourth_hours[G1_D_fourth_hours[,3] > 0, 1], n = 1)
 
 G1D_dates1 <- sum(G1_D_first_hours[,3] > 0)
 G1D_dates2 <- sum(G1_D_second_hours[,3] > 0)
@@ -36,29 +44,35 @@ maxP4 <- max(G1_D_fourth_hours$`Polarity level`, na.rm = T)
 minP4 <- min(G1_D_fourth_hours$`Polarity level`, na.rm = T)
 
 totalG1DHours <- c(max(G1_D_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(G1_D_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
                    max(G1_D_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA,
-                   max(G1_D_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   NA)
+                   max(G1_D_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalG1DDays <- c(G1D_dates1, 
-                  (G1_D_second_hours[G1_D_second_hours[,3] > 0, 1][1,1]-
-                    tail(G1_D_first_hours[G1_D_first_hours[,3] > 0, 1], n = 1))$Day,
+                  (start2 - end1)$Day,
                   G1D_dates2,
-                  (G1_D_third_hours[G1_D_third_hours[,3] > 0, 1][1,1]-
-                    tail(G1_D_second_hours[G1_D_second_hours[,3] > 0, 1], n = 1))$Day,
+                  (start3 - end2)$Day,
                   G1D_dates3,
-                  (G1_D_fourth_hours[G1_D_fourth_hours[,3] > 0, 1][1,1]-
-                    tail(G1_D_third_hours[G1_D_third_hours[,3] > 0, 1], n = 1))$Day,
-                  G1D_dates4,
-                  NA)
+                  (start4 - end3)$Day,
+                  G1D_dates4)
 
-data.frame(Interval = c("1st session", "1st break", "2nd session", "2nd break", "3rd session", "3rd break", "4th session", "4th break"),
-           Hours = totalG1DHours,
-           Days = totalG1DDays,
-           Polarity = c(maxP1,minP1,maxP2,minP2,maxP3,minP3,maxP4,minP4),
-           Change = c(minP1-maxP1, maxP2-minP1, minP2-maxP2, maxP3-minP2, minP3-maxP3, maxP4-minP3, minP4-maxP4, NA))
 
+G1D_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4), format = "%b %d %Y"),
+                              Hours = totalG1DHours,
+                              Days = totalG1DDays[seq(1, length(totalG1DDays), 2)],
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4))
+
+G1D_df_sessions <- G1D_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
+
+G1D_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd"),
+                            Days = totalG1DDays[seq(2, length(totalG1DDays), 2)],
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3))
+
+G1D_df_breaks <- G1D_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
+
+G1D_df_sessions
+G1D_df_breaks
