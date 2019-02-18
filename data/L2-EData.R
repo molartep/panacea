@@ -1,5 +1,5 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
 L2_E_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Eric",

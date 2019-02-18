@@ -1,8 +1,7 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
-library(bizdays)
 H1_A_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Anna",
                          col_types = c("date", "numeric", "numeric", 
                                        "numeric", "numeric", "numeric"), skip = 2)
