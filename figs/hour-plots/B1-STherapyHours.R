@@ -1,7 +1,9 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
+library(scales)
+
 B1_S_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Stephanie",
                    col_types = c("date", "numeric", "numeric", 
                                  "numeric", "numeric", "numeric", "numeric"), skip = 2)

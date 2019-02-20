@@ -1,8 +1,9 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
 library(scales)
+
 L2_E <- read_excel("~/Desktop/Electronegatividad.xlsx", 
                    sheet = "Eric", col_types = c("text", "numeric", 
                                                  "numeric", "numeric", "numeric", "numeric", "numeric"), skip = 2)
