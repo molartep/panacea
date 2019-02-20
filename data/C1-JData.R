@@ -14,7 +14,7 @@ C1_J_first_hours <- C1_J_hours[1:18, c(1,2,8)]
 C1_J_second_hours <- C1_J_hours[20:32, c(1,2,8)]
 C1_J_third_hours <- C1_J_hours[34:45, c(1,2,8)]
 C1_J_fourth_hours <- C1_J_hours[47:62, c(1,2,8)]
-C1_J_fifth_hours <- C1_J_hours[64:79, c(1,2,8)]
+C1_J_fifth_hours <- C1_J_hours[64:75, c(1,2,8)]
 
 start1 <- C1_J_first_hours[C1_J_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(C1_J_first_hours[C1_J_first_hours[,3] > 0, 1], n = 1)
