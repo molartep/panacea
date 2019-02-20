@@ -13,13 +13,13 @@ first_C1_J <- C1_J_hours[1:18,]
 second_C1_J <- C1_J_hours[20:32,]
 third_C1_J <- C1_J_hours[34:45,]
 fourth_C1_J <- C1_J_hours[47:62,]
-fifth_C1_J <- C1_J_hours[64:79,]
+fifth_C1_J <- C1_J_hours[64:75,]
 
 first_C1_J_dates <- C1_J_dates[1:20,]
 second_C1_J_dates <- C1_J_dates[30:42,]
 third_C1_J_dates <- C1_J_dates[52:63,]
 fourth_C1_J_dates <- C1_J_dates[74:88,]
-fifth_C1_J_dates <- C1_J_dates[135:146,]
+fifth_C1_J_dates <- C1_J_dates[135:145,]
 
 lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-03-10 01:00"), format = "%Y-%m-%d %H:%M"))
 

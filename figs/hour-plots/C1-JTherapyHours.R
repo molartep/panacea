@@ -2,6 +2,8 @@ library(dplyr)
 library(ggplot2)
 library(readxl)
 library(gridExtra)
+library(scales)
+
 C1_J <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Jim",
                    col_types = c("date", "numeric", "numeric", 
                                  "numeric", "numeric", "numeric", "numeric", "numeric"), skip = 2)
@@ -10,7 +12,7 @@ first_C1_J <- C1_J[1:18,] %>% mutate(days_after = 0:17)
 second_C1_J <- C1_J[20:32,] %>% mutate(days_after = 0:12)
 third_C1_J <- C1_J[34:45,] %>% mutate(days_after = 0:11)
 fourth_C1_J <- C1_J[47:62,] %>% mutate(days_after = 0:15)
-fifth_C1_J <- C1_J[64:79,] %>% mutate(days_after = 0:15)
+fifth_C1_J <- C1_J[64:75,] %>% mutate(days_after = 0:11)
 
 y_max1 <- max(first_C1_J$`Polarity level`, na.rm = T)
 
