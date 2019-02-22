@@ -24,8 +24,8 @@ start3 <- H1_A_third_hours[H1_A_third_hours[,3] > 0, 1][1,1]
 end3 <- tail(H1_A_third_hours[H1_A_third_hours[,3] > 0, 1], n = 1)
 start4 <- H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]
 end4 <- tail(H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1)
-start5 <- H1_A_fifth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]
-end5 <- tail(H1_A_fifth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1)
+start5 <- H1_A_fifth_hours[H1_A_fifth_hours[,3] > 0, 1][1,1]
+end5 <- tail(H1_A_fifth_hours[H1_A_fifth_hours[,3] > 0, 1], n = 1)
 
 H1A_dates1 <- sum(H1_A_first_hours[,3] > 0)
 H1A_dates2 <- sum(H1_A_second_hours[,3] > 0)
