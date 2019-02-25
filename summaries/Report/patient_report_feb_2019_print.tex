@@ -1,0 +1,874 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Panacea Patient Report},
+            pdfauthor={Martin Olarte},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Panacea Patient Report}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Martin Olarte}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2/4/2019}
+
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Abstract}\label{abstract}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Treatment Description}\label{treatment-description}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Patients}\label{patients}
+
+\subsection{C1J}\label{c1j}
+
+\subsubsection{Polarity Summary}\label{polarity-summary}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{C1-J Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Sep 24 2018 & Oct 12 2018 & 113.00 & 17 & 214.3 & 116.1 & -98.2 &
+-0.869\tabularnewline
+2nd & Oct 22 2018 & Nov 03 2018 & 114.00 & 12 & 134.2 & 79.6 & -54.6 &
+-0.479\tabularnewline
+3rd & Nov 13 2018 & Nov 24 2018 & 124.10 & 11 & 98.7 & 34.5 & -64.2 &
+-0.517\tabularnewline
+4th & Dec 03 2018 & Dec 20 2018 & 162.03 & 15 & 35.6 & 7.9 & -27.7 &
+-0.171\tabularnewline
+5th & Feb 04 2019 & Feb 15 2019 & 99.50 & 11 & 34.6 & 15.6 & -19.0 &
+-0.191\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{C1-J Retrogression Summary}\tabularnewline
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endhead
+1st & 10 & 18.1 & 1.810\tabularnewline
+2nd & 10 & 19.1 & 1.910\tabularnewline
+3rd & 9 & 1.1 & 0.122\tabularnewline
+4th & 46 & 26.7 & 0.580\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions Plots}\label{treatment-sessions-plots}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/C1J_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.9925 & 4.1575e-15 & -0.9974 & -0.9788\tabularnewline
+2nd & -0.9910 & 2.8947e-08 & -0.9979 & -0.9608\tabularnewline
+3rd & -0.9851 & 8.2273e-06 & -0.9974 & -0.9168\tabularnewline
+4th & -0.8601 & 1.3025e-02 & -0.9790 & -0.3038\tabularnewline
+5th & -0.9924 & 8.7450e-05 & -0.9992 & -0.9288\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9841 & 3.804 & 15\tabularnewline
+2nd & 0.9797 & 2.581 & 8\tabularnewline
+3rd & 0.9654 & 4.552 & 6\tabularnewline
+4th & 0.6877 & 5.620 & 5\tabularnewline
+5th & 0.9810 & 0.994 & 4\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/C1J_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{B1S}\label{b1s}
+
+\subsubsection{Polarity Summary}\label{polarity-summary-1}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{B1-S Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Aug 21 2018 & Sep 08 2018 & 106.0 & 16 & 173.0 & 75.1 & -97.9 &
+-0.924\tabularnewline
+2nd & Sep 24 2018 & Oct 05 2018 & 59.0 & 11 & 91.2 & 20.9 & -70.3 &
+-1.192\tabularnewline
+3rd & Nov 13 2018 & Nov 17 2018 & 38.2 & 5 & 77.3 & 62.1 & -15.2 &
+-0.398\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{B1-S Retrogression Summary}\tabularnewline
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endhead
+1st & 16 & 16.1 & 1.006\tabularnewline
+2nd & 39 & 56.4 & 1.446\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions
+Plots}\label{treatment-sessions-plots-1}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/B1S_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary-1}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{B1-S Treatment Correlation Summary}\tabularnewline
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.9971 & 3.3275e-18 & -0.9990 & -0.9918\tabularnewline
+2nd & -0.9867 & 3.2153e-09 & -0.9964 & -0.9517\tabularnewline
+3rd & -0.9910 & 8.9542e-03 & -0.9998 & -0.6305\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9938 & 2.439 & 15\tabularnewline
+2nd & 0.9709 & 3.901 & 10\tabularnewline
+3rd & 0.9733 & 1.062 & 2\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot-1}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/B1S_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{L2E}\label{l2e}
+
+\subsubsection{Polarity Summary}\label{polarity-summary-2}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{L2-E Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Aug 21 2018 & Sep 01 2018 & 61.00 & 10 & 210.0 & 111.2 & -98.8 &
+-1.620\tabularnewline
+2nd & Sep 24 2018 & Oct 06 2018 & 64.00 & 12 & 123.1 & 35.1 & -88.0 &
+-1.375\tabularnewline
+3rd & Oct 22 2018 & Nov 03 2018 & 91.30 & 12 & 43.7 & 2.9 & -40.8 &
+-0.447\tabularnewline
+4th & Dec 03 2018 & Dec 15 2018 & 84.63 & 11 & 8.1 & 1.9 & -6.2 &
+-0.073\tabularnewline
+5th & Jan 08 2019 & Jan 19 2019 & 105.00 & 11 & 4.3 & 0.4 & -3.9 &
+-0.037\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{L2-E Retrogression Summary}\tabularnewline
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endhead
+1st & 23 & 11.9 & 0.517\tabularnewline
+2nd & 16 & 8.6 & 0.538\tabularnewline
+3rd & 30 & 5.2 & 0.173\tabularnewline
+4th & 24 & 2.4 & 0.100\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions
+Plots}\label{treatment-sessions-plots-2}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/L2E_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary-2}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{L2-E Treatment Correlation Summary}\tabularnewline
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.9965 & 5.0705e-11 & -0.9991 & -0.9861\tabularnewline
+2nd & -0.9986 & 3.6131e-14 & -0.9996 & -0.9950\tabularnewline
+3rd & -0.9628 & 3.1561e-05 & -0.9924 & -0.8283\tabularnewline
+4th & -0.9722 & 1.1506e-03 & -0.9971 & -0.7611\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9923 & 2.8850 & 9\tabularnewline
+2nd & 0.9970 & 1.5200 & 10\tabularnewline
+3rd & 0.9165 & 4.4740 & 7\tabularnewline
+4th & 0.9314 & 0.6101 & 4\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot-2}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/L2E_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{H1A}\label{h1a}
+
+\subsubsection{Polarity Summary}\label{polarity-summary-3}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{H1-A Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Aug 23 2018 & Sep 01 2018 & 31.0 & 8 & 63.0 & 4.3 & -58.7 &
+-1.894\tabularnewline
+2nd & Sep 24 2018 & Oct 06 2018 & 32.0 & 8 & 6.2 & 1.4 & -4.8 &
+-0.150\tabularnewline
+3rd & Nov 01 2018 & Nov 01 2018 & 2.0 & 1 & 3.4 & 3.4 & 0.0 &
+0.000\tabularnewline
+4th & Dec 03 2018 & Dec 14 2018 & 18.0 & 5 & 12.3 & 8.6 & -3.7 &
+-0.206\tabularnewline
+5th & Jan 08 2019 & Jan 19 2019 & 38.8 & 10 & 10.3 & 2.7 & -7.6 &
+-0.196\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{H1-A Retrogression Summary}\tabularnewline
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endhead
+1st & 23 & 1.9 & 0.083\tabularnewline
+2nd & 26 & 2.0 & 0.077\tabularnewline
+3rd & 32 & 8.9 & 0.278\tabularnewline
+4th & 25 & 1.7 & 0.068\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions
+Plots}\label{treatment-sessions-plots-3}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/H1A_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary-3}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{H1-A Treatment Correlation Summary}\tabularnewline
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.9936 & 6.6280e-07 & -0.9989 & -0.9634\tabularnewline
+2nd & -0.9837 & 1.8010e-06 & -0.9967 & -0.9216\tabularnewline
+3rd & NA & NA & NA & NA\tabularnewline
+4th & -0.9800 & -9.8000e-01 & -0.9800 & -0.9800\tabularnewline
+5th & -0.9003 & -9.0030e-01 & -0.9003 & -0.9003\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9850 & 2.6320 & 6\tabularnewline
+2nd & 0.9630 & 0.3196 & 7\tabularnewline
+3rd & NA & NA & NA\tabularnewline
+4th & 0.9210 & 0.5307 & 1\tabularnewline
+5th & 0.7835 & 1.1690 & 7\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot-3}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/H1A_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{L3K}\label{l3k}
+
+\subsubsection{Polarity Summary}\label{polarity-summary-4}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{L3-K Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Oct 29 2018 & Nov 03 2018 & 52.00 & 6 & 237.2 & 197.6 & -39.6 &
+-0.762\tabularnewline
+2nd & Dec 03 2018 & Dec 15 2018 & 93.98 & 11 & 209.3 & 167.1 & -42.2 &
+-0.449\tabularnewline
+3rd & Jan 14 2019 & Jan 19 2019 & 43.00 & 6 & 180.3 & 148.7 & -31.6 &
+-0.735\tabularnewline
+4th & Feb 11 2019 & Feb 14 2019 & 31.50 & 4 & 159.3 & 146.2 & -13.1 &
+-0.416\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{L3-K Retrogression Summary}\tabularnewline
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endhead
+1st & 30 & 11.7 & 0.390\tabularnewline
+2nd & 30 & 13.2 & 0.440\tabularnewline
+3rd & 23 & 10.6 & 0.461\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions
+Plots}\label{treatment-sessions-plots-4}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/L3K_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary-4}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{L3-K Treatment Correlation Summary}\tabularnewline
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.9984 & 3.7021e-06 & -0.9998 & -0.9850\tabularnewline
+2nd & -0.9884 & 2.7951e-05 & -0.9984 & -0.9201\tabularnewline
+3rd & -0.9980 & 5.9017e-06 & -0.9998 & -0.9811\tabularnewline
+4th & -0.9848 & 1.5221e-02 & -0.9997 & -0.4425\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9961 & 0.9709 & 4\tabularnewline
+2nd & 0.9722 & 2.6480 & 5\tabularnewline
+3rd & 0.9950 & 0.8289 & 4\tabularnewline
+4th & 0.9547 & 1.2180 & 2\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot-4}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/L3K_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{G1D}\label{g1d}
+
+\subsubsection{Polarity Summary}\label{polarity-summary-5}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{G1-D Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Sep 24 2018 & Sep 26 2018 & 16.0 & 3 & 9.8 & 3.9 & -5.9 &
+-0.369\tabularnewline
+2nd & Nov 01 2018 & Nov 03 2018 & 11.5 & 3 & 6.3 & 2.8 & -3.5 &
+-0.304\tabularnewline
+3rd & Dec 11 2018 & Dec 13 2018 & 18.3 & 3 & 3.9 & 1.3 & -2.6 &
+-0.142\tabularnewline
+4th & Jan 15 2019 & Jan 17 2019 & 16.0 & 3 & 2.8 & 1.7 & -1.1 &
+-0.069\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\caption{G1-D Retrogression Summary}\tabularnewline
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Break & Days & Increase in Polarity & Increase per Day without
+Treatment\tabularnewline
+\midrule
+\endhead
+1st & 36 & 2.4 & 0.067\tabularnewline
+2nd & 38 & 1.1 & 0.029\tabularnewline
+3rd & 33 & 1.5 & 0.045\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions
+Plots}\label{treatment-sessions-plots-5}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/G1D_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary-5}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{G1-D Treatment Correlation Summary}\tabularnewline
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.9964 & 3.5556e-03 & -0.9999 & -0.8353\tabularnewline
+2nd & -0.9846 & 1.5399e-02 & -0.9997 & -0.4378\tabularnewline
+3rd & -0.9740 & 2.6046e-02 & -0.9995 & -0.2012\tabularnewline
+4th & -0.9978 & 4.2347e-02 & NA & NA\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9894 & 0.27590 & 2\tabularnewline
+2nd & 0.9542 & 0.31530 & 2\tabularnewline
+3rd & 0.9229 & 0.32820 & 2\tabularnewline
+4th & 0.9912 & 0.05345 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot-5}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/G1D_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{L1J}\label{l1j}
+
+\subsubsection{Polarity Summary}\label{polarity-summary-6}
+
+\begin{longtable}[]{@{}ccccccccc@{}}
+\caption{L1-J Treatment Progress Summary}\tabularnewline
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Start Date & End Date & Hours & Days & Starting Polarity &
+Final Polarity & Change & Change per Treatment Hour\tabularnewline
+\midrule
+\endhead
+1st & Aug 13 2018 & Sep 07 2018 & 98.5 & 19 & 187.3 & 15.9 & -171.4 &
+-1.74\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Treatment Sessions
+Plots}\label{treatment-sessions-plots-6}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/L1J_hour_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Correlation Summary}\label{correlation-summary-6}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\caption{L1-J Treatment Correlation Summary}\tabularnewline
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Session & Correlation Coefficient & P-value & CI Lower Bound & CI Upper
+Bound\tabularnewline
+\midrule
+\endhead
+1st & -0.996 & 3.1020e-18 & -0.9986 & -0.9891\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+Session & Adjusted R Squared & Residual Standard Error & Degrees of
+Freedom\tabularnewline
+\midrule
+\endhead
+1st & 0.9916 & 5.467 & 16\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Polarity through Time
+Plot}\label{polarity-through-time-plot-6}
+
+\includegraphics[width=1\linewidth]{patient_report_feb_2019_print_files/figure-latex/L1J_date_plot-1}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Notes}\label{notes}
+
+Regarding \emph{Total Treatment Hours vs Polarity} plots:
+
+\begin{itemize}
+\tightlist
+\item
+  The linear regression models were fitted using the
+  \texttt{geom\_smooth(method\ =\ "lm",\ y\ \textasciitilde{}\ x)}
+  function in R.
+\end{itemize}
+
+Regarding \emph{Polarity through Time} plots:
+
+\begin{itemize}
+\tightlist
+\item
+  The dashed linear segments represent the overall change in polarity
+  during breaks. However, they do not accurately model the nature of
+  these changes due to a lack of intermediary measurements.
+\end{itemize}
+
+Regarding \emph{Correlation Summaries}:
+
+\begin{itemize}
+\item
+  The \textbf{correlation coefficients} (R) refer to the
+  \href{https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php}{Pearson
+  product-moment correlation coefficients}. According to the
+  \href{https://en.wikipedia.org/wiki/Cauchy\%E2\%80\%93Schwarz_inequality}{Cauchy-Schwarz
+  inequality} it has a value between 1 and -1, where 1 represents a
+  total positive linear correlation, 0 no linear correlation, and -1 a
+  total negative correlation.
+\item
+  The \textbf{p-values} refer to the
+  \href{https://en.wikipedia.org/wiki/P-value\#Definition_and_interpretation}{asymptotic
+  significance of the R estimates}; for each specific linear model, they
+  describe the probability that the correlation estimate would be
+  greater than or equal to the actual correlation, assuming that the
+  true correlation is equal to 0 (true null hypothesis). The p-values
+  were calculated using a t-distribution with n -- 2 degrees of freedom,
+  and a significance level of 0.05 was used. Thus, a sample with a
+  p-value less than 0.05 provides reasonable evidence to support the
+  alternative hypothesis (true correlation is not equal to 0).
+\item
+  The \textbf{CI bounds} refer to a 95\% asymptotic confidence interval
+  for the correlation coefficient (R) estimates based on
+  \href{https://en.wikipedia.org/wiki/Fisher_transformation}{Fisher's Z
+  transform}, on cases of at least 4 complete pairs of observations
+  (polarity value and therapy hours).
+\item
+  The \textbf{adjusted R-squared} values were calculated using the
+  \href{https://www-bcf.usc.edu/~gareth/ISL/ISLR\%20First\%20Printing.pdf\#page=227}{unbiased
+  correlation coefficients and number of observations in each sample}.
+  They represent the percentage of variation explained by only the
+  independent variable (treatment hours) that actually affect the
+  dependent variable (polarity). Thus, this value increases only if a
+  new term improves the model more than would be expected by chance, and
+  decreases when a predictor improves the model by less than expected by
+  chance.
+\item
+  The \textbf{residual standard error}
+  \href{http://statweb.stanford.edu/~susan/courses/s60/split/node60.html}{(RSE)}
+  values were calculated by taking the positive square root of the mean
+  square error of the residuals for each linear model. The smaller the
+  RSE, the better the model fits the data.
+\item
+  The \textbf{degrees of freedom} refer to the number of independent
+  pieces of information on which the correlation estimate is based,
+  \href{http://onlinestatbook.com/2/estimation/df.html}{according to
+  David M. Lane}, associate professor at Rice University. They were
+  calculated by subtracting the number of parameters estimated (2) from
+  the number of observations within each linear model (sample sizes).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{General Conclusions}\label{general-conclusions}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{About Panacea}\label{about-panacea}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+
+\end{document}
