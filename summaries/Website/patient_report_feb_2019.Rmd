@@ -1750,23 +1750,39 @@ ________________________________________________________________________________
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 55
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Male
 
 <br />
+
+__Place of Residence:__ United States of America
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
 *****
 
@@ -1825,7 +1841,92 @@ style(C1J_fdg, text = C1J_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+##### C1-J Timeline
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates (The red line shows today's date).</li>
+</ul>
+</font>
+
+<br />
+
+```{r C1J_timeline, out.width="100%", fig.height=2.5}
+library(timevis)
+library(dplyr)
+
+C1J_timeline <- data.frame(
+  id = 1:14,
+  content = c("1st",
+              "2nd",
+              "3rd",
+              "4th",
+              "5th",
+              rep("CT Scan", 2),
+              rep("PET Scan", 2),
+              "Ultrasound",
+              rep("CEA", 2),
+              "CMP",
+              "CBC"),
+  
+  start = c("2018-09-24", "2018-10-22", "2018-11-13", "2018-12-03", "2019-02-04",
+            "2018-03-01", "2018-10-19",
+            "2018-07-12", "2019-01-28",
+            "2018-09-29",
+            "2018-09-10", "2018-11-23",
+            "2018-09-10",
+            "2018-09-10"),
+  
+  end   = c("2018-10-12", "2018-11-03", "2018-11-24", "2018-12-20", "2019-02-15",
+            NA, NA,
+            NA, NA,
+            NA,
+            NA, NA,
+            NA,
+            NA),
+  
+  group = c(rep(NA, 5), rep("img", 5), rep("blood", 4)),
+  
+  type = c(rep("background", 5), rep("point", 9))
+)
+
+C1J_groups <- data.frame(
+  id = c("session", "img", "blood"),
+  content = c("Session", "Imaging Tests", "Blood Tests")
+)
+
+timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2018-02-20", max = "2019-04-01", start = "2018-02-20", end  = "2019-04-01", zoomMin = 1080000000))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CT Scans</b> refer to Abdominal and Pelvic and Chest CT Scans.
+<br />
+* <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
+<br />
+* <b>CBC</b> refers to Complete Blood Count.
+<br />
+* <b>CMP</b> refers to Comprehensive Metabolic Panel.
+<br />
+* <b>CEA</b> refers to Carcinoembryonic Antigen Test.
+<br />
+* <b>Ultrasounds</b> refer to Abdomen and Neck Ultrasounds.
+</font>
+</i>
+</div>
+
+*****
+
+#### Significant Changes
 
 <br />
 
@@ -1845,23 +1946,38 @@ style(C1J_fdg, text = C1J_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 31
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Female
 
 <br />
+
+__Place of Residence:__ United States of America
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+January 2017  | Invasive ductal carcinoma of the left breast
+July 2018     | Invasive mammary carcinoma of the right breast
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Left-Breast Chemotherapy
+Content Cell  | Content Cell  | Right-Breast Chemotherapy
+Content Cell  | Content Cell  | Left Masectomy
 
 *****
 
@@ -1921,7 +2037,15 @@ style(B1S_fdg, text = B1S_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+*****
+
+#### Significant Changes
 
 <br />
 
@@ -1941,23 +2065,39 @@ style(B1S_fdg, text = B1S_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 57
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Male
 
 <br />
+
+__Place of Residence:__ Panama
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
 *****
 
@@ -2016,7 +2156,15 @@ style(L2E_fdg, text = L2E_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+*****
+
+#### Significant Changes
 
 <br />
 
@@ -2036,23 +2184,39 @@ style(L2E_fdg, text = L2E_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 57
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Female
 
 <br />
+
+__Place of Residence:__ Panama
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
 *****
 
@@ -2111,7 +2275,15 @@ style(H1A_fdg, text = H1A_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+*****
+
+#### Significant Changes
 
 <br />
 
@@ -2131,23 +2303,39 @@ style(H1A_fdg, text = H1A_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 62
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Male
 
 <br />
+
+__Place of Residence:__ United States of America
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
 *****
 
@@ -2206,7 +2394,15 @@ style(L3K_fdg, text = L3K_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+*****
+
+#### Significant Changes
 
 <br />
 
@@ -2226,23 +2422,39 @@ style(L3K_fdg, text = L3K_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 57
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Male
 
 <br />
+
+__Place of Residence:__ United States of America
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
 *****
 
@@ -2301,7 +2513,15 @@ style(G1D_fdg, text = G1D_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+*****
+
+#### Significant Changes
 
 <br />
 
@@ -2321,23 +2541,39 @@ style(G1D_fdg, text = G1D_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-*****
-
-#### Diagnosis
+__Age:__ 55
 
 <br />
 
-*****
-
-#### Previous Treatments
+__Gender:__ Male
 
 <br />
+
+__Place of Residence:__ United States of America
+
+*****
+
+#### Diagnoses
+
+<br />
+
+Date          | Diagnosis
+:-----------: | :-----------:
+Content Cell  | Content Cell
+Content Cell  | Content Cell
 
 *****
 
 #### Alternative Treatments
 
 <br />
+
+Start Date    | End Date      | Treatment
+:-----------: | :-----------: | :-----------:
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
+Content Cell  | Content Cell  | Content Cell
 
 *****
 
@@ -2395,7 +2631,15 @@ style(L1J_fdg, text = L1J_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Key Medical Results
+### Medical Results{.tabset .tabset-fade .tabset-pills}
+
+#### Timeline
+
+<br />
+
+*****
+
+#### Significant Changes
 
 <br />
 
