@@ -2466,6 +2466,78 @@ style(H1A_fdg, text = H1A_text, hoverinfo = "text", traces = 1)
 
 <br />
 
+##### H1-A Timeline
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates (The red line shows today's date).</li>
+</ul>
+</font>
+
+<br />
+
+```{r H1A_timeline, out.width="100%", fig.height=3.5}
+library(timevis)
+library(dplyr)
+
+H1A_timeline <- data.frame(
+  id = 1:13,
+  content = c("1st", "2nd", "3rd", "4th", "5th",
+              rep("CT Scan", 2),
+              rep("Ultrasound", 1),
+              rep("CEA", 1),
+              rep("CA 125", 1),
+              "CBC",
+              "CMP",
+              "Electrocardiogram"),
+  
+  start = c("2018-08-23", "2018-09-24", "2018-11-01", "2018-12-03", "2019-01-08",
+            "2017-06-26", "2018-09-06",
+            "2018-08-25",
+            "2018-08-29",
+            "2018-08-29",
+            "2018-09-07",
+            "2018-08-29",
+            "2018-08-25"),
+  
+  end   = c("2018-09-01", "2018-10-06", "2018-11-02", "2018-12-14", "2019-01-19",
+            NA, NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA),
+  
+  group = c(rep(NA, 5), rep("img", 3), rep("blood", 4), rep("other", 1)),
+  
+  type = c(rep("background", 5), rep("point", 8))
+)
+
+H1A_groups <- data.frame(
+  id = c("session", "img", "blood", "other"),
+  content = c("Session", "Imaging Tests", "Blood Tests", "Other Tests")
+)
+
+timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2017-06-20", max = "2019-04-01", start = "2017-06-20", end  = "2019-04-01", zoomMin = 1080000000))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CT Scans</b> refer to Chest CT Scans.
+<br />
+* <b>Ultrasounds</b> refer to Neck and Abdomen Ultrasounds.
+<br />
+* <b>CBC</b> refers to a Complete Blood Count.
+<br />
+* <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
+</font>
+</i>
+</div>
+
 *****
 
 #### Significant Changes
