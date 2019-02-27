@@ -1909,13 +1909,13 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
 <br />
+* <b>Ultrasounds</b> refer to Abdomen and Neck Ultrasounds.
+<br />
 * <b>CBC</b> refers to a Complete Blood Count.
 <br />
 * <b>CMP</b> refers to a Comprehensive Metabolic Panel.
 <br />
 * <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
-<br />
-* <b>Ultrasounds</b> refer to Abdomen and Neck Ultrasounds.
 </font>
 </i>
 </div>
@@ -2107,7 +2107,9 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
 <br />
-* <b>MRIs</b> refer to breast MRIs and one brain MRI in July 17, 2018.
+* <b>MRIs</b> refer to Breast MRIs and one Brain MRI on July 17, 2018.
+<br />
+* <b>Ultrasounds</b> refer to Breasts Ultrasounds.
 <br />
 * <b>Biopsy</b> refers to a HER2 FISH Test.
 <br />
@@ -2116,8 +2118,6 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 * <b>CMP</b> refers to a Comprehensive Metabolic Panel.
 <br />
 * <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
-<br />
-* <b>Ultrasounds</b> refer to Breasts Ultrasounds.
 </font>
 </i>
 </div>
@@ -2240,6 +2240,112 @@ style(L2E_fdg, text = L2E_text, hoverinfo = "text", traces = 1)
 #### Timeline
 
 <br />
+
+##### L2-E Timeline
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates (The red line shows today's date).</li>
+</ul>
+</font>
+
+<br />
+
+```{r L2E_timeline, out.width="100%", fig.height=5.2}
+library(timevis)
+library(dplyr)
+
+L2E_timeline <- data.frame(
+  id = 1:25,
+  content = c("1st", "2nd", "3rd", "4th", "5th",
+              rep("CT Scan", 2),
+              rep("PET Scan", 1),
+              rep("Ultrasound", 3),
+              rep("MRI", 1),
+              rep("X-Ray", 2),
+              rep("Gamma Scan", 1),
+              rep("CEA", 2),
+              rep("CA 19-9", 1),
+              rep("PSA", 1),
+              "CBC",
+              "CMP",
+              "Colonoscopy",
+              "Cardiac Score",
+              "Bone Densitometry",
+              "General Checkup"),
+  
+  start = c("2018-08-21", "2018-09-24", "2018-10-22", "2018-12-03", "2019-01-08",
+            "2018-04-19", "2018-11-29",
+            "2018-04-26",
+            "2018-08-28", "2018-10-15", "2018-11-29",
+            "2018-11-29",
+            "2018-08-30", "2018-11-29",
+            "2018-08-30",
+            "2018-08-25", "2018-10-02",
+            "2018-08-25",
+            "2018-11-29",
+            "2018-09-07",
+            "2018-11-29",
+            "2018-11-29",
+            "2018-11-29",
+            "2018-11-29",
+            "2018-12-11"),
+  
+  end   = c("2018-09-01", "2018-10-06", "2018-11-03", "2018-12-15", "2019-01-19",
+            NA, NA,
+            NA,
+            NA, NA, NA,
+            NA,
+            NA, NA,
+            NA,
+            NA, NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA),
+  
+  group = c(rep(NA, 5), rep("img", 10), rep("blood", 6), rep("other", 4)),
+  
+  type = c(rep("background", 5), rep("point", 20))
+)
+
+L2E_groups <- data.frame(
+  id = c("session", "img", "blood", "other"),
+  content = c("Session", "Imaging Tests", "Blood Tests", "Other Tests")
+)
+
+timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2018-04-01", max = "2019-04-01", start = "2018-04-01", end  = "2019-04-01", zoomMin = 1080000000))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CT Scans</b> refer to Chest CT Scans and one Abdominal CT Scan on November 29, 2018.
+<br />
+* <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
+<br />
+* <b>MRIs</b> refer to Abdomen, Brain, and Heart MRIs.
+<br />
+* <b>X-Rays</b> refer to Chest X-Rays.
+<br />
+* <b>Ultrasounds</b> refer to Neck Ultrasounds and one Abdomen Ultrasound on November 29, 2018.
+<br />
+* <b>CBC</b> refers to a Complete Blood Count.
+<br />
+* <b>CMP</b> refers to a Comprehensive Metabolic Panel.
+<br />
+* <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
+<br />
+* <b>PSA</b> refers to a Prostate Specific Antigen Test.
+</font>
+</i>
+</div>
 
 *****
 
