@@ -2657,6 +2657,82 @@ style(L3K_fdg, text = L3K_text, hoverinfo = "text", traces = 1)
 
 <br />
 
+##### L3-K Timeline
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates (The red line shows today's date).</li>
+</ul>
+</font>
+
+<br />
+
+```{r L3K_timeline, out.width="100%", fig.height=3.2}
+library(timevis)
+library(dplyr)
+
+L3K_timeline <- data.frame(
+  id = 1:19,
+  content = c("1st", "2nd", "3rd", "4th",
+              rep("CT Scan", 4),
+              rep("PET Scan", 2),
+              rep("MRI", 3),
+              rep("BUN", 1),
+              rep("POC", 1),
+              rep("Creatinine", 1),
+              rep("CBC", 3)),
+  
+  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11",
+            "2018-07-17", "2018-08-28", "2018-10-08", "2019-01-09",
+            "2018-10-08", "2018-11-28",
+            "2018-07-17", "2018-08-28", "2018-10-08",
+            "2018-10-18",
+            "2018-10-08",
+            "2018-10-08",
+            "2018-09-04", "2018-09-06", "2019-01-09"),
+  
+  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14",
+            NA, NA, NA, NA,
+            NA, NA,
+            NA, NA, NA,
+            NA,
+            NA,
+            NA,
+            NA, NA, NA),
+  
+  group = c(rep(NA, 4), rep("img", 9), rep("blood", 6)),
+  
+  type = c(rep("background", 4), rep("point", 15))
+)
+
+L3K_groups <- data.frame(
+  id = c("session", "img", "blood"),
+  content = c("Session", "Imaging Tests", "Blood Tests")
+)
+
+timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2018-07-01", max = "2019-04-01", start = "2018-07-01", end  = "2019-04-01", zoomMin = 1080000000))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CT Scans</b> refer to Chest, Abdomen, and Pelvis CT Scans.
+<br />
+* <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
+<br />
+* <b>MRIs</b> refer to Brain MRIs.
+<br />
+* <b>CBC</b> refers to a Complete Blood Count.
+<br />
+* <b>BUN</b> refers to a Blood Urea Nitrogen Test.
+<br />
+* <b>POC</b> refers to a Point of Care Glucose Test.
+</font>
+</i>
+</div>
+
 *****
 
 #### Significant Changes
