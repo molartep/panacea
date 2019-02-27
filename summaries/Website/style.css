@@ -41,4 +41,20 @@ h2, .h2{
     border-color: #ffffff;
 }
 
+.vis-timeline {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.vis-item {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.vis-time-axis .vis-text {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+
 
