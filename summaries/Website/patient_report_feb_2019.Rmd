@@ -1864,11 +1864,7 @@ library(dplyr)
 
 C1J_timeline <- data.frame(
   id = 1:14,
-  content = c("1st",
-              "2nd",
-              "3rd",
-              "4th",
-              "5th",
+  content = c("1st", "2nd", "3rd", "4th", "5th",
               rep("CT Scan", 2),
               rep("PET Scan", 2),
               "Ultrasound",
@@ -1913,11 +1909,11 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
 <br />
-* <b>CBC</b> refers to Complete Blood Count.
+* <b>CBC</b> refers to a Complete Blood Count.
 <br />
-* <b>CMP</b> refers to Comprehensive Metabolic Panel.
+* <b>CMP</b> refers to a Comprehensive Metabolic Panel.
 <br />
-* <b>CEA</b> refers to Carcinoembryonic Antigen Test.
+* <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
 <br />
 * <b>Ultrasounds</b> refer to Abdomen and Neck Ultrasounds.
 </font>
@@ -2042,6 +2038,89 @@ style(B1S_fdg, text = B1S_text, hoverinfo = "text", traces = 1)
 #### Timeline
 
 <br />
+
+##### B1-S Timeline
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates (The red line shows today's date).</li>
+</ul>
+</font>
+
+<br />
+
+```{r B1S_timeline, out.width="100%", fig.height=3.5}
+library(timevis)
+library(dplyr)
+
+B1S_timeline <- data.frame(
+  id = 1:14,
+  content = c("1st", "2nd", "3rd",
+              rep("CT Scan", 1),
+              rep("PET Scan", 1),
+              rep("Ultrasound", 1),
+              rep("MRI", 3),
+              rep("CEA", 1),
+              rep("CA 15-3", 2),
+              "CBC",
+              "Biopsy"),
+  
+  start = c("2018-08-21", "2018-09-24", "2018-11-13",
+            "2018-04-17",
+            "2018-07-17",
+            "2018-08-28",
+            "2018-07-13", "2018-07-17", "2018-09-19",
+            "2018-08-25",
+            "2018-07-19", "2018-08-25",
+            "2018-07-19",
+            "2018-07-23"),
+  
+  end   = c("2018-09-08", "2018-10-05", "2018-11-17",
+            NA,
+            NA,
+            NA,
+            NA, NA, NA,
+            NA,
+            NA, NA,
+            NA,
+            NA),
+  
+  group = c(rep(NA, 3), rep("img", 6), rep("blood", 4), rep("other", 1)),
+  
+  type = c(rep("background", 3), rep("point", 11))
+)
+
+B1S_groups <- data.frame(
+  id = c("session", "img", "blood", "other"),
+  content = c("Session", "Imaging Tests", "Blood Tests", "Other Tests")
+)
+
+timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2018-04-01", max = "2019-04-01", start = "2018-04-01", end  = "2019-04-01", zoomMin = 1080000000))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CT Scans</b> refer to Chest CT Scans.
+<br />
+* <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
+<br />
+* <b>MRIs</b> refer to breast MRIs and one brain MRI in July 17, 2018.
+<br />
+* <b>Biopsy</b> refers to a HER2 FISH Test.
+<br />
+* <b>CBC</b> refers to a Complete Blood Count.
+<br />
+* <b>CMP</b> refers to a Comprehensive Metabolic Panel.
+<br />
+* <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
+<br />
+* <b>Ultrasounds</b> refer to Breasts Ultrasounds.
+</font>
+</i>
+</div>
 
 *****
 
