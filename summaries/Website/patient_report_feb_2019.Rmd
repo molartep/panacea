@@ -1835,12 +1835,6 @@ style(C1J_fdg, text = C1J_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Outliers & Comments 
-
-<br />
-
-*****
-
 ### Medical Results{.tabset .tabset-fade .tabset-pills}
 
 #### Timeline
@@ -1923,6 +1917,20 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 *****
 
 #### Significant Changes
+
+<br />
+
+*****
+
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
 
 <br />
 
@@ -2027,12 +2035,6 @@ style(B1S_fdg, text = B1S_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Outliers & Comments 
-
-<br />
-
-*****
-
 ### Medical Results{.tabset .tabset-fade .tabset-pills}
 
 #### Timeline
@@ -2125,6 +2127,20 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 *****
 
 #### Significant Changes
+
+<br />
+
+*****
+
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
 
 <br />
 
@@ -2224,12 +2240,6 @@ L2E_text <- paste("Date = ", L2_E_dates$date, "\n" , "Polarity = ", L2_E_dates$p
 L2E_fdg <- plotly_build(L2E_final_date_graph + ggtitle("L2-E Polarity through Time"))   
 style(L2E_fdg, text = L2E_text, hoverinfo = "text", traces = 1)
 ```
-
-<br />
-
-*****
-
-### Outliers & Comments 
 
 <br />
 
@@ -2355,6 +2365,20 @@ timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
+
+<br />
+
+*****
+
 ### Conclusions
 
 <br />
@@ -2454,12 +2478,6 @@ style(H1A_fdg, text = H1A_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Outliers & Comments 
-
-<br />
-
-*****
-
 ### Medical Results{.tabset .tabset-fade .tabset-pills}
 
 #### Timeline
@@ -2541,6 +2559,20 @@ timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor =
 *****
 
 #### Significant Changes
+
+<br />
+
+*****
+
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
 
 <br />
 
@@ -2645,12 +2677,6 @@ style(L3K_fdg, text = L3K_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Outliers & Comments 
-
-<br />
-
-*****
-
 ### Medical Results{.tabset .tabset-fade .tabset-pills}
 
 #### Timeline
@@ -2736,6 +2762,20 @@ timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor =
 *****
 
 #### Significant Changes
+
+<br />
+
+*****
+
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
 
 <br />
 
@@ -2835,12 +2875,6 @@ G1D_text <- paste("Date = ", G1_D_dates$date, "\n" , "Polarity = ", G1_D_dates$p
 G1D_fdg <- plotly_build(G1D_final_date_graph + ggtitle("G1-D Polarity through Time"))   
 style(G1D_fdg, text = G1D_text, hoverinfo = "text", traces = 1)
 ```
-
-<br />
-
-*****
-
-### Outliers & Comments 
 
 <br />
 
@@ -2977,6 +3011,20 @@ timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
+
+<br />
+
+*****
+
 ### Conclusions
 
 <br />
@@ -3075,12 +3123,6 @@ style(L1J_fdg, text = L1J_text, hoverinfo = "text", traces = 1)
 
 *****
 
-### Outliers & Comments 
-
-<br />
-
-*****
-
 ### Medical Results{.tabset .tabset-fade .tabset-pills}
 
 #### Timeline
@@ -3146,6 +3188,20 @@ timevis(data = L1J_timeline, groups = L1J_groups, showZoom = FALSE, zoomFactor =
 *****
 
 #### Significant Changes
+
+<br />
+
+*****
+
+### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+
+#### Treatment Statistics
+
+<br />
+
+*****
+
+#### Medical Results
 
 <br />
 
