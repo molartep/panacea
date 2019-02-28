@@ -1920,6 +1920,94 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
+##### C1-J Significant Changes
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates.</li>
+  <li>Light blue shades represent treatment sessions.</li>
+</ul>
+</font>
+
+<br />
+
+```{r C1J_signif, out.width="100%", fig.height=5.2}
+library(timevis)
+library(dplyr)
+
+C1J_signif <- data.frame(
+  id = 1:41,
+  content = c("", "", "", "", "",
+              "0.5 cm", "0.8 cm", "SUV max: 2.37", "0.7 cm", "0.5 cm", "SUV max: 2.3", 
+              "SUV max: 2.96", "2.7 cm", "1.4 x 1.1 cm", "SUV max: 5.2",
+              "SUV max: 1.98", "SUV max: 1.39",
+              "4.3 cm", "4.1 x 3.4 cm", "4.2 x 3.2 cm", "3.6 x 3.0 cm",
+              "2.3 x 2.2 cm", "SUV max: 7.2", "5.9 x 5.0 cm", "SUV max: 6.9",
+              "0.7 cm", "SUV max: 4.07", "1.1 cm", "1.0 x 0.6 cm", "SUV max: 2.7",
+              "2.2 x 2.6 cm", "SUV max: 9.22", "3.2 x 3.2 cm", "SUV max: 10.2", "4.3 x 4.1 cm", "SUV max: 8.4",
+              "3.3 x 2.3 cm", "SUV max: 7.43", "3.9 x 2.6 cm", "4.0 x 3.5 cm", "SUV max: 6.2"),
+  
+  start = c("2018-09-24", "2018-10-22", "2018-11-13", "2018-12-03", "2019-02-04",
+            "2018-03-01", rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2),
+            "2018-07-12", "2018-10-19", rep("2019-01-28", 2),
+            "2018-07-12", "2019-01-28",
+            "2018-03-01", "2018-07-12", "2018-10-19", "2019-01-28",
+            rep("2018-10-19", 2), rep("2019-01-28", 2),
+            rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2),
+            rep("2018-07-12", 2), rep("2018-10-19", 2), rep("2019-01-28", 2),
+            rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2)),
+  
+  end   = c("2018-10-12", "2018-11-03", "2018-11-24", "2018-12-20", "2019-02-15",
+            rep(NA, 6),
+            rep(NA, 4),
+            rep(NA, 2),
+            rep(NA, 4),
+            rep(NA, 4),
+            rep(NA, 5),
+            rep(NA, 6),
+            rep(NA, 5)),
+  
+  group = c(rep(NA, 5), rep("rul", 6), rep("lhilum", 4), rep("liver", 2), rep("hs67", 4), rep("hs8", 4), rep("para", 5), rep("soft", 6), rep("softPiri", 5)),
+  
+  subgroup = c(rep(NA, 5),
+               "size", rep(c("size", "SUV"), 1), "size", rep(c("size", "SUV"), 1), #rul
+               "SUV", "size", rep(c("size", "SUV"),1), #hilum
+               "SUV", "SUV", #liver
+               rep("size", 4), #heaptic 6 & 7
+               rep(c("size", "SUV"), 2), #hepatic 8
+               rep(c("size", "SUV"), 1), "size", rep(c("size", "SUV"),1), #para
+               rep(c("size", "SUV"), 3), #soft
+               rep(c("size", "SUV"), 1), "size", rep(c("size", "SUV"), 1)), #soft piri
+  
+  type = c(rep("background", 5), rep("point", 36))
+)
+
+C1J_groups1 <- data.frame(
+  id = c("rul", "lhilum", "liver", "hs67", "hs8", "para", "soft", "softPiri"),
+  content = c("Lung Right Upper Lobe Nodule", "Left Hilar\n Lymph Node", "Liver Lesion", "Hepatic Segment 6/7 Lesion", "Hepatic Segment 8 Lesion", "Para-aortic Lymph Node", "Soft Tissue Lymph Node", "Soft Tissue Lymph Node\n (Abutting the Piriformis)"),
+  subgroupStack = TRUE
+)
+
+timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 0.2,
+        options = list(zoomable = TRUE, min = "2018-02-20", max = "2019-05-01", start = "2016-02-20", end  = "2019-05-01", zoomMin = 1080000000, stack = FALSE, showCurrentTime = FALSE))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
+<br />
+* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
+<br />
+* The <b>Soft Tissue Lymph Node (Abutting the Piriformis)</b> is located to the left iliacus muscle and abutting the piriformis.
+<br />
+* <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
+</font>
+</i>
+</div>
+
 *****
 
 ### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
