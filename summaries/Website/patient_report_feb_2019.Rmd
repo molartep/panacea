@@ -2852,6 +2852,123 @@ style(G1D_fdg, text = G1D_text, hoverinfo = "text", traces = 1)
 
 <br />
 
+##### G1-D Timeline
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click and drag the timeline to scroll through the dates (The red line shows today's date).</li>
+</ul>
+</font>
+
+<br />
+
+```{r G1D_timeline, out.width="100%", fig.height=5.2}
+library(timevis)
+library(dplyr)
+
+G1D_timeline <- data.frame(
+  id = 1:56,
+  content = c("1st", "2nd", "3rd", "4th",
+              rep("CT Scan", 1),
+              rep("PET Scan", 3),
+              rep("Ultrasound", 1),
+              rep("MRI", 10),
+              rep("CEA", 1),
+              rep("CA 19-9", 1),
+              rep("PSA", 2),
+              rep("CBC", 7),
+              rep("CMP", 11),
+              rep("CRP", 2),
+              rep("Direct LDL-C", 3),
+              rep("PTT", 3),
+              rep("SED Rate", 2),
+              rep("TSH", 2),
+              rep("Biopsy", 2),
+              "Electrocardiogram"),
+  
+  start = c("2018-09-24", "2018-11-01", "2018-12-11", "2019-01-15",
+            "2017-03-13",
+            "2012-12-27", "2013-08-12", "2014-09-05",
+            "2014-06-02",
+            "2013-03-26", "2015-03-20", "2015-09-04", "2016-02-29", "2016-09-06", "2016-09-12", "2017-03-06", "2017-09-05", "2018-03-05", "2018-08-28",
+            "2017-01-20",
+            "2014-03-11",
+            "2017-01-20", "2018-04-05",
+            "2012-09-10", "2012-09-18", "2014-03-11", "2014-09-30", "2017-01-20", "2018-04-05", "2018-08-28",
+            "2012-09-10", "2012-09-18", "2012-09-19", "2012-12-27", "2013-08-12", "2014-03-11", "2014-09-05", "2014-09-30", "2017-01-20", "2018-04-05", "2018-08-28",
+            "2018-04-05", "2017-01-20",
+            "2014-03-11", "2015-02-04", "2017-01-20",
+            "2012-09-10", "2014-03-11", "2014-09-30",
+            "2017-01-20", "2018-04-05",
+            "2017-01-20", "2018-04-05",
+            "2017-08-28", "2018-10-01",
+            "2014-09-30"),
+  
+  end   = c("2018-09-26", "2018-11-03", "2018-12-13", "2019-01-17",
+            NA,
+            NA, NA, NA,
+            NA,
+            NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+            NA,
+            NA,
+            NA, NA,
+            NA, NA, NA, NA, NA, NA, NA,
+            NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+            NA, NA,
+            NA, NA, NA,
+            NA, NA, NA,
+            NA, NA,
+            NA, NA,
+            NA, NA,
+            NA),
+  
+  group = c(rep(NA, 4), rep("img", 15), rep("blood", 34), rep("other", 3)),
+  
+  type = c(rep("background", 4), rep("point", 52))
+)
+
+G1D_groups <- data.frame(
+  id = c("session", "img", "blood", "other"),
+  content = c("Session", "Imaging Tests", "Blood Tests", "Other Tests")
+)
+
+timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2012-08-15", max = "2019-04-01", start = "2012-08-15", end  = "2019-04-01", zoomMin = 1080000000))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CT Scans</b> refer to Cardiac CT Scans for Calcium Scoring.
+<br />
+* <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
+<br />
+* <b>MRIs</b> refer to Abdomen and Pelvis MRIs and one Brain MRI on March 5, 2018.
+<br />
+* <b>Ultrasounds</b> refer to Abdomen Ultrasounds.
+<br />
+* <b>CBC</b> refers to a Complete Blood Count.
+<br />
+* <b>CMP</b> refers to a Comprehensive Metabolic Panel.
+<br />
+* <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
+<br />
+* <b>PSA</b> refers to a Prostate Specific Antigen Test.
+<br />
+* <b>CRP</b> refers to a C Reactive Protein Test.
+<br />
+* <b>PTT</b> refers to a Partial Thromboplastin Time Test.
+<br />
+* <b>SED Rate</b> refers to a Erythrocyte Sedimentation Rate Test.
+<br />
+* <b>TSH</b> refers to a Thyroid Stimulating Hormone Test.
+<br />
+* <b>Direct LDL-C</b> refers to a Direct Low-density Lipoprotein Cholesterol Test.
+</font>
+</i>
+</div>
+
 *****
 
 #### Significant Changes
