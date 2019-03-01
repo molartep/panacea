@@ -1925,8 +1925,9 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 <font size="0.6">
 <ul>
   <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click on the individual items to highlight their values.</li>
   <li>Click and drag the timeline to scroll through the dates.</li>
-  <li>Light blue shades represent treatment sessions.</li>
+  <li>The light blue shaded areas represent treatment sessions.</li>
 </ul>
 </font>
 
