@@ -2005,6 +2005,8 @@ timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 
 <div align="right">
 <i>
 <font size="1">
+* <b>Carcinoembryonic Antigen</b> reference value is < 5 ng/mL.
+<br />
 * <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
 <br />
 * The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
@@ -2225,6 +2227,40 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 #### Significant Changes
 
 <br />
+
+##### B1-S Significant Changes
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click on the individual items to highlight their values.</li>
+  <li>Click and drag the timeline to scroll through the dates.</li>
+  <li>The light blue shaded areas represent treatment sessions.</li>
+</ul>
+</font>
+
+<br />
+
+```{r B1S_signif, out.width="100%", fig.height=6.3}
+
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CA 15-3</b> reference values are < 25 U/mL and < 31.3 U/mL respectively.
+<br />
+* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
+<br />
+* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
+<br />
+* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
+<br />
+* <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
+</font>
+</i>
+</div>
 
 *****
 
