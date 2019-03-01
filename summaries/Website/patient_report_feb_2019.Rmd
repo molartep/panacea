@@ -1932,45 +1932,53 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
-```{r C1J_signif, out.width="100%", fig.height=5.2}
+```{r C1J_signif, out.width="100%", fig.height=6.3}
 library(timevis)
 library(dplyr)
 
 C1J_signif <- data.frame(
-  id = 1:41,
-  content = c("", "", "", "", "",
-              "0.5 cm", "0.8 cm", "SUV max: 2.37", "0.7 cm", "0.5 cm", "SUV max: 2.3", 
-              "SUV max: 2.96", "2.7 cm", "1.4 x 1.1 cm", "SUV max: 5.2",
-              "SUV max: 1.98", "SUV max: 1.39",
-              "4.3 cm", "4.1 x 3.4 cm", "4.2 x 3.2 cm", "3.6 x 3.0 cm",
-              "2.3 x 2.2 cm", "SUV max: 7.2", "5.9 x 5.0 cm", "SUV max: 6.9",
-              "0.7 cm", "SUV max: 4.07", "1.1 cm", "1.0 x 0.6 cm", "SUV max: 2.7",
-              "2.2 x 2.6 cm", "SUV max: 9.22", "3.2 x 3.2 cm", "SUV max: 10.2", "4.3 x 4.1 cm", "SUV max: 8.4",
-              "3.3 x 2.3 cm", "SUV max: 7.43", "3.9 x 2.6 cm", "4.0 x 3.5 cm", "SUV max: 6.2"),
+  id = 1:48,
+  content = c("", "", "", "", "", #sessions
+              "116.1", "79.6", "34.5", "7.9", "15.6", #polarity
+              "38.3 ng/mL", "43.74 ng/mL", #cea
+              "0.5 cm", "0.8 cm", "SUV max: 2.37", "0.7 cm", "0.5 cm", "SUV max: 2.3", #rul
+              "SUV max: 2.96", "2.7 cm", "1.4 x 1.1 cm", "SUV max: 5.2", #lhilum
+              "SUV max: 1.98", "SUV max: 1.39", #liver
+              "4.3 cm", "4.1 x 3.4 cm", "4.2 x 3.2 cm", "3.6 x 3.0 cm", #hepatic 6 & 7
+              "2.3 x 2.2 cm", "SUV max: 7.2", "5.9 x 5.0 cm", "SUV max: 6.9", # hepatic 8
+              "0.7 cm", "SUV max: 4.07", "1.1 cm", "1.0 x 0.6 cm", "SUV max: 2.7", #para
+              "2.2 x 2.6 cm", "SUV max: 9.22", "3.2 x 3.2 cm", "SUV max: 10.2", "4.3 x 4.1 cm", "SUV max: 8.4", #soft
+              "3.3 x 2.3 cm", "SUV max: 7.43", "3.9 x 2.6 cm", "4.0 x 3.5 cm", "SUV max: 6.2"), #soft piri
   
-  start = c("2018-09-24", "2018-10-22", "2018-11-13", "2018-12-03", "2019-02-04",
-            "2018-03-01", rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2),
-            "2018-07-12", "2018-10-19", rep("2019-01-28", 2),
-            "2018-07-12", "2019-01-28",
-            "2018-03-01", "2018-07-12", "2018-10-19", "2019-01-28",
-            rep("2018-10-19", 2), rep("2019-01-28", 2),
-            rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2),
-            rep("2018-07-12", 2), rep("2018-10-19", 2), rep("2019-01-28", 2),
-            rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2)),
+  start = c("2018-09-24", "2018-10-22", "2018-11-13", "2018-12-03", "2019-02-04", #sessions
+            "2018-10-12", "2018-11-03", "2018-11-24", "2018-12-20", "2019-02-15", #polarity
+            "2018-09-10", "2018-11-23", #cea
+            "2018-03-01", rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2), #rul
+            "2018-07-12", "2018-10-19", rep("2019-01-28", 2), #lhilum
+            "2018-07-12", "2019-01-28", #liver
+            "2018-03-01", "2018-07-12", "2018-10-19", "2019-01-28", #hepatic 6 & 7
+            rep("2018-10-19", 2), rep("2019-01-28", 2), #hepatic 8
+            rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2), #para
+            rep("2018-07-12", 2), rep("2018-10-19", 2), rep("2019-01-28", 2), #soft
+            rep("2018-07-12", 2), "2018-10-19", rep("2019-01-28", 2)), #soft piri
   
-  end   = c("2018-10-12", "2018-11-03", "2018-11-24", "2018-12-20", "2019-02-15",
-            rep(NA, 6),
-            rep(NA, 4),
-            rep(NA, 2),
-            rep(NA, 4),
-            rep(NA, 4),
-            rep(NA, 5),
-            rep(NA, 6),
-            rep(NA, 5)),
+  end   = c("2018-10-12", "2018-11-03", "2018-11-24", "2018-12-20", "2019-02-15", #sessions
+            rep(NA, 5), #polarity
+            rep(NA, 2), #cea
+            rep(NA, 6), #rul
+            rep(NA, 4), #lhilum
+            rep(NA, 2), #liver
+            rep(NA, 4), #hepatic 6 & 7
+            rep(NA, 4), #hepatic 8
+            rep(NA, 5), #para
+            rep(NA, 6), #soft
+            rep(NA, 5)), #soft piri
   
-  group = c(rep(NA, 5), rep("rul", 6), rep("lhilum", 4), rep("liver", 2), rep("hs67", 4), rep("hs8", 4), rep("para", 5), rep("soft", 6), rep("softPiri", 5)),
+  group = c(rep(NA, 5), rep("polar", 5), rep("cea", 2), rep("rul", 6), rep("lhilum", 4), rep("liver", 2), rep("hs67", 4), rep("hs8", 4), rep("para", 5), rep("soft", 6), rep("softPiri", 5)),
   
-  subgroup = c(rep(NA, 5),
+  subgroup = c(rep(NA, 5), #sessions
+               rep(NA, 5), #polarity
+               rep(NA, 2), #cea
                "size", rep(c("size", "SUV"), 1), "size", rep(c("size", "SUV"), 1), #rul
                "SUV", "size", rep(c("size", "SUV"),1), #hilum
                "SUV", "SUV", #liver
@@ -1980,13 +1988,12 @@ C1J_signif <- data.frame(
                rep(c("size", "SUV"), 3), #soft
                rep(c("size", "SUV"), 1), "size", rep(c("size", "SUV"), 1)), #soft piri
   
-  type = c(rep("background", 5), rep("point", 36))
+  type = c(rep("background", 5), rep("point", 43))
 )
 
 C1J_groups1 <- data.frame(
-  id = c("rul", "lhilum", "liver", "hs67", "hs8", "para", "soft", "softPiri"),
-  content = c("Lung Right Upper Lobe Nodule", "Left Hilar\n Lymph Node", "Liver Lesion", "Hepatic Segment 6/7 Lesion", "Hepatic Segment 8 Lesion", "Para-aortic Lymph Node", "Soft Tissue Lymph Node", "Soft Tissue Lymph Node\n (Abutting the Piriformis)"),
-  subgroupStack = TRUE
+  id = c("polar", "cea", "rul", "lhilum", "liver", "hs67", "hs8", "para", "soft", "softPiri"),
+  content = c("Polarity after Sessions", "Carcinoembryonic Antigen", "Lung Right Upper Lobe Nodule", "Left Hilar Lymph Node", "Liver Lesion", "Hepatic Segment 6/7 Lesion", "Hepatic Segment 8 Lesion", "Para-aortic Lymph Node", "Soft Tissue Lymph Node", "ST Piriformis Lymph Node")
 )
 
 timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 0.2,
@@ -2001,7 +2008,7 @@ timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 
 <br />
 * The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
 <br />
-* The <b>Soft Tissue Lymph Node (Abutting the Piriformis)</b> is located to the left iliacus muscle and abutting the piriformis.
+* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
 <br />
 * <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
 </font>
