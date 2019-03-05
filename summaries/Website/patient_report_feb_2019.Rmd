@@ -2241,8 +2241,76 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
-```{r B1S_signif, out.width="100%", fig.height=6.3}
+```{r B1S_signif, out.width="100%", fig.height=8}
+library(timevis)
+library(dplyr)
 
+B1S_signif <- data.frame(
+  id = 1:37,
+  content = c("", "", "", #sessions
+              "75.1", "20.9", "62.1", #polarity
+              "27.5 U/mL", "26.86 U/mL", #ca15_3
+              "0.6 x 1.0 cm", "SUV max: 6.4", "0.4 x 1.3 cm", #2b
+              "No adenopathy", "0.6 x 0.8 cm", "SUV max: 1.7", #shoulder
+              "No tumor", "4.4 x 2.4 x 2 cm", "2.5 x 6.5 cm", "SUV max: 13.1", "UOQ: 0.9 cm", "LOQ: 0.74 cm", "No longer visualized", #rbreast
+              "No focal mass lesion", "0.5 x 1.3 cm", "SUV max: 5.6", #pleural
+              "No adenopathy", "0.4 x 0.7 cm", "SUV max: 3.3", "No adenopathy", #mammary
+              "No adenopathy", "0.9 x 0.9 cm", "SUV max: 5.6", #subcarinal
+              "No adenopathy", "Avid Adenopathy", "SUV max: 5.7", #hilar
+              "No adenopathy", "1.0 x 1.6 cm", "SUV max: 4.6"), #porta
+  
+  start = c("2018-08-21", "2018-09-24", "2018-11-13", #sessions
+            "2018-09-08", "2018-10-05", "2018-11-17", #polarity
+            "2018-07-19", "2018-08-25", #ca15_3
+            rep("2018-07-17", 2), "2018-08-28", #2b
+            "2018-04-17", rep("2018-07-17", 2), #shoulder
+            "2018-04-17", "2018-07-13", rep("2018-07-17", 2), rep("2018-08-28", 2), "2018-09-19", #rbreast
+            "2018-04-17", rep("2018-07-17", 2), #pleural
+            "2018-04-17", rep("2018-07-17", 2), "2018-09-19", #mammary
+            "2018-04-17", rep("2018-07-17", 2), #subcarinal
+            "2018-04-17", rep("2018-07-17", 2), #hilar
+            "2018-04-17", rep("2018-07-17", 2)), #porta
+  
+  end   = c("2018-09-08", "2018-10-05", "2018-11-17", #sessions
+            rep(NA, 3), #polarity
+            rep(NA, 2), #ca15_3
+            rep(NA, 3), #2b
+            rep(NA, 3), #shoulder
+            rep(NA, 7), #rbreast
+            rep(NA, 3), #pleural
+            rep(NA, 4), #mammary
+            rep(NA, 3), #subcarinal
+            rep(NA, 3), #hilar
+            rep(NA, 3)), #porta
+  
+  group = c(rep(NA, 3), rep("polar", 3), rep("ca15_3", 2), rep("2b", 3), rep("shoulder", 3), rep("rbreast", 7), rep("pleural", 3), rep("mammary", 4),
+            rep("subcarinal", 3), rep("hilar", 3), rep("porta", 3)),
+  
+  subgroup = c(rep(NA, 3), #sessions
+               rep(NA, 3), #polarity
+               rep(NA, 2), #ca15_3
+               rep(c("size", "SUV"), 1), "size", #2b
+               "size", rep(c("size", "SUV"), 1), #shoulder
+               "size", "other", rep(c("size", "SUV"), 2), "other", #rbreast
+               "size", rep(c("size", "SUV"), 1), #pleural
+               "size", rep(c("size", "SUV"), 1), "size", #mammary
+               "size", rep(c("size", "SUV"), 1), #subcarinal
+               "size", rep(c("size", "SUV"), 1), #hilar
+               "size", rep(c("size", "SUV"), 1)), #porta
+  
+  type = c(rep("background", 3), rep("point", 34))
+)
+
+B1S_groups1 <- data.frame(
+  id = c("polar", "ca15_3", "2b", "shoulder", "rbreast", "pleural", "mammary", "subcarinal", "hilar", "porta"),
+  content = c("Polarity after Sessions", "CA 15-3", "Level IIb Cervical Lymph Node", "Left Shoulder Nodule", "Right Breast Masses",
+              "Pleural Lesion", "Internal Mammary Lymph Node", "Subcarinal Lymph Node", "Left Hilar Lymph Node",
+              "Portacaval Lymph Node")
+)
+
+timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 0.2,
+        options = list(zoomable = TRUE, min = "2018-04-01", max = "2019-01-01", start = "2018-04-01", end  = "2019-01-01", zoomMin = 1080000000,
+                       stack = FALSE, showCurrentTime = FALSE))
 ```
 
 <br>
@@ -2251,11 +2319,15 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 <font size="1">
 * <b>CA 15-3</b> reference values are < 25 U/mL and < 31.3 U/mL respectively.
 <br />
-* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
+* The <b>Right Breast Masses</b> were initially consolidated in one region, and then separated into two main parts located in the Upper and Lower Outer Quadrants of the right breast.
 <br />
-* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
+* The <b>Pleural Lesion</b> is located in the posteromedial left lower lobe.
 <br />
-* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
+* The <b>Pleural Lesion</b> was initially presumably related to radiation effect.
+<br />
+* The <b>Internal Mammary Lymph Node</b> was initially diagnosed as the soft tissue component of a mildly avid focus in the anterior mediastinum near the xiphoid process on July 17, 2018.
+<br />
+* The <b>Left Shoulder Nodule</b> refers to an avid subcutaneous nodule in the left shoulder.
 <br />
 * <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
 </font>
