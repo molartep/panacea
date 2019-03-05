@@ -546,8 +546,8 @@ first_graph_L2E <- first_L2_E %>% select(`Total therapy duration (Hrs)`, `Polari
             label = first_L2_E$`Polarity level`[1],
             nudge_y = -18,
             size = 3) +
-  geom_text(data = first_L2_E[c(1,f1),c(7,2)],
-            label = first_L2_E$`Polarity level`[c(1, f1)],
+  geom_text(data = first_L2_E[f1,c(7,2)],
+            label = first_L2_E$`Polarity level`[f1],
             nudge_y = -18,
             nudge_x = - 3,
             size = 3)
@@ -608,7 +608,7 @@ L2E_dates <- L2_E_dates[,c(1,3)]
 
 L2E_max <- max(L2_E_dates$p_level, na.rm = T)
 
-lims_L2E <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims_L2E <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 #L2-E DATE GRAPH
 L2E_dategraph <- L2E_dates %>%
@@ -761,7 +761,7 @@ third_H1_A_dates <- H1_A_dates[72:73,]
 fourth_H1_A_dates <- H1_A_dates[111:115,]
 fifth_H1_A_dates <- H1_A_dates[140:151,]
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 H1A_dates <- H1_A_dates[,c(1,3)]
 
@@ -2241,7 +2241,7 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
-```{r B1S_signif, out.width="100%", fig.height=8}
+```{r B1S_signif, out.width="100%", fig.height=7.6}
 library(timevis)
 library(dplyr)
 
@@ -2313,6 +2313,20 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
                        stack = FALSE, showCurrentTime = FALSE))
 ```
 
+<br>
+<div align="left">
+<i>
+<font size="1">
+* <b>August 22, 2018:</b> The patient had stopped taking medication that left her menopausal at the start of the year, but her menstrual cycle finally resumed for two days after starting treatment. 
+<br />
+* <b>August 27, 2018:</b> Before the treatment, the patient compared the consistency of the mass in her right breast to a stone (similar to a golf ball), and now she describes it has noticeably softened  (diffused). Also, the left side of her upper chest, from the side of the neck to the breast, has reduced in redness significantly. 
+<br />
+* <b>August 28, 2018:</b> One year ago, the patient could not raise her left arm due to excruciating pain, but at the beginning of the sixth therapy she can now raise her left arm without any problem.
+</font>
+</i>
+</div>
+<br>
+<br>
 <br>
 <div align="right">
 <i>
@@ -2566,6 +2580,44 @@ timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor =
 #### Significant Changes
 
 <br />
+
+##### L2-E Significant Changes
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click on the individual items to highlight their values.</li>
+  <li>Click and drag the timeline to scroll through the dates.</li>
+  <li>The light blue shaded areas represent treatment sessions.</li>
+</ul>
+</font>
+
+<br />
+
+```{r L2E_signif, out.width="100%", fig.height=8}
+
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CA 15-3</b> reference values are < 25 U/mL and < 31.3 U/mL respectively.
+<br />
+* The <b>Right Breast Masses</b> were initially consolidated in one region, and then separated into two main parts located in the Upper and Lower Outer Quadrants of the right breast.
+<br />
+* The <b>Pleural Lesion</b> is located in the posteromedial left lower lobe.
+<br />
+* The <b>Pleural Lesion</b> was initially presumably related to radiation effect.
+<br />
+* The <b>Internal Mammary Lymph Node</b> was initially diagnosed as the soft tissue component of a mildly avid focus in the anterior mediastinum near the xiphoid process on July 17, 2018.
+<br />
+* The <b>Left Shoulder Nodule</b> refers to an avid subcutaneous nodule in the left shoulder.
+<br />
+* <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
+</font>
+</i>
+</div>
 
 *****
 

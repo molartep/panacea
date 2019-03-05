@@ -21,7 +21,7 @@ third_H1_A_dates <- H1_A_dates[72:73,]
 fourth_H1_A_dates <- H1_A_dates[111:115,]
 fifth_H1_A_dates <- H1_A_dates[140:151,]
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 H1A_dates <- H1_A_dates[,c(1,3)]
 

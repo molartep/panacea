@@ -9,7 +9,7 @@ L2_E_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Eric",
                          col_types = c("date", "numeric", "numeric", "numeric",
                                        "numeric", "numeric", "numeric"), skip = 2)
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-02-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 first_L2_E <- L2_E_hours[1:11,] 
 second_L2_E <- L2_E_hours[13:25,]
