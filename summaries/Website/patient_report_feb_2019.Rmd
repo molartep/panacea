@@ -1768,21 +1768,21 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Pending       | Pending     
+Pending       | Pending     
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
 
 *****
 
@@ -2071,15 +2071,15 @@ July 2018     | Invasive mammary carcinoma of the right breast
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Left-Breast Chemotherapy
-Content Cell  | Content Cell  | Right-Breast Chemotherapy
-Content Cell  | Content Cell  | Left Masectomy
+Pending       | Pending       | Left-Breast Chemotherapy
+Pending       | Pending       | Right-Breast Chemotherapy
+Pending       | Pending       | Left Masectomy
 
 *****
 
@@ -2396,21 +2396,21 @@ __Place of Residence:__ Panama
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Pending       | Pending     
+Pending       | Pending     
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
 
 *****
 
@@ -2667,21 +2667,21 @@ __Place of Residence:__ Panama
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Pending       | Pending     
+Pending       | Pending     
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+2014          | 2014          | Thyroidectomy
+Pending       | Pending       | Thyroid Hormone Therapy 
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
 
 *****
 
@@ -2866,21 +2866,21 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Pending       | Pending     
+Pending       | Pending     
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
 
 *****
 
@@ -3069,21 +3069,21 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Pending       | Pending     
+Pending       | Pending     
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
 
 *****
 
@@ -3313,21 +3313,21 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Pending       | Pending     
+Pending       | Pending     
 
 *****
 
-#### Alternative Treatments
+#### Alternative Treatments and Procedures
 
 <br />
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
-Content Cell  | Content Cell  | Content Cell
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
+Pending       | Pending       | Pending     
 
 *****
 
