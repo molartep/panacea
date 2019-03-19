@@ -2602,17 +2602,13 @@ timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor =
 <div align="right">
 <i>
 <font size="1">
-* <b>CA 15-3</b> reference values are < 25 U/mL and < 31.3 U/mL respectively.
+* <b>Carcinoembryonic Antigen</b> reference value is < 5 ng/mL.
 <br />
-* The <b>Right Breast Masses</b> were initially consolidated in one region, and then separated into two main parts located in the Upper and Lower Outer Quadrants of the right breast.
+* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
 <br />
-* The <b>Pleural Lesion</b> is located in the posteromedial left lower lobe.
+* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
 <br />
-* The <b>Pleural Lesion</b> was initially presumably related to radiation effect.
-<br />
-* The <b>Internal Mammary Lymph Node</b> was initially diagnosed as the soft tissue component of a mildly avid focus in the anterior mediastinum near the xiphoid process on July 17, 2018.
-<br />
-* The <b>Left Shoulder Nodule</b> refers to an avid subcutaneous nodule in the left shoulder.
+* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
 <br />
 * <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
 </font>
