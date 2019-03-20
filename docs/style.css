@@ -1,0 +1,66 @@
+#TOC {
+  background: url("http://i3inc.ca/wp-content/uploads/2015/02/panacea_logo.png");
+  background-size: contain;
+  padding-top: 80px !important;
+  background-repeat: no-repeat;
+}
+
+.tocify {
+    width: 20%;
+    max-height: 90%;
+    overflow: auto;
+    margin-left: 2%;
+    position: fixed;
+    border: none;
+    border-radius: 6px;
+}
+
+
+h1, .h1, h3, .h3 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+h2, .h2{
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #008cba;
+  font-weight: bold;
+}
+
+.btn {
+    border-width: 0 0px 0px 0px;
+    font-weight: normal;
+    text-transform: ;
+}
+
+.btn-default {
+    color: #008cba;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.vis-timeline {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.vis-item {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.vis-time-axis .vis-text {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.vis-group {
+    vertical-align: middle;
+}
+
+
+
+
+
