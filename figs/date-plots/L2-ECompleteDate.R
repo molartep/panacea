@@ -1,5 +1,5 @@
-library("dplyr")
-library("ggplot2")
+library(dplyr)
+library(ggplot2)
 library(readxl)
 library(gridExtra)
 library(scales)
@@ -9,19 +9,21 @@ L2_E_hours <- read_excel("~/Desktop/Electronegatividad.xlsx", sheet = "Eric",
                          col_types = c("date", "numeric", "numeric", "numeric",
                                        "numeric", "numeric", "numeric"), skip = 2)
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 first_L2_E <- L2_E_hours[1:11,] 
 second_L2_E <- L2_E_hours[13:25,]
 third_L2_E <- L2_E_hours[27:39,]
 fourth_L2_E <- L2_E_hours[41:52,]
 fifth_L2_E <- L2_E_hours[54:65,]
+sixth_L2_E <- L2_E_hours[67:73,]
 
 first_L2_E_dates <- L2_E_dates[1:13,]
 second_L2_E_dates <- L2_E_dates[35:48,]
 third_L2_E_dates <- L2_E_dates[64:76,]
 fourth_L2_E_dates <- L2_E_dates[108:117,]
 fifth_L2_E_dates <- L2_E_dates[142:153,]
+sixth_L2_E_dates <- L2_E_dates[197:202,]
 
 L2E_dates <- L2_E_dates[,c(1,3)]
 
@@ -62,9 +64,16 @@ L2E_segment4 <- list(x1 = fourth_L2_E_dates$date[which.min(fourth_L2_E_dates$p_l
 L2E_lab4x <- as.POSIXct((as.numeric(L2E_segment4$x1) + as.numeric(L2E_segment4$x2)) / 2, origin = '1970-01-01')
 L2E_lab4y <- (L2E_segment4$y1 + L2E_segment4$y2)/2
 
+L2E_segment5 <- list(x1 = fifth_L2_E_dates$date[which.min(fifth_L2_E_dates$p_level) + 1], #Final two values are equal
+                     y1 = fifth_L2_E_dates$p_level[which.min(fifth_L2_E_dates$p_level)],
+                     x2 = sixth_L2_E_dates$date[which.max(sixth_L2_E_dates$p_level)],
+                     y2 = sixth_L2_E_dates$p_level[which.max(sixth_L2_E_dates$p_level)]) 
+L2E_lab5x <- as.POSIXct((as.numeric(L2E_segment5$x1) + as.numeric(L2E_segment5$x2)) / 2, origin = '1970-01-01')
+L2E_lab5y <- (L2E_segment5$y1 + L2E_segment5$y2)/2
+
 L2E_first_day <- as.POSIXct(first_L2_E$Day[which(first_L2_E$`Total therapy duration (Hrs)`>0)][1],
                             origin = '1970-01-01')
-L2E_last_day <- as.POSIXct(tail(fifth_L2_E$Day[which(fifth_L2_E$`Total therapy duration (Hrs)`>0)],1),
+L2E_last_day <- as.POSIXct(tail(sixth_L2_E$Day[which(sixth_L2_E$`Total therapy duration (Hrs)`>0)],1),
                            origin = '1970-01-01')
 
 L2E_label_first <- L2E_first_day %>% format(., "%B %d %Y")
@@ -72,7 +81,7 @@ L2E_label_last <- L2E_last_day %>% format(., "%B %d %Y")
 
 L2E_final_date_graph <- L2E_dategraph + geom_text(aes(x = L2E_first_day, y = first_L2_E$`Polarity level`[which(first_L2_E$`Polarity level`>0)][1],
                                                       label = L2E_label_first), hjust = -0.1, vjust = 0, size = 3.5) +
-  geom_text(aes(x = L2E_last_day, y = tail(fifth_L2_E$`Polarity level`[which(fifth_L2_E$`Polarity level`>0)],1),
+  geom_text(aes(x = L2E_last_day, y = tail(sixth_L2_E$`Polarity level`[which(sixth_L2_E$`Polarity level`>0)],1),
                 label = L2E_label_last), hjust = -0.1, vjust = 0, size = 3.5) +
   geom_segment(aes(x = L2E_segment1$x1, y = L2E_segment1$y1,
                    xend = L2E_segment1$x2, yend = L2E_segment1$y2, color = "23"),
@@ -93,6 +102,11 @@ L2E_final_date_graph <- L2E_dategraph + geom_text(aes(x = L2E_first_day, y = fir
                    xend = L2E_segment4$x2, yend = L2E_segment4$y2, color = "24"),
                linetype = "dashed") +
   geom_text(aes(x = L2E_lab4x, y = L2E_lab4y + 5, color = "24", label = "+ 2.4",
+                angle = 7)) + 
+  geom_segment(aes(x = L2E_segment5$x1, y = L2E_segment5$y1,
+                   xend = L2E_segment5$x2, yend = L2E_segment5$y2, color = "44"),
+               linetype = "dashed") +
+  geom_text(aes(x = L2E_lab5x, y = L2E_lab5y + 5, color = "44", label = "+ 8.9",
                 angle = 7)) + labs(color = "Days Without\nTreatment")
 
 L2E_final_date_graph

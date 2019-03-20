@@ -14,14 +14,16 @@ second_H1_A_hours <- H1_A_hours[11:23,]
 third_H1_A_hours <- H1_A_hours[25:26,] 
 fourth_H1_A_hours <- H1_A_hours[28:39,]
 fifth_H1_A_hours <- H1_A_hours[41:52,]
+sixth_H1_A_hours <- H1_A_hours[54:60,]
 
 first_H1_A_dates <- H1_A_dates[1:11,]
 second_H1_A_dates <- H1_A_dates[33:46,]
 third_H1_A_dates <- H1_A_dates[72:73,]
 fourth_H1_A_dates <- H1_A_dates[111:115,]
 fifth_H1_A_dates <- H1_A_dates[140:151,]
+sixth_H1_A_dates <- H1_A_dates[195:200,]
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 H1A_dates <- H1_A_dates[,c(1,3)]
 
@@ -62,9 +64,16 @@ H1A_segment4 <- list(x1 = fourth_H1_A_dates$date[which.min(fourth_H1_A_dates$p_l
 H1A_lab4x <- as.POSIXct((as.numeric(H1A_segment4$x1) + as.numeric(H1A_segment4$x2)) / 2, origin = '1970-01-01')
 H1A_lab4y <- (H1A_segment4$y1 + H1A_segment4$y2)/2
 
+H1A_segment5 <- list(x1 = fifth_H1_A_dates$date[which.min(fifth_H1_A_dates$p_level)], 
+                     y1 = fifth_H1_A_dates$p_level[which.min(fifth_H1_A_dates$p_level)],
+                     x2 = sixth_H1_A_dates$date[which.max(sixth_H1_A_dates$p_level)],
+                     y2 = sixth_H1_A_dates$p_level[which.max(sixth_H1_A_dates$p_level)]) 
+H1A_lab5x <- as.POSIXct((as.numeric(H1A_segment5$x1) + as.numeric(H1A_segment5$x2)) / 2, origin = '1970-01-01')
+H1A_lab5y <- (H1A_segment5$y1 + H1A_segment5$y2)/2
+
 H1A_first_day <- as.POSIXct(first_H1_A_hours$Day[which(first_H1_A_hours$`Total therapy duration (Hrs)`>0)][1],
                             origin = '1970-01-01')
-H1A_last_day <- as.POSIXct(tail(fifth_H1_A_hours$Day[which(fifth_H1_A_hours$`Total therapy duration (Hrs)`>0)],1),
+H1A_last_day <- as.POSIXct(tail(sixth_H1_A_hours$Day[which(sixth_H1_A_hours$`Total therapy duration (Hrs)`>0)],1),
                            origin = '1970-01-01')
 
 H1A_label_first <- H1A_first_day %>% format(., "%B %d %Y")
@@ -72,7 +81,7 @@ H1A_label_last <- H1A_last_day %>% format(., "%B %d %Y")
 
 H1A_final_date_graph <- H1A_dategraph + geom_text(aes(x = H1A_first_day, y = first_H1_A_hours$`Polarity level`[which(first_H1_A_hours$`Polarity level`>0)][1],
                                       label = H1A_label_first), hjust = -0.1, vjust = 0, size = 3.5) +
-                        geom_text(aes(x = H1A_last_day, y = tail(fifth_H1_A_hours$`Polarity level`[which(fifth_H1_A_hours$`Polarity level`>0)],1),
+                        geom_text(aes(x = H1A_last_day, y = tail(sixth_H1_A_hours$`Polarity level`[which(sixth_H1_A_hours$`Polarity level`>0)],1),
                                       label = H1A_label_last), hjust = -0.1, vjust = 1, size = 3.5) +
   geom_segment(aes(x = H1A_segment1$x1, y = H1A_segment1$y1,
                    xend = H1A_segment1$x2, yend = H1A_segment1$y2, color = "23"),
@@ -93,6 +102,11 @@ H1A_final_date_graph <- H1A_dategraph + geom_text(aes(x = H1A_first_day, y = fir
                    xend = H1A_segment4$x2, yend = H1A_segment4$y2, color = "25"),
                linetype = "dashed") +
   geom_text(aes(x = H1A_lab4x, y = H1A_lab4y + 2, color = "25", label = "+ 1.7",
+                angle = 5)) + 
+  geom_segment(aes(x = H1A_segment5$x1, y = H1A_segment5$y1,
+                   xend = H1A_segment5$x2, yend = H1A_segment5$y2, color = "44"),
+               linetype = "dashed") +
+  geom_text(aes(x = H1A_lab5x, y = H1A_lab5y + 2, color = "44", label = "+ 5.1",
                 angle = 5)) + labs(color = "Days Without\nTreatment")
 
 H1A_final_date_graph

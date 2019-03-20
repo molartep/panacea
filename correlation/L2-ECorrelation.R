@@ -11,12 +11,14 @@ L2_E_second_hours <- L2_E_hours[13:25, c(1,2,7)]
 L2_E_third_hours <- L2_E_hours[27:39, c(1,2,7)]
 L2_E_fourth_hours <- L2_E_hours[41:52, c(1,2,7)]
 L2_E_fifth_hours <- L2_E_hours[54:65, c(1,2,7)]
+L2_E_sixth_hours <- L2_E_hours[67:73, c(1,2,7)]
 
 L2_E_first_hours[,3] <- cumsum(L2_E_first_hours[,3])
 L2_E_second_hours[,3] <- cumsum(L2_E_second_hours[,3])
 L2_E_third_hours[,3] <- cumsum(L2_E_third_hours[,3])
 L2_E_fourth_hours[,3] <- cumsum(L2_E_fourth_hours[,3])
 L2_E_fifth_hours[,3] <- cumsum(L2_E_fifth_hours[,3])
+L2_E_sixth_hours[,3] <- cumsum(L2_E_sixth_hours[,3])
 
 corr.func <- function(data, method = "pearson"){
   
@@ -32,7 +34,7 @@ model.func <- function(data){
   
 }
 
-L2_E_all <- list(L2_E_first_hours, L2_E_second_hours, L2_E_third_hours, L2_E_fourth_hours)
+L2_E_all <- list(L2_E_first_hours, L2_E_second_hours, L2_E_third_hours, L2_E_fourth_hours, L2_E_fifth_hours, L2_E_sixth_hours)
 
 L2_E_all_stat <- lapply(X = L2_E_all, FUN = corr.func)
 L2_E_all_stat_model <- lapply(X = L2_E_all, FUN = model.func)
@@ -47,13 +49,13 @@ L2_E_adj_r_sq <- unlist(lapply(X = c(1:length(L2_E_all)), FUN = function(x){L2_E
 
 
 
-L2E_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L2E_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            R = signif(L2_E_estims, 4),
                            Pval = signif(L2_E_pvalues, 4),
                            Lower = signif(L2_E_lower, 4),
                            Upper = signif(L2_E_upper, 4))
 
-L2E_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L2E_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            Adj_R_sq = signif(L2_E_adj_r_sq, 4),
                            RSE = signif(L2_E_RSE, 4),
                            DFs = signif(L2_E_dfs, 4))
