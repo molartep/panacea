@@ -218,7 +218,7 @@ sixth_graph_C1_J <- sixth_C1_J %>% select(`Total therapy duration (Hrs)`, `Polar
   geom_text(data = sixth_C1_J[c(2,si1),c(8,2)],
             label = sixth_C1_J$`Polarity level`[c(2, si1)],
             nudge_y = 18,
-            size = 3.5)
+            size = 3)
 
 #Date plot code
 
@@ -476,6 +476,7 @@ L2_E_second_hours <- L2_E_hours[13:25, c(1,2,7)]
 L2_E_third_hours <- L2_E_hours[27:39, c(1,2,7)]
 L2_E_fourth_hours <- L2_E_hours[41:52, c(1,2,7)]
 L2_E_fifth_hours <- L2_E_hours[54:65, c(1,2,7)]
+L2_E_sixth_hours <- L2_E_hours[67:73, c(1,2,7)]
 
 start1 <- L2_E_first_hours[L2_E_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(L2_E_first_hours[L2_E_first_hours[,3] > 0, 1], n = 1)
@@ -487,18 +488,22 @@ start4 <- L2_E_fourth_hours[L2_E_fourth_hours[,3] > 0, 1][1,1]
 end4 <- tail(L2_E_fourth_hours[L2_E_fourth_hours[,3] > 0, 1], n = 1)
 start5 <- L2_E_fifth_hours[L2_E_fifth_hours[,3] > 0, 1][1,1]
 end5 <- tail(L2_E_fifth_hours[L2_E_fifth_hours[,3] > 0, 1], n = 1)
+start6 <- L2_E_sixth_hours[L2_E_sixth_hours[,3] > 0, 1][1,1]
+end6 <- tail(L2_E_sixth_hours[L2_E_sixth_hours[,3] > 0, 1], n = 1)
 
 L2E_dates1 <- sum(L2_E_first_hours[,3] > 0)
 L2E_dates2 <- sum(L2_E_second_hours[,3] > 0)
 L2E_dates3 <- sum(L2_E_third_hours[,3] > 0)
 L2E_dates4 <- sum(L2_E_fourth_hours[,3] > 0)
 L2E_dates5 <- sum(L2_E_fifth_hours[,3] > 0)
+L2E_dates6 <- sum(L2_E_sixth_hours[,3] > 0)
 
 L2_E_first_hours[,3] <- cumsum(L2_E_first_hours[,3])
 L2_E_second_hours[,3] <- cumsum(L2_E_second_hours[,3])
 L2_E_third_hours[,3] <- cumsum(L2_E_third_hours[,3])
 L2_E_fourth_hours[,3] <- cumsum(L2_E_fourth_hours[,3])
 L2_E_fifth_hours[,3] <- cumsum(L2_E_fifth_hours[,3])
+L2_E_sixth_hours[,3] <- cumsum(L2_E_sixth_hours[,3])
 
 maxP1 <- max(L2_E_first_hours$`Polarity level`, na.rm = T)
 minP1 <- min(L2_E_first_hours$`Polarity level`, na.rm = T)
@@ -510,12 +515,15 @@ maxP4 <- max(L2_E_fourth_hours$`Polarity level`, na.rm = T)
 minP4 <- min(L2_E_fourth_hours$`Polarity level`, na.rm = T)
 maxP5 <- max(L2_E_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(L2_E_fifth_hours$`Polarity level`, na.rm = T)
+maxP6 <- max(L2_E_sixth_hours$`Polarity level`, na.rm = T)
+minP6 <- min(L2_E_sixth_hours$`Polarity level`, na.rm = T)
 
 totalL2EHours <- c(max(L2_E_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L2_E_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L2_E_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L2_E_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   max(L2_E_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T))
+                   max(L2_E_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   max(L2_E_sixth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalL2EDays <- c(L2E_dates1, 
                   (start2 - end1)$Day,
@@ -525,22 +533,24 @@ totalL2EDays <- c(L2E_dates1,
                   (start4 - end3)$Day,
                   L2E_dates4,
                   (start5 - end4)$Day,
-                  L2E_dates5)
+                  L2E_dates5,
+                  (start6 - end5)$Day,
+                  L2E_dates6)
 
-L2E_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
-                              start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
-                              end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
+L2E_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4, start5, start6), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4, end5, end6), format = "%b %d %Y"),
                               Hours = totalL2EHours,
                               Days = totalL2EDays[seq(1, length(totalL2EDays), 2)],
-                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5),
-                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
-                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5,maxP6),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5,minP6),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5, minP6-maxP6))
 
 L2E_df_sessions <- L2E_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
 
-L2E_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L2E_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                             Days = totalL2EDays[seq(2, length(totalL2EDays), 2)],
-                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4, maxP6-minP5))
 
 L2E_df_breaks <- L2E_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
 
@@ -551,6 +561,7 @@ second_L2_E <- L2_E_hours[13:25,] %>% mutate(days_after = 0:12)
 third_L2_E <- L2_E_hours[27:39,] %>% mutate(days_after = 0:12)
 fourth_L2_E <- L2_E_hours[41:52,] %>% mutate(days_after = 0:11)
 fifth_L2_E <- L2_E_hours[54:65,] %>% mutate(days_after = 0:11)
+sixth_L2_E <- L2_E_hours[67:73,] %>% mutate(days_after = 0:6)
 
 y_maxL2E <- max(first_L2_E$`Polarity level`, na.rm = T)
 
@@ -559,12 +570,14 @@ s1 <- max(second_L2_E[complete.cases(second_L2_E[,2]),]$days_after) + 1
 t1 <- max(third_L2_E[complete.cases(third_L2_E[,2]),]$days_after) + 1
 fo1 <- max(fourth_L2_E[complete.cases(fourth_L2_E[,2]),]$days_after) + 1
 fi1 <- max(fifth_L2_E[complete.cases(fifth_L2_E[,2]),]$days_after) + 1
+si1 <- max(sixth_L2_E[complete.cases(sixth_L2_E[,2]),]$days_after) + 1
 
 first_L2_E[,7] <- cumsum(first_L2_E[,7])
 second_L2_E[,7] <- cumsum(second_L2_E[,7])
 third_L2_E[,7] <- cumsum(third_L2_E[,7])
 fourth_L2_E[,7] <- cumsum(fourth_L2_E[,7])
 fifth_L2_E[,7] <- cumsum(fifth_L2_E[,7])
+sixth_L2_E[,7] <- cumsum(sixth_L2_E[,7])
 
 first_graph_L2E <- first_L2_E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -627,18 +640,30 @@ fifth_graph_L2E <- fifth_L2_E %>% select(`Total therapy duration (Hrs)`, `Polari
             nudge_y = 18,
             size = 3)
 
+sixth_graph_L2E <- sixth_L2_E %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_maxL2E)) +
+  labs(subtitle = "Sixth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = sixth_L2_E[c(2,si1),c(7,2)],
+            label = sixth_L2_E$`Polarity level`[c(2, si1)],
+            nudge_y = 14,
+            size = 3)
+
 
 first_L2_E_dates <- L2_E_dates[1:13,]
 second_L2_E_dates <- L2_E_dates[35:48,]
 third_L2_E_dates <- L2_E_dates[64:76,]
 fourth_L2_E_dates <- L2_E_dates[108:117,]
 fifth_L2_E_dates <- L2_E_dates[142:153,]
+sixth_L2_E_dates <- L2_E_dates[197:202,]
 
 L2E_dates <- L2_E_dates[,c(1,3)]
 
-L2E_max <- max(L2_E_dates$p_level, na.rm = T)
+lims_L2E <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
-lims_L2E <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
+L2E_max <- max(L2_E_dates$p_level, na.rm = T)
 
 #L2-E DATE GRAPH
 L2E_dategraph <- L2E_dates %>%
@@ -667,6 +692,11 @@ L2E_segment4 <- list(x1 = fourth_L2_E_dates$date[which.min(fourth_L2_E_dates$p_l
                      x2 = fifth_L2_E_dates$date[which.max(fifth_L2_E_dates$p_level)],
                      y2 = fifth_L2_E_dates$p_level[which.max(fifth_L2_E_dates$p_level)]) 
 
+L2E_segment5 <- list(x1 = fifth_L2_E_dates$date[which.min(fifth_L2_E_dates$p_level) + 1], #Final two values are equal
+                     y1 = fifth_L2_E_dates$p_level[which.min(fifth_L2_E_dates$p_level)],
+                     x2 = sixth_L2_E_dates$date[which.max(sixth_L2_E_dates$p_level)],
+                     y2 = sixth_L2_E_dates$p_level[which.max(sixth_L2_E_dates$p_level)]) 
+
 L2E_final_date_graph <- L2E_dategraph + 
   
   geom_segment(aes(x = L2E_segment1$x1, y = L2E_segment1$y1,
@@ -680,6 +710,9 @@ L2E_final_date_graph <- L2E_dategraph +
                linetype = "dashed") +
   geom_segment(aes(x = L2E_segment4$x1, y = L2E_segment4$y1,
                    xend = L2E_segment4$x2, yend = L2E_segment4$y2, color = "24"),
+               linetype = "dashed") +
+  geom_segment(aes(x = L2E_segment5$x1, y = L2E_segment5$y1,
+                   xend = L2E_segment5$x2, yend = L2E_segment5$y2, color = "44"),
                linetype = "dashed") + labs(color = "Days Without\nTreatment") + theme(legend.position = "none", 
                                                                                            axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)),
                                                                                            axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)))
@@ -707,6 +740,7 @@ H1_A_second_hours <- H1_A_hours[11:23, c(1,2,6)]
 H1_A_third_hours <- H1_A_hours[25:26, c(1,2,6)]
 H1_A_fourth_hours <- H1_A_hours[28:39, c(1,2,6)]
 H1_A_fifth_hours <- H1_A_hours[41:52, c(1,2,6)]
+H1_A_sixth_hours <- H1_A_hours[54:60, c(1,2,6)]
 
 start1 <- H1_A_first_hours[H1_A_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(H1_A_first_hours[H1_A_first_hours[,3] > 0, 1], n = 1)
@@ -718,18 +752,22 @@ start4 <- H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1][1,1]
 end4 <- tail(H1_A_fourth_hours[H1_A_fourth_hours[,3] > 0, 1], n = 1)
 start5 <- H1_A_fifth_hours[H1_A_fifth_hours[,3] > 0, 1][1,1]
 end5 <- tail(H1_A_fifth_hours[H1_A_fifth_hours[,3] > 0, 1], n = 1)
+start6 <- H1_A_sixth_hours[H1_A_sixth_hours[,3] > 0, 1][1,1]
+end6 <- tail(H1_A_sixth_hours[H1_A_sixth_hours[,3] > 0, 1], n = 1)
 
 H1A_dates1 <- sum(H1_A_first_hours[,3] > 0)
 H1A_dates2 <- sum(H1_A_second_hours[,3] > 0)
 H1A_dates3 <- sum(H1_A_third_hours[,3] > 0)
 H1A_dates4 <- sum(H1_A_fourth_hours[,3] > 0)
 H1A_dates5 <- sum(H1_A_fifth_hours[,3] > 0)
+H1A_dates6 <- sum(H1_A_sixth_hours[,3] > 0)
 
 H1_A_first_hours[,3] <- cumsum(H1_A_first_hours[,3])
 H1_A_second_hours[,3] <- cumsum(H1_A_second_hours[,3])
 H1_A_third_hours[,3] <- cumsum(H1_A_third_hours[,3])
 H1_A_fourth_hours[,3] <- cumsum(H1_A_fourth_hours[,3])
 H1_A_fifth_hours[,3] <- cumsum(H1_A_fifth_hours[,3])
+H1_A_sixth_hours[,3] <- cumsum(H1_A_sixth_hours[,3])
 
 maxP1 <- max(H1_A_first_hours$`Polarity level`, na.rm = T)
 minP1 <- min(H1_A_first_hours$`Polarity level`, na.rm = T)
@@ -741,12 +779,15 @@ maxP4 <- max(H1_A_fourth_hours$`Polarity level`, na.rm = T)
 minP4 <- min(H1_A_fourth_hours$`Polarity level`, na.rm = T)
 maxP5 <- max(H1_A_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(H1_A_fifth_hours$`Polarity level`, na.rm = T)
+maxP6 <- max(H1_A_sixth_hours$`Polarity level`, na.rm = T)
+minP6 <- min(H1_A_sixth_hours$`Polarity level`, na.rm = T)
 
 totalH1AHours <- c(max(H1_A_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(H1_A_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(H1_A_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(H1_A_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   max(H1_A_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T))
+                   max(H1_A_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   max(H1_A_sixth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalH1ADays <- c(H1A_dates1, 
                   (start2 - end1)$Day,
@@ -756,23 +797,25 @@ totalH1ADays <- c(H1A_dates1,
                   (start4 - end3)$Day,
                   H1A_dates4,
                   (start5 - end4)$Day,
-                  H1A_dates5)
+                  H1A_dates5,
+                  (start6 - end5)$Day,
+                  H1A_dates6)
 
 
-H1A_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
-                              start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
-                              end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
+H1A_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4, start5, start6), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4, end5, end6), format = "%b %d %Y"),
                               Hours = totalH1AHours,
                               Days = totalH1ADays[seq(1, length(totalH1ADays), 2)],
-                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5),
-                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
-                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5,maxP6),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5,minP6),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5, minP6-maxP6))
 
 H1A_df_sessions <- H1A_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
 
-H1A_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+H1A_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                             Days = totalH1ADays[seq(2, length(totalH1ADays), 2)],
-                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4, maxP6-minP5))
 
 H1A_df_breaks <- H1A_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
 
@@ -784,14 +827,16 @@ second_H1_A_hours <- H1_A_hours[11:23,]
 third_H1_A_hours <- H1_A_hours[25:26,] 
 fourth_H1_A_hours <- H1_A_hours[28:39,]
 fifth_H1_A_hours <- H1_A_hours[41:52,]
+sixth_H1_A_hours <- H1_A_hours[54:60,]
 
 first_H1_A_dates <- H1_A_dates[1:11,]
 second_H1_A_dates <- H1_A_dates[33:46,]
 third_H1_A_dates <- H1_A_dates[72:73,]
 fourth_H1_A_dates <- H1_A_dates[111:115,]
 fifth_H1_A_dates <- H1_A_dates[140:151,]
+sixth_H1_A_dates <- H1_A_dates[195:200,]
 
-lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 H1A_dates <- H1_A_dates[,c(1,3)]
 
@@ -824,6 +869,11 @@ H1A_segment4 <- list(x1 = fourth_H1_A_dates$date[which.min(fourth_H1_A_dates$p_l
                      x2 = fifth_H1_A_dates$date[which.max(fifth_H1_A_dates$p_level)],
                      y2 = fifth_H1_A_dates$p_level[which.max(fifth_H1_A_dates$p_level)]) 
 
+H1A_segment5 <- list(x1 = fifth_H1_A_dates$date[which.min(fifth_H1_A_dates$p_level)], 
+                     y1 = fifth_H1_A_dates$p_level[which.min(fifth_H1_A_dates$p_level)],
+                     x2 = sixth_H1_A_dates$date[which.max(sixth_H1_A_dates$p_level)],
+                     y2 = sixth_H1_A_dates$p_level[which.max(sixth_H1_A_dates$p_level)]) 
+
 H1A_final_date_graph <- H1A_dategraph +
   
   geom_segment(aes(x = H1A_segment1$x1, y = H1A_segment1$y1,
@@ -837,16 +887,22 @@ H1A_final_date_graph <- H1A_dategraph +
                linetype = "dashed") +
   geom_segment(aes(x = H1A_segment4$x1, y = H1A_segment4$y1,
                    xend = H1A_segment4$x2, yend = H1A_segment4$y2, color = "25"),
-               linetype = "dashed") + labs(color = "Days Without\nTreatment") + theme(legend.position = "none", 
-                                                                                           axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)),
-                                                                                           axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)))
+               linetype = "dashed") +
+  geom_segment(aes(x = H1A_segment5$x1, y = H1A_segment5$y1,
+                   xend = H1A_segment5$x2, yend = H1A_segment5$y2, color = "44"),
+               linetype = "dashed") + labs(color = "Days Without\nTreatment") + theme(legend.position = "none", axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)), axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)))
 
+
+  
+  
+  
 
 first_H1_A_hours <- H1_A_hours[1:9,] %>% mutate(days_after = 0:8)
 second_H1_A_hours <- H1_A_hours[11:23,] %>% mutate(days_after = 0:12)
 third_H1_A_hours <- H1_A_hours[25:26,] %>% mutate(days_after = 0:1)
 fourth_H1_A_hours <- H1_A_hours[28:39,] %>% mutate(days_after = 0:11)
 fifth_H1_A_hours <- H1_A_hours[41:52,] %>% mutate(days_after = 0:11)
+sixth_H1_A_hours <- H1_A_hours[54:60,] %>% mutate(days_after = 0:6)
 
 y_max1 <- max(first_H1_A_hours$`Polarity level`, na.rm = T)
 
@@ -855,12 +911,14 @@ s1 <- max(second_H1_A_hours[complete.cases(second_H1_A_hours[,2]),]$days_after) 
 t1 <- max(third_H1_A_hours[complete.cases(third_H1_A_hours[,2]),]$days_after) + 1
 fo1 <- max(fourth_H1_A_hours[complete.cases(fourth_H1_A_hours[,2]),]$days_after) + 1
 fi1 <- max(fifth_H1_A_hours[complete.cases(fifth_H1_A_hours[,2]),]$days_after) + 1
+si1 <- max(sixth_H1_A_hours[complete.cases(sixth_H1_A_hours[,2]),]$days_after) + 1
 
 first_H1_A_hours[,6] <- cumsum(first_H1_A_hours[,6])
 second_H1_A_hours[,6] <- cumsum(second_H1_A_hours[,6])
 third_H1_A_hours[,6] <- cumsum(third_H1_A_hours[,6])
 fourth_H1_A_hours[,6] <- cumsum(fourth_H1_A_hours[,6])
 fifth_H1_A_hours[,6] <- cumsum(fifth_H1_A_hours[,6])
+sixth_H1_A_hours[,6] <- cumsum(sixth_H1_A_hours[,6])
 
 first_graph_H1A <- first_H1_A_hours %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -921,7 +979,16 @@ fifth_graph_H1A <- fifth_H1_A_hours %>% select(`Total therapy duration (Hrs)`, `
             nudge_y = 6,
             size = 3)
 
-
+sixth_graph_H1A <- sixth_H1_A_hours %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_max1)) +
+  labs(subtitle = "Sixth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = sixth_H1_A_hours[c(2,si1),c(6,2)],
+            label = sixth_H1_A_hours$`Polarity level`[c(2, si1)],
+            nudge_y = 6,
+            size = 3)
 
 
 
@@ -943,6 +1010,7 @@ L3_K_first_hours <- L3_K_hours[1:7, c(1,2,6)]
 L3_K_second_hours <- L3_K_hours[9:20, c(1,2,6)]
 L3_K_third_hours <- L3_K_hours[22:28, c(1,2,6)]
 L3_K_fourth_hours <- L3_K_hours[30:34, c(1,2,6)]
+L3_K_fifth_hours <- L3_K_hours[36:42, c(1,2,6)]
 
 start1 <- L3_K_first_hours[L3_K_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(L3_K_first_hours[L3_K_first_hours[,3] > 0, 1], n = 1)
@@ -952,16 +1020,20 @@ start3 <- L3_K_third_hours[L3_K_third_hours[,3] > 0, 1][1,1]
 end3 <- tail(L3_K_third_hours[L3_K_third_hours[,3] > 0, 1], n = 1)
 start4 <- L3_K_fourth_hours[L3_K_fourth_hours[,3] > 0, 1][1,1]
 end4 <- tail(L3_K_fourth_hours[L3_K_fourth_hours[,3] > 0, 1], n = 1)
+start5 <- L3_K_fifth_hours[L3_K_fifth_hours[,3] > 0, 1][1,1]
+end5 <- tail(L3_K_fifth_hours[L3_K_fifth_hours[,3] > 0, 1], n = 1)
 
 L3K_dates1 <- sum(L3_K_first_hours[,3] > 0)
 L3K_dates2 <- sum(L3_K_second_hours[,3] > 0)
 L3K_dates3 <- sum(L3_K_third_hours[,3] > 0)
 L3K_dates4 <- sum(L3_K_fourth_hours[,3] > 0)
+L3K_dates5 <- sum(L3_K_fifth_hours[,3] > 0)
 
 L3_K_first_hours[,3] <- cumsum(L3_K_first_hours[,3])
 L3_K_second_hours[,3] <- cumsum(L3_K_second_hours[,3])
 L3_K_third_hours[,3] <- cumsum(L3_K_third_hours[,3])
 L3_K_fourth_hours[,3] <- cumsum(L3_K_fourth_hours[,3])
+L3_K_fifth_hours[,3] <- cumsum(L3_K_fifth_hours[,3])
 
 maxP1 <- max(L3_K_first_hours$`Polarity level`, na.rm = T)
 minP1 <- min(L3_K_first_hours$`Polarity level`, na.rm = T)
@@ -971,11 +1043,14 @@ maxP3 <- max(L3_K_third_hours$`Polarity level`, na.rm = T)
 minP3 <- min(L3_K_third_hours$`Polarity level`, na.rm = T)
 maxP4 <- max(L3_K_fourth_hours$`Polarity level`, na.rm = T)
 minP4 <- min(L3_K_fourth_hours$`Polarity level`, na.rm = T)
+maxP5 <- max(L3_K_fifth_hours$`Polarity level`, na.rm = T)
+minP5 <- min(L3_K_fifth_hours$`Polarity level`, na.rm = T)
 
 totalL3KHours <- c(max(L3_K_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L3_K_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L3_K_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   max(L3_K_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T))
+                   max(L3_K_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   max(L3_K_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalL3KDays <- c(L3K_dates1, 
                   (start2 - end1)$Day,
@@ -983,23 +1058,25 @@ totalL3KDays <- c(L3K_dates1,
                   (start3 - end2)$Day,
                   L3K_dates3,
                   (start4 - end3)$Day,
-                  L3K_dates4)
+                  L3K_dates4,
+                  (start5 - end4)$Day,
+                  L3K_dates5)
 
 
-L3K_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
-                              start_date = mapply(format, c(start1, start2, start3, start4), format = "%b %d %Y"),
-                              end_date = mapply(format, c(end1, end2, end3, end4), format = "%b %d %Y"),
+L3K_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
                               Hours = totalL3KHours,
                               Days = totalL3KDays[seq(1, length(totalL3KDays), 2)],
-                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4),
-                              Final_Polarity = c(minP1,minP2,minP3,minP4),
-                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4))
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
 
 L3K_df_sessions <- L3K_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
 
-L3K_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd"),
+L3K_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
                             Days = totalL3KDays[seq(2, length(totalL3KDays), 2)],
-                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3))
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
 
 L3K_df_breaks <- L3K_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
 
@@ -1010,13 +1087,15 @@ first_L3_K <- L3_K_hours[1:7,]
 second_L3_K <- L3_K_hours[9:20,]
 third_L3_K <- L3_K_hours[22:28,]
 fourth_L3_K <- L3_K_hours[30:34,]
+fifth_L3_K <- L3_K_hours[36:42,]
 
 first_L3_K_dates <- L3_K_dates[2:7,]
 second_L3_K_dates <- L3_K_dates[38:48,]
 third_L3_K_dates <- L3_K_dates[79:84,]
 fourth_L3_K_dates <- L3_K_dates[107:110,]
+fifth_L3_K_dates <- L3_K_dates[135:140,]
 
-lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-03-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 L3K_dates <- L3_K_dates[,c(1,3)]
 
@@ -1046,6 +1125,11 @@ L3K_segment3 <- list(x1 = third_L3_K_dates$date[which.min(third_L3_K_dates$p_lev
                      x2 = fourth_L3_K_dates$date[which.max(fourth_L3_K_dates$p_level)],
                      y2 = fourth_L3_K_dates$p_level[which.max(fourth_L3_K_dates$p_level)]) 
 
+L3K_segment4 <- list(x1 = fourth_L3_K_dates$date[which.min(fourth_L3_K_dates$p_level)], 
+                     y1 = fourth_L3_K_dates$p_level[which.min(fourth_L3_K_dates$p_level)],
+                     x2 = fifth_L3_K_dates$date[which.max(fifth_L3_K_dates$p_level)],
+                     y2 = fifth_L3_K_dates$p_level[which.max(fifth_L3_K_dates$p_level)]) 
+
 L3K_final_date_graph <- L3K_dategraph +
   
   geom_segment(aes(x = L3K_segment1$x1, y = L3K_segment1$y1,
@@ -1056,9 +1140,10 @@ L3K_final_date_graph <- L3K_dategraph +
                linetype = "dashed") +
   geom_segment(aes(x = L3K_segment3$x1, y = L3K_segment3$y1,
                    xend = L3K_segment3$x2, yend = L3K_segment3$y2, color = "23"),
-               linetype = "dashed") + labs(color = "Days Without\nTreatment") + theme(legend.position = "none", 
-                                                                                           axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)),
-                                                                                           axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)))
+               linetype = "dashed") + labs(color = "Days Without\nTreatment") + 
+  geom_segment(aes(x = L3K_segment4$x1, y = L3K_segment4$y1,
+                 xend = L3K_segment4$x2, yend = L3K_segment4$y2, color = "25"),
+             linetype = "dashed") + theme(legend.position = "none", axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)), axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)))
 
 
 
@@ -1067,6 +1152,7 @@ first_L3_K <- L3_K_hours[1:7,] %>% mutate(days_after = 0:6)
 second_L3_K <- L3_K_hours[9:20,] %>% mutate(days_after = 0:11)
 third_L3_K <- L3_K_hours[22:28,] %>% mutate(days_after = 0:6)
 fourth_L3_K <- L3_K_hours[30:34,] %>% mutate(days_after = 0:4)
+fifth_L3_K <- L3_K_hours[36:42,] %>% mutate(days_after = 0:6)
 
 y_max1 <- max(first_L3_K$`Polarity level`, na.rm = T)
 
@@ -1074,11 +1160,13 @@ f1 <- max(first_L3_K[complete.cases(first_L3_K[,2]),]$days_after) + 1
 s1 <- max(second_L3_K[complete.cases(second_L3_K[,2]),]$days_after) + 1
 t1 <- max(third_L3_K[complete.cases(third_L3_K[,2]),]$days_after) + 1
 fo1 <- max(fourth_L3_K[complete.cases(fourth_L3_K[,2]),]$days_after) + 1
+fi1 <- max(fifth_L3_K[complete.cases(fifth_L3_K[,2]),]$days_after) + 1
 
 first_L3_K[,6] <- cumsum(first_L3_K[,6])
 second_L3_K[,6] <- cumsum(second_L3_K[,6])
 third_L3_K[,6] <- cumsum(third_L3_K[,6])
 fourth_L3_K[,6] <- cumsum(fourth_L3_K[,6])
+fifth_L3_K[,6] <- cumsum(fifth_L3_K[,6])
 
 first_graph_L3_K <- first_L3_K %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -1088,7 +1176,7 @@ first_graph_L3_K <- first_L3_K %>% select(`Total therapy duration (Hrs)`, `Polar
   geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = first_L3_K[c(2,f1),c(6,2)],
             label = first_L3_K$`Polarity level`[c(2, f1)],
-            nudge_y = -18,
+            nudge_y = -28,
             nudge_x = -2,
             size = 3)
 
@@ -1100,7 +1188,7 @@ second_graph_L3_K <- second_L3_K %>% select(`Total therapy duration (Hrs)`, `Pol
   geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = second_L3_K[c(3,s1),c(6,2)],
             label = second_L3_K$`Polarity level`[c(3, s1)],
-            nudge_y = -18,
+            nudge_y = -28,
             size = 3)
 
 third_graph_L3_K <- third_L3_K %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
@@ -1111,7 +1199,7 @@ third_graph_L3_K <- third_L3_K %>% select(`Total therapy duration (Hrs)`, `Polar
   geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = third_L3_K[c(2,t1),c(6,2)],
             label = third_L3_K$`Polarity level`[c(2, t1)],
-            nudge_y = -18,
+            nudge_y = -28,
             nudge_x = -2,
             size = 3)
 
@@ -1123,11 +1211,21 @@ fourth_graph_L3_K <- fourth_L3_K %>% select(`Total therapy duration (Hrs)`, `Pol
   geom_smooth(method = "lm", size = 0.5) +
   geom_text(data = fourth_L3_K[c(2,fo1),c(6,2)],
             label = fourth_L3_K$`Polarity level`[c(2, fo1)],
-            nudge_y = 18,
+            nudge_y = 28,
             nudge_x = -0.5,
             size = 3)
 
-
+fifth_graph_L3_K <- fifth_L3_K %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_max1)) +
+  labs(subtitle = "Fifth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = fifth_L3_K[c(2,fi1),c(6,2)],
+            label = fifth_L3_K$`Polarity level`[c(2, fi1)],
+            nudge_y = -28,
+            nudge_x = -2.5,
+            size = 3)
 
 
 
@@ -1485,7 +1583,7 @@ C1J_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th
                            RSE = signif(C1_J_RSE, 4),
                            DFs = signif(C1_J_dfs, 4))
 
-L2_E_all <- list(L2_E_first_hours, L2_E_second_hours, L2_E_third_hours, L2_E_fourth_hours)
+L2_E_all <- list(L2_E_first_hours, L2_E_second_hours, L2_E_third_hours, L2_E_fourth_hours, L2_E_fifth_hours, L2_E_sixth_hours)
 
 L2_E_all_stat <- lapply(X = L2_E_all, FUN = corr.func)
 L2_E_all_stat_model <- lapply(X = L2_E_all, FUN = model.func)
@@ -1500,45 +1598,49 @@ L2_E_adj_r_sq <- unlist(lapply(X = c(1:length(L2_E_all)), FUN = function(x){L2_E
 
 
 
-L2E_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L2E_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            R = signif(L2_E_estims, 4),
                            Pval = formatC(L2_E_pvalues, format = "e", digits = 4),
                            Lower = signif(L2_E_lower, 4),
                            Upper = signif(L2_E_upper, 4))
 
-L2E_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L2E_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            Adj_R_sq = signif(L2_E_adj_r_sq, 4),
                            RSE = signif(L2_E_RSE, 4),
                            DFs = signif(L2_E_dfs, 4))
 
-H1_A_all <- list(H1_A_first_hours, H1_A_second_hours, H1_A_fourth_hours, H1_A_fifth_hours)
+H1_A_all <- list(H1_A_first_hours, H1_A_second_hours, H1_A_fourth_hours, H1_A_fifth_hours, H1_A_sixth_hours)
 
 H1_A_all_statx <- lapply(X = H1_A_all, FUN = corr.func)
 H1_A_all_stat_modelx <- lapply(X = H1_A_all, FUN = model.func)
 
-H1_A_all_stat <- list(H1_A_all_statx[[1]], H1_A_all_statx[[2]], NA, H1_A_all_statx[[3]], H1_A_all_statx[[4]])
-H1_A_all_stat_model <- list(H1_A_all_stat_modelx[[1]], H1_A_all_stat_modelx[[2]], NA, H1_A_all_stat_modelx[[3]], H1_A_all_stat_modelx[[4]])
+H1_A_all_stat <- list(H1_A_all_statx[[1]], H1_A_all_statx[[2]], NA, H1_A_all_statx[[3]], H1_A_all_statx[[4]], H1_A_all_statx[[5]])
+H1_A_all_stat_model <- list(H1_A_all_stat_modelx[[1]], H1_A_all_stat_modelx[[2]], NA, H1_A_all_stat_modelx[[3]], H1_A_all_stat_modelx[[4]], H1_A_all_stat_modelx[[5]])
 
-H1_A_estims <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat[[x]]$estimate}))
-H1_A_lower <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat[[x]]$conf.int[1]}))
-H1_A_upper <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat[[x]]$conf.int[2]}))
-H1_A_pvalues <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat[[x]]$p.value}))
-H1_A_RSE <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat_model[[x]]$sigma}))
-H1_A_dfs <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat_model[[x]]$df[2]}))
-H1_A_adj_r_sq <- unlist(lapply(X = c(1,2,4,5), FUN = function(x){H1_A_all_stat_model[[x]]$adj.r.squared}))
+H1_A_estims <- unlist(lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat[[x]]$estimate}))
+H1_A_lower <- lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat[[x]]$conf.int[1]})
+H1_A_lower[sapply(H1_A_lower, is.null)] <- NA
+H1_A_lower <- unlist(H1_A_lower)
+H1_A_upper <- lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat[[x]]$conf.int[2]})
+H1_A_upper[sapply(H1_A_upper, is.null)] <- NA
+H1_A_upper <- unlist(H1_A_upper)
+H1_A_pvalues <- unlist(lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat[[x]]$p.value}))
+H1_A_RSE <- unlist(lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat_model[[x]]$sigma}))
+H1_A_dfs <- unlist(lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat_model[[x]]$df[2]}))
+H1_A_adj_r_sq <- unlist(lapply(X = c(1,2,4,5,6), FUN = function(x){H1_A_all_stat_model[[x]]$adj.r.squared}))
 
-H1A_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
-                           R = c(signif(H1_A_estims[c(1,2)], 4), NA, signif(H1_A_estims[c(3,4)], 4)),
-                           Pval = formatC(c(signif(H1_A_pvalues[c(1,2)], 4), NA, signif(H1_A_estims[c(3,4)], 4)),  format = "e", digits = 4),
-                           Lower = c(signif(H1_A_lower[c(1,2)], 4), NA, signif(H1_A_estims[c(3,4)], 4)),
-                           Upper = c(signif(H1_A_upper[c(1,2)], 4), NA, signif(H1_A_estims[c(3,4)], 4)))
+H1A_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
+                           R = c(signif(H1_A_estims[c(1,2)], 4), NA, signif(H1_A_estims[c(3,4,5)], 4)),
+                           Pval = formatC(c(signif(H1_A_pvalues[c(1,2)], 4), NA, signif(H1_A_pvalues[c(3,4,5)], 4)),  format = "e", digits = 4),
+                           Lower = c(signif(H1_A_lower[c(1,2)], 4), NA, signif(H1_A_lower[c(3,4,5)], 4)),
+                           Upper = c(signif(H1_A_upper[c(1,2)], 4), NA, signif(H1_A_upper[c(3,4,5)], 4)))
 
-H1A_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
-                           Adj_R_sq = c(signif(H1_A_adj_r_sq[c(1,2)], 4), NA, signif(H1_A_adj_r_sq[c(3,4)], 4)),
-                           RSE = c(signif(H1_A_RSE[c(1,2)], 4), NA, signif(H1_A_RSE[c(3,4)], 4)),
-                           DFs = c(signif(H1_A_dfs[c(1,2)], 4), NA, signif(H1_A_dfs[c(3,4)], 4)))
+H1A_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
+                            Adj_R_sq = c(signif(H1_A_adj_r_sq[c(1,2)], 4), NA, signif(H1_A_adj_r_sq[c(3,4,5)], 4)),
+                            RSE = c(signif(H1_A_RSE[c(1,2)], 4), NA, signif(H1_A_RSE[c(3,4,5)], 4)),
+                            DFs = c(signif(H1_A_dfs[c(1,2)], 4), NA, signif(H1_A_dfs[c(3,4,5)], 4)))
 
-L3_K_all <- list(L3_K_first_hours, L3_K_second_hours, L3_K_third_hours, L3_K_fourth_hours)
+L3_K_all <- list(L3_K_first_hours, L3_K_second_hours, L3_K_third_hours, L3_K_fourth_hours, L3_K_fifth_hours)
 
 L3_K_all_stat <- lapply(X = L3_K_all, FUN = corr.func)
 L3_K_all_stat_model <- lapply(X = L3_K_all, FUN = model.func)
@@ -1553,13 +1655,13 @@ L3_K_adj_r_sq <- unlist(lapply(X = c(1:length(L3_K_all)), FUN = function(x){L3_K
 
 
 
-L3K_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L3K_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                            R = signif(L3_K_estims, 4),
                            Pval = formatC(L3_K_pvalues, format = "e", digits = 4),
                            Lower = signif(L3_K_lower, 4),
                            Upper = signif(L3_K_upper, 4))
 
-L3K_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L3K_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                            Adj_R_sq = signif(L3_K_adj_r_sq, 4),
                            RSE = signif(L3_K_RSE, 4),
                            DFs = signif(L3_K_dfs, 4))
@@ -2461,7 +2563,7 @@ kable(L2E_df_breaks, caption = "L2-E Retrogression Summary", col.names = c("Brea
 #### Treatment Sessions Plots
 
 ```{r L2E_hour_plot, out.width="100%", fig.height=8}
-grid.arrange(top = "L2-E Polarity", first_graph_L2E, second_graph_L2E, third_graph_L2E, fourth_graph_L2E, fifth_graph_L2E, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
+grid.arrange(top = "L2-E Polarity", first_graph_L2E, second_graph_L2E, third_graph_L2E, fourth_graph_L2E, fifth_graph_L2E, sixth_graph_L2E, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
 ```
 
 <br />
@@ -2728,7 +2830,7 @@ kable(H1A_df_breaks, caption = "H1-A Retrogression Summary", col.names = c("Brea
 #### Treatment Sessions Plots
 
 ```{r H1A_hour_plot, out.width="100%", fig.height=8}
-grid.arrange(top = "H1-A Polarity", first_graph_H1A, second_graph_H1A, third_graph_H1A, fourth_graph_H1A, fifth_graph_H1A, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
+grid.arrange(top = "H1-A Polarity", first_graph_H1A, second_graph_H1A, third_graph_H1A, fourth_graph_H1A, fifth_graph_H1A, sixth_graph_H1A, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
 ```
 
 <br />
@@ -2927,7 +3029,7 @@ kable(L3K_df_breaks, caption = "L3-K Retrogression Summary", col.names = c("Brea
 #### Treatment Sessions Plots
 
 ```{r L3K_hour_plot, out.width="100%", fig.height=6}
-grid.arrange(top = "L3-K Polarity", first_graph_L3_K, second_graph_L3_K, third_graph_L3_K, fourth_graph_L3_K, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
+grid.arrange(top = "L3-K Polarity", first_graph_L3_K, second_graph_L3_K, third_graph_L3_K, fourth_graph_L3_K, fifth_graph_L3_K, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
 ```
 
 <br />
