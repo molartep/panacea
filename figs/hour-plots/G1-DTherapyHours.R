@@ -13,6 +13,7 @@ first_G1_D <- G1_D_hours[1:4,] %>% mutate(days_after = 0:3)
 second_G1_D <- G1_D_hours[6:9,] %>% mutate(days_after = 0:3)
 third_G1_D <- G1_D_hours[11:14,] %>% mutate(days_after = 0:3)
 fourth_G1_D <- G1_D_hours[16:19,] %>% mutate(days_after = 0:3)
+fifth_G1_D <- G1_D_hours[21:25,] %>% mutate(days_after = 0:4)
 
 y_max1 <- max(first_G1_D$`Polarity level`, na.rm = T)
 
@@ -20,11 +21,13 @@ f1 <- max(first_G1_D[complete.cases(first_G1_D[,2]),]$days_after) + 1
 s1 <- max(second_G1_D[complete.cases(second_G1_D[,2]),]$days_after) + 1
 t1 <- max(third_G1_D[complete.cases(third_G1_D[,2]),]$days_after) + 1
 fo1 <- max(fourth_G1_D[complete.cases(fourth_G1_D[,2]),]$days_after) + 1
+fi1 <- max(fifth_G1_D[complete.cases(fifth_G1_D[,2]),]$days_after) + 1
 
 first_G1_D[,6] <- cumsum(first_G1_D[,6])
 second_G1_D[,6] <- cumsum(second_G1_D[,6])
 third_G1_D[,6] <- cumsum(third_G1_D[,6])
 fourth_G1_D[,6] <- cumsum(fourth_G1_D[,6])
+fifth_G1_D[,6] <- cumsum(fifth_G1_D[,6])
 
 first_graph_G1_D <- first_G1_D %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -70,4 +73,16 @@ fourth_graph_G1_D <- fourth_G1_D %>% select(`Total therapy duration (Hrs)`, `Pol
             nudge_y = 0.6,
             size = 3.5)
 
-grid.arrange(top = "G1-D Polarity", first_graph_G1_D, second_graph_G1_D, third_graph_G1_D, fourth_graph_G1_D, ncol=2)
+fifth_graph_G1_D <- fifth_G1_D %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_max1)) +
+  labs(subtitle = "Fifth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = fifth_G1_D[c(2,fi1),c(6,2)],
+            label = fifth_G1_D$`Polarity level`[c(2, fi1)],
+            nudge_y = 0.6,
+            size = 3.5)
+
+grid.arrange(top = "G1-D Polarity", first_graph_G1_D, second_graph_G1_D, third_graph_G1_D, fourth_graph_G1_D, fifth_graph_G1_D, ncol=2)
+

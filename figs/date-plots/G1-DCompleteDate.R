@@ -14,13 +14,15 @@ first_G1_D <- G1_D_hours[1:4,]
 second_G1_D <- G1_D_hours[6:9,]
 third_G1_D <- G1_D_hours[11:14,]
 fourth_G1_D <- G1_D_hours[16:19,]
+fifth_G1_D <- G1_D_hours[21:25,]
 
 first_G1_D_dates <- G1_D_dates[1:4,]
 second_G1_D_dates <- G1_D_dates[39:42,]
 third_G1_D_dates <- G1_D_dates[79:82,]
 fourth_G1_D_dates <- G1_D_dates[115:117,]
+fifth_G1_D_dates <- G1_D_dates[177:180,]
 
-lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-03-10 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-09-15 01:00","2019-04-10 01:00"), format = "%Y-%m-%d %H:%M"))
 
 G1D_dates <- G1_D_dates[,c(1,3)]
 
@@ -56,9 +58,16 @@ G1D_segment3 <- list(x1 = third_G1_D_dates$date[which.min(third_G1_D_dates$p_lev
 G1D_lab3x <- as.POSIXct((as.numeric(G1D_segment3$x1) + as.numeric(G1D_segment3$x2)) / 2, origin = '1970-01-01')
 G1D_lab3y <- (G1D_segment3$y1 + G1D_segment3$y2)/2
 
+G1D_segment4 <- list(x1 = fourth_G1_D_dates$date[which.min(fourth_G1_D_dates$p_level)], 
+                     y1 = fourth_G1_D_dates$p_level[which.min(fourth_G1_D_dates$p_level)],
+                     x2 = fifth_G1_D_dates$date[which.max(fifth_G1_D_dates$p_level)],
+                     y2 = fifth_G1_D_dates$p_level[which.max(fifth_G1_D_dates$p_level)]) 
+G1D_lab4x <- as.POSIXct((as.numeric(G1D_segment4$x1) + as.numeric(G1D_segment4$x2)) / 2, origin = '1970-01-01')
+G1D_lab4y <- (G1D_segment4$y1 + G1D_segment4$y2)/2
+
 G1D_first_day <- as.POSIXct(first_G1_D$Day[which(first_G1_D$`Total therapy duration (Hrs)`>0)][1],
                             origin = '1970-01-01')
-G1D_last_day <- as.POSIXct(tail(fourth_G1_D$Day[which(fourth_G1_D$`Total therapy duration (Hrs)`>0)],1),
+G1D_last_day <- as.POSIXct(tail(fifth_G1_D$Day[which(fifth_G1_D$`Total therapy duration (Hrs)`>0)],1),
                            origin = '1970-01-01')
 
 G1D_label_first <- G1D_first_day %>% format(., "%B %d %Y")
@@ -66,7 +75,7 @@ G1D_label_last <- G1D_last_day %>% format(., "%B %d %Y")
 
 G1D_final_date_graph <- G1D_dategraph + geom_text(aes(x = G1D_first_day, y = first_G1_D$`Polarity level`[which(first_G1_D$`Polarity level`>0)][1],
                                                       label = G1D_label_first), hjust = -0.1, vjust = 0, size = 3.5) +
-                                        geom_text(aes(x = G1D_last_day, y = tail(fourth_G1_D$`Polarity level`[which(fourth_G1_D$`Polarity level`>0)],1),
+                                        geom_text(aes(x = G1D_last_day, y = tail(fifth_G1_D$`Polarity level`[which(fifth_G1_D$`Polarity level`>0)],1),
                                                       label = G1D_label_last), hjust = -0.1, vjust = 1, size = 3.5) +
   geom_segment(aes(x = G1D_segment1$x1, y = G1D_segment1$y1,
                    xend = G1D_segment1$x2, yend = G1D_segment1$y2, color = "36"),
@@ -82,6 +91,11 @@ G1D_final_date_graph <- G1D_dategraph + geom_text(aes(x = G1D_first_day, y = fir
                    xend = G1D_segment3$x2, yend = G1D_segment3$y2, color = "33"),
                linetype = "dashed") +
   geom_text(aes(x = G1D_lab3x, y = G1D_lab3y + 0.4, color = "33", label = "+ 1.5",
+                angle = 27)) +
+  geom_segment(aes(x = G1D_segment4$x1, y = G1D_segment4$y1,
+                   xend = G1D_segment4$x2, yend = G1D_segment4$y2, color = "60"),
+               linetype = "dashed") +
+  geom_text(aes(x = G1D_lab4x, y = G1D_lab4y + 0.4, color = "60", label = "+ 2.8",
                 angle = 27)) + labs(color = "Days Without\nTreatment")
 
 G1D_final_date_graph
