@@ -15,7 +15,7 @@ H1_A_second_hours <- H1_A_hours[11:23, c(1,2,6)]
 H1_A_third_hours <- H1_A_hours[25:26, c(1,2,6)]
 H1_A_fourth_hours <- H1_A_hours[28:39, c(1,2,6)]
 H1_A_fifth_hours <- H1_A_hours[41:52, c(1,2,6)]
-H1_A_sixth_hours <- H1_A_hours[54:60, c(1,2,6)]
+H1_A_sixth_hours <- H1_A_hours[54:58, c(1,2,6)]
 
 start1 <- H1_A_first_hours[H1_A_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(H1_A_first_hours[H1_A_first_hours[,3] > 0, 1], n = 1)

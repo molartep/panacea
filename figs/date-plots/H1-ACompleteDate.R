@@ -14,14 +14,14 @@ second_H1_A_hours <- H1_A_hours[11:23,]
 third_H1_A_hours <- H1_A_hours[25:26,] 
 fourth_H1_A_hours <- H1_A_hours[28:39,]
 fifth_H1_A_hours <- H1_A_hours[41:52,]
-sixth_H1_A_hours <- H1_A_hours[54:60,]
+sixth_H1_A_hours <- H1_A_hours[54:58,]
 
 first_H1_A_dates <- H1_A_dates[1:11,]
 second_H1_A_dates <- H1_A_dates[33:46,]
 third_H1_A_dates <- H1_A_dates[72:73,]
 fourth_H1_A_dates <- H1_A_dates[111:115,]
 fifth_H1_A_dates <- H1_A_dates[140:151,]
-sixth_H1_A_dates <- H1_A_dates[195:200,]
+sixth_H1_A_dates <- H1_A_dates[195:198,]
 
 lims <- as.POSIXct(strptime(c("2018-08-15 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
 

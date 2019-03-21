@@ -13,7 +13,7 @@ second_L2_E <- L2_E_hours[13:25,] %>% mutate(days_after = 0:12)
 third_L2_E <- L2_E_hours[27:39,] %>% mutate(days_after = 0:12)
 fourth_L2_E <- L2_E_hours[41:52,] %>% mutate(days_after = 0:11)
 fifth_L2_E <- L2_E_hours[54:65,] %>% mutate(days_after = 0:11)
-sixth_L2_E <- L2_E_hours[67:73,] %>% mutate(days_after = 0:6)
+sixth_L2_E <- L2_E_hours[67:71,] %>% mutate(days_after = 0:4)
 
 y_maxL2E <- max(first_L2_E$`Polarity level`, na.rm = T)
 

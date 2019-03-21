@@ -13,7 +13,7 @@ second_H1_A_hours <- H1_A_hours[11:23,] %>% mutate(days_after = 0:12)
 third_H1_A_hours <- H1_A_hours[25:26,] %>% mutate(days_after = 0:1)
 fourth_H1_A_hours <- H1_A_hours[28:39,] %>% mutate(days_after = 0:11)
 fifth_H1_A_hours <- H1_A_hours[41:52,] %>% mutate(days_after = 0:11)
-sixth_H1_A_hours <- H1_A_hours[54:60,] %>% mutate(days_after = 0:6)
+sixth_H1_A_hours <- H1_A_hours[54:58,] %>% mutate(days_after = 0:4)
 
 y_max1 <- max(first_H1_A_hours$`Polarity level`, na.rm = T)
 

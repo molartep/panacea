@@ -52,8 +52,8 @@ C1_J_adj_r_sq <- unlist(lapply(X = c(1:length(C1_J_all)), FUN = function(x){C1_J
 C1J_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            R = signif(C1_J_estims, 4),
                            Pval = signif(C1_J_pvalues, 4),
-                           Lower = c(signif(C1_J_lower, 4), NA),
-                           Upper = c(signif(C1_J_upper, 4), NA))
+                           Lower = signif(C1_J_lower, 4),
+                           Upper = signif(C1_J_upper, 4))
                            
 C1J_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),                       
                            Adj_R_sq = signif(C1_J_adj_r_sq, 4),

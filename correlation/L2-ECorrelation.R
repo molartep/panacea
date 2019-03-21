@@ -11,7 +11,7 @@ L2_E_second_hours <- L2_E_hours[13:25, c(1,2,7)]
 L2_E_third_hours <- L2_E_hours[27:39, c(1,2,7)]
 L2_E_fourth_hours <- L2_E_hours[41:52, c(1,2,7)]
 L2_E_fifth_hours <- L2_E_hours[54:65, c(1,2,7)]
-L2_E_sixth_hours <- L2_E_hours[67:73, c(1,2,7)]
+L2_E_sixth_hours <- L2_E_hours[67:71, c(1,2,7)]
 
 L2_E_first_hours[,3] <- cumsum(L2_E_first_hours[,3])
 L2_E_second_hours[,3] <- cumsum(L2_E_second_hours[,3])

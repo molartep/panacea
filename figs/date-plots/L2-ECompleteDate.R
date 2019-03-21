@@ -16,14 +16,14 @@ second_L2_E <- L2_E_hours[13:25,]
 third_L2_E <- L2_E_hours[27:39,]
 fourth_L2_E <- L2_E_hours[41:52,]
 fifth_L2_E <- L2_E_hours[54:65,]
-sixth_L2_E <- L2_E_hours[67:73,]
+sixth_L2_E <- L2_E_hours[67:71,]
 
 first_L2_E_dates <- L2_E_dates[1:13,]
 second_L2_E_dates <- L2_E_dates[35:48,]
 third_L2_E_dates <- L2_E_dates[64:76,]
 fourth_L2_E_dates <- L2_E_dates[108:117,]
 fifth_L2_E_dates <- L2_E_dates[142:153,]
-sixth_L2_E_dates <- L2_E_dates[197:202,]
+sixth_L2_E_dates <- L2_E_dates[197:200,]
 
 L2E_dates <- L2_E_dates[,c(1,3)]
 
