@@ -3185,6 +3185,187 @@ timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
+##### L3-K Significant Changes
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click on the individual items to highlight their values.</li>
+  <li>Click and drag the timeline to scroll through the dates.</li>
+  <li>The light blue shaded areas represent treatment sessions.</li>
+</ul>
+</font>
+
+<br />
+
+```{r L3K_signif, out.width="100%", fig.height=10}
+library(timevis)
+library(dplyr)
+
+L3K_signif <- data.frame(
+  id = 1:94,
+  content = c("", "", "", "", "", #sessions
+              "197.6", "167.1", "148.7", "146.2", "161.2", #polarity
+              "5.8  10x3/uL", "4.4  10x3/uL", "4.2  10x3/uL", #wbc
+              "3.65 10x6/uL", "3.97 10x6/uL", "4.07 10x6/uL", #rbc
+              "11.7 g/dL", "12.6 g/dL", "12.8 g/dL", #hgb
+              "34.5 %", "38.2 %", "37.9 %", #hct
+              "16.1 %", "13.3 %", "13.0 %", #rdw
+              "9.90 %", "19.30 %", "18.80 %", #lympho
+              "9.40 %", "11.50 %", "11.80 %", #mono
+              "1.20 %", "2.80 %", "3.10 %", #eos
+              "No new metastasis", "6 enhancing lesions", #brain
+              "0.6 cm", "0.43 cm", "Significant Reduction", "No abnormality", "Further decrease in size", #occi
+              "Stable", "Anomaly", "Resolved", "No abnormality", "Further decrease in size", #parietal
+              "0.8 cm", "0.6 cm", "0.4 cm", #rll
+              "Anomaly", "No abnormality", "0.7 cm", #lll
+              "2.3 cm", "2.3 cm", "Significant Reduction", "Stable", #rul
+              "Anomaly", "No abnormality", "Stable", #lul
+              "1.6 cm", "1.6 cm", "Resolved", "Anomaly", #rhilar
+              "Potential Hemangioma", "No abnormality", "No abnormality", "No abnormality", "Potential Hemangioma", "Hepatomegaly (17.4 cm)", # liver
+              "No focal lesions", "7 focal lesions", "5 focal lesions", #hepatic
+              "1.9 cm", "1.7 cm", "Stable", "No abnormality", "No abnormality", #adrenal
+              "Potential metastasis", "No abnormality", "Stable", #humerus
+              "Stable", "No abnormality", "Stable", "Resolved", #T11
+              "Stable", "No abnormality", "Stable", "Decreased activity", #9thrib
+              "Stable", "No abnormality", "Stable", "Increased activity", #12thrib
+              "Anomaly", "Resolved"), #bone
+  
+  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11", "2019-03-11", #sessions
+            "2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", #polarity
+            rep(c("2018-09-04", "2018-11-28", "2019-01-09"), 8), #wbc, rbc, hgb, hct, rdw, lympho, mono, eos
+            "2018-10-08", "2019-02-27", #brain
+            "2018-07-17", "2018-08-28", "2018-10-08", "2018-11-28", "2019-02-27", #occi
+            "2018-07-17", "2018-08-28", "2018-10-08", "2018-11-28", "2019-02-27", #parietal
+            "2018-07-17", "2018-08-28", "2019-02-27", #rll
+            "2018-07-17", "2018-11-28", "2019-02-27", #lll
+            "2018-07-17", "2018-08-28", "2018-10-08", "2018-11-28", #rul
+            "2018-07-17", "2018-11-28", "2019-02-27", #lul
+            "2018-07-17", "2018-08-28", "2018-10-08", "2018-11-28", #rhilar
+            "2018-08-28", "2018-10-08", "2018-11-28", "2019-01-09", rep("2019-02-27", 2), #liver
+            "2019-01-09", "2019-02-27", "2019-03-04", #hepatic
+            "2018-07-17", "2018-08-28", "2018-10-08", "2019-01-09", "2019-03-04", #adrenal
+            "2018-10-08", "2018-11-28", "2019-01-09", #humerus
+            "2018-08-28", "2018-11-28", "2019-01-09", "2019-02-27", #T11
+            "2018-08-28", "2018-11-28", "2019-01-09", "2019-02-27", #9thrib
+            "2018-08-28", "2018-11-28", "2019-01-09", "2019-02-27", #12thrib
+            "2018-10-08", "2018-11-28"), #bone
+  
+  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", #sessions
+            rep(NA, 5), #polarity
+            rep(NA, 24), #wbc, rbc, hgb, hct, rdw, lympho, mono, eos
+            rep(NA, 2), #brain
+            rep(NA, 5), #occi
+            rep(NA, 5), #parietal
+            rep(NA, 3), #rll
+            rep(NA, 3), #lll
+            rep(NA, 4), #rul
+            rep(NA, 3), #lul
+            rep(NA, 4), #rhilar
+            rep(NA, 6), #liver
+            rep(NA, 3), #hepatic
+            rep(NA, 5), #adrenal
+            rep(NA, 3), #humerus
+            rep(NA, 4), #T11
+            rep(NA, 4), #9thrib
+            rep(NA, 4), #12thrib
+            rep(NA, 2)), #bone
+  
+  group = c(rep(NA, 5), #sessions
+            rep("polar", 5), #polarity
+            rep("wbc", 3), #wbc
+            rep("rbc", 3), #rbc
+            rep("hgb", 3), #hgb
+            rep("hct", 3), #hct
+            rep("rdw", 3), #rdw
+            rep("lympho", 3), #lympho
+            rep("mono", 3), #mono
+            rep("eos", 3), #eos
+            rep("brain", 2), #brain
+            rep("occi", 5), #occi
+            rep("parietal", 5), #parietal
+            rep("rll", 3), #rll
+            rep("lll", 3), #lll
+            rep("rul", 4), #rul
+            rep("lul", 3), #lul
+            rep("rhilar", 4), #rhilar
+            rep("liver", 6), #liver
+            rep("hepatic", 3), #hepatic
+            rep("adrenal", 5), #adrenal
+            rep("humerus", 3), #humerus
+            rep("T11", 4), #T11
+            rep("9thrib", 4), #9thrib
+            rep("12thrib", 4), #12thrib
+            rep("bone", 2)), #bone
+  
+  subgroup = c(rep(NA, 5), #sessions
+               rep(NA, 5), #polarity
+               rep(NA, 24), #wbc, rbc, hgb, hct, rdw, lympho, mono, eos
+               rep(NA, 2), #brain
+               rep(NA, 5), #occi
+               rep(NA, 5), #parietal
+               rep(NA, 3), #rll
+               rep(NA, 3), #lll
+               rep(NA, 4), #rul
+               rep(NA, 3), #lul
+               rep(NA, 4), #rhilar
+               "1", rep("2", 3), "1", "2", #liver
+               "1", "2", "1", #hepatic
+               rep(NA, 5), #adrenal
+               rep(NA, 3), #humerus
+               rep(NA, 4), #T11
+               rep(NA, 4), #9thrib
+               rep(NA, 4), #12thrib
+               rep(NA, 2)), #bone
+  
+  type = c(rep("background", 5), rep("point", 89))
+)
+
+L3K_groups1 <- data.frame(
+  id = c("polar", "wbc", "rbc", "hgb", "hct", "rdw", "lympho", "mono", "eos", "brain","occi", "parietal", "rll", "lll", "rul", "lul", "rhilar", "liver", "hepatic",
+         "adrenal", "humerus", "T11", "9thrib", "12thrib", "bone"),
+  content = c("Polarity after Sessions", "White Blood Cells", "Red Blood Cells", "Hemoglobin", "Hematocrit", "RDW", "Lymphocyte %", "Monocyte %", "Eosinophil %",
+              "Brain", "Left Occipitotemporal Focus", "Left Parietal Lobe Focus", "Right Lower Lobe Nodule", "Left Lower Lobe Nodule", "Right Upper Lobe Nodule",
+              "Left Upper Lobe Nodule", "Right Hilar Lymph Node", "Liver", "Hepatic Lesions", "Left Adrenal Lesion", "Distal Humerus", "11th Thoracic vertebra (T11)",
+              "Right Posterior 9th Rib", "Left Posterior 12th Rib", "Marrow Activity")
+)
+
+timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 0.2,
+        options = list(zoomable = TRUE, min = "2018-06-20", max = "2019-05-20", start = "2018-06-20", end  = "2019-05-20", zoomMin = 1080000000, stack = FALSE,
+                       showCurrentTime = FALSE))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>WBC</b> reference range is 4.0 - 10.0 10x3/uL.
+<br />
+* <b>RBC</b> reference range is 4.60 - 6.10 10x6/uL.
+<br />
+* <b>HGB</b> reference range is 13.5 - 18.0 g/dL.
+<br />
+* <b>HCT</b> reference range is 41.0 - 53.0 %.
+<br />
+* <b>RDW</b> reference range is 11.6 - 13.7 %.
+<br />
+* <b>Lymphocyte %</b> reference range is 9.50 - 55.00 %.
+<br />
+* <b>Monocyte %</b> reference range is 0.10 - 10.0 %.
+<br />
+* <b>Eosinophils %</b> reference range is 0.00 - 11.00 %.
+<br />
+* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
+<br />
+* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
+<br />
+* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
+<br />
+* <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
+</font>
+</i>
+</div>
+
 *****
 
 ### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
