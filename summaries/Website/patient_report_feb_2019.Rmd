@@ -2653,8 +2653,8 @@ library(timevis)
 library(dplyr)
 
 L2E_timeline <- data.frame(
-  id = 1:25,
-  content = c("1st", "2nd", "3rd", "4th", "5th",
+  id = 1:26,
+  content = c("1st", "2nd", "3rd", "4th", "5th", "6th",
               rep("CT Scan", 2),
               rep("PET Scan", 1),
               rep("Ultrasound", 3),
@@ -2671,7 +2671,7 @@ L2E_timeline <- data.frame(
               "Bone Densitometry",
               "General Checkup"),
   
-  start = c("2018-08-21", "2018-09-24", "2018-10-22", "2018-12-03", "2019-01-08",
+  start = c("2018-08-21", "2018-09-24", "2018-10-22", "2018-12-03", "2019-01-08", "2019-03-04",
             "2018-04-19", "2018-11-29",
             "2018-04-26",
             "2018-08-28", "2018-10-15", "2018-11-29",
@@ -2688,7 +2688,7 @@ L2E_timeline <- data.frame(
             "2018-11-29",
             "2018-12-11"),
   
-  end   = c("2018-09-01", "2018-10-06", "2018-11-03", "2018-12-15", "2019-01-19",
+  end   = c("2018-09-01", "2018-10-06", "2018-11-03", "2018-12-15", "2019-01-19", "2019-03-07",
             NA, NA,
             NA,
             NA, NA, NA,
@@ -2705,9 +2705,9 @@ L2E_timeline <- data.frame(
             NA,
             NA),
   
-  group = c(rep(NA, 5), rep("img", 10), rep("blood", 6), rep("other", 4)),
+  group = c(rep(NA, 6), rep("img", 10), rep("blood", 6), rep("other", 4)),
   
-  type = c(rep("background", 5), rep("point", 20))
+  type = c(rep("background", 6), rep("point", 20))
 )
 
 L2E_groups <- data.frame(
@@ -2915,42 +2915,69 @@ style(H1A_fdg, text = H1A_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-```{r H1A_timeline, out.width="100%", fig.height=3.5}
+```{r H1A_timeline, out.width="100%", fig.height=7}
 library(timevis)
 library(dplyr)
 
 H1A_timeline <- data.frame(
-  id = 1:13,
-  content = c("1st", "2nd", "3rd", "4th", "5th",
-              rep("CT Scan", 2),
-              rep("Ultrasound", 1),
+  id = 1:27,
+  content = c("1st", "2nd", "3rd", "4th", "5th", "6th",
+              rep("CT Scan", 3),
+              rep("MRI", 1),
+              rep("Ultrasound", 2),
+              rep("X-Ray", 1),
+              rep("Mammography", 1),
               rep("CEA", 1),
               rep("CA 125", 1),
-              "CBC",
+              rep("CBC", 2),
               "CMP",
-              "Electrocardiogram"),
+              "Electrocardiogram",
+              "Endoscopy",
+              "EGD",
+              rep("Colonoscopy", 2),
+              "Bone Densitometry",
+              "Spirometry",
+              "General Checkup"),
   
-  start = c("2018-08-23", "2018-09-24", "2018-11-01", "2018-12-03", "2019-01-08",
-            "2017-06-26", "2018-09-06",
+  start = c("2018-08-23", "2018-09-24", "2018-11-01", "2018-12-03", "2019-01-08", "2019-03-04",
+            "2017-06-26", "2018-09-06", "2018-10-26",
+            "2018-10-26",
+            "2018-08-25", "2018-10-26",
+            "2018-10-26",
+            "2018-10-26",
+            "2018-08-29",
+            "2018-08-29",
+            "2018-09-07", "2018-10-02",
+            "2018-08-29",
             "2018-08-25",
-            "2018-08-29",
-            "2018-08-29",
-            "2018-09-07",
-            "2018-08-29",
-            "2018-08-25"),
+            "2017-07-13",
+            "2018-12-06",
+            "2016-07-22", "2018-10-26",
+            "2018-10-26",
+            "2017-07-13",
+            "2018-11-01"),
   
-  end   = c("2018-09-01", "2018-10-06", "2018-11-02", "2018-12-14", "2019-01-19",
+  end   = c("2018-09-01", "2018-10-06", "2018-11-02", "2018-12-14", "2019-01-19", "2019-03-07",
+            NA, NA, NA,
+            NA,
             NA, NA,
             NA,
             NA,
             NA,
             NA,
+            NA, NA,
+            NA,
+            NA,
+            NA,
+            NA,
+            NA, NA,
+            NA,
             NA,
             NA),
   
-  group = c(rep(NA, 5), rep("img", 3), rep("blood", 4), rep("other", 1)),
+  group = c(rep(NA, 6), rep("img", 8), rep("blood", 5), rep("other", 8)),
   
-  type = c(rep("background", 5), rep("point", 8))
+  type = c(rep("background", 6), rep("point", 21))
 )
 
 H1A_groups <- data.frame(
@@ -2958,7 +2985,7 @@ H1A_groups <- data.frame(
   content = c("Session", "Imaging Tests", "Blood Tests", "Other Tests")
 )
 
-timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2017-06-20", max = "2019-04-01", start = "2017-06-20", end  = "2019-04-01", zoomMin = 1080000000))
+timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2016-07-01", max = "2019-05-01", start = "2016-07-01", end  = "2019-05-01", zoomMin = 1080000000))
 ```
 
 <br>
@@ -3506,22 +3533,22 @@ style(G1D_fdg, text = G1D_text, hoverinfo = "text", traces = 1)
 
 <br />
 
-```{r G1D_timeline, out.width="100%", fig.height=5.2}
+```{r G1D_timeline, out.width="100%", fig.height=6}
 library(timevis)
 library(dplyr)
 
 G1D_timeline <- data.frame(
-  id = 1:56,
-  content = c("1st", "2nd", "3rd", "4th",
+  id = 1:62,
+  content = c("1st", "2nd", "3rd", "4th", "5th",
               rep("CT Scan", 1),
               rep("PET Scan", 3),
               rep("Ultrasound", 1),
               rep("MRI", 10),
-              rep("CEA", 1),
-              rep("CA 19-9", 1),
-              rep("PSA", 2),
-              rep("CBC", 7),
-              rep("CMP", 11),
+              rep("CEA", 2),
+              rep("CA 19-9", 2),
+              rep("PSA", 3),
+              rep("CBC", 8),
+              rep("CMP", 12),
               rep("CRP", 2),
               rep("Direct LDL-C", 3),
               rep("PTT", 3),
@@ -3530,16 +3557,16 @@ G1D_timeline <- data.frame(
               rep("Biopsy", 2),
               "Electrocardiogram"),
   
-  start = c("2018-09-24", "2018-11-01", "2018-12-11", "2019-01-15",
+  start = c("2018-09-24", "2018-11-01", "2018-12-11", "2019-01-15", "2019-03-18",
             "2017-03-13",
             "2012-12-27", "2013-08-12", "2014-09-05",
             "2014-06-02",
             "2013-03-26", "2015-03-20", "2015-09-04", "2016-02-29", "2016-09-06", "2016-09-12", "2017-03-06", "2017-09-05", "2018-03-05", "2018-08-28",
-            "2017-01-20",
-            "2014-03-11",
-            "2017-01-20", "2018-04-05",
-            "2012-09-10", "2012-09-18", "2014-03-11", "2014-09-30", "2017-01-20", "2018-04-05", "2018-08-28",
-            "2012-09-10", "2012-09-18", "2012-09-19", "2012-12-27", "2013-08-12", "2014-03-11", "2014-09-05", "2014-09-30", "2017-01-20", "2018-04-05", "2018-08-28",
+            "2017-01-20", "2019-02-26",
+            "2014-03-11", "2019-02-26",
+            "2017-01-20", "2018-04-05", "2019-02-26",
+            "2012-09-10", "2012-09-18", "2014-03-11", "2014-09-30", "2017-01-20", "2018-04-05", "2018-08-28", "2019-02-26",
+            "2012-09-10", "2012-09-18", "2012-09-19", "2012-12-27", "2013-08-12", "2014-03-11", "2014-09-05", "2014-09-30", "2017-01-20", "2018-04-05", "2018-08-28", "2019-02-26",
             "2018-04-05", "2017-01-20",
             "2014-03-11", "2015-02-04", "2017-01-20",
             "2012-09-10", "2014-03-11", "2014-09-30",
@@ -3548,16 +3575,16 @@ G1D_timeline <- data.frame(
             "2017-08-28", "2018-10-01",
             "2014-09-30"),
   
-  end   = c("2018-09-26", "2018-11-03", "2018-12-13", "2019-01-17",
+  end   = c("2018-09-26", "2018-11-03", "2018-12-13", "2019-01-17", "2019-03-21",
             NA,
             NA, NA, NA,
             NA,
             NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
-            NA,
-            NA,
             NA, NA,
-            NA, NA, NA, NA, NA, NA, NA,
-            NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
+            NA, NA,
+            NA, NA, NA,
+            NA, NA, NA, NA, NA, NA, NA, NA,
+            NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
             NA, NA,
             NA, NA, NA,
             NA, NA, NA,
@@ -3566,9 +3593,9 @@ G1D_timeline <- data.frame(
             NA, NA,
             NA),
   
-  group = c(rep(NA, 4), rep("img", 15), rep("blood", 34), rep("other", 3)),
+  group = c(rep(NA, 5), rep("img", 15), rep("blood", 39), rep("other", 3)),
   
-  type = c(rep("background", 4), rep("point", 52))
+  type = c(rep("background", 5), rep("point", 57))
 )
 
 G1D_groups <- data.frame(
@@ -3576,7 +3603,7 @@ G1D_groups <- data.frame(
   content = c("Session", "Imaging Tests", "Blood Tests", "Other Tests")
 )
 
-timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2012-08-15", max = "2019-04-01", start = "2012-08-15", end  = "2019-04-01", zoomMin = 1080000000))
+timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2012-08-15", max = "2019-10-01", start = "2012-08-15", end  = "2019-10-01", zoomMin = 1080000000))
 ```
 
 <br>
