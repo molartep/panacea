@@ -3119,37 +3119,37 @@ library(timevis)
 library(dplyr)
 
 L3K_timeline <- data.frame(
-  id = 1:19,
-  content = c("1st", "2nd", "3rd", "4th",
-              rep("CT Scan", 4),
+  id = 1:23,
+  content = c("1st", "2nd", "3rd", "4th", "5th",
+              rep("CT Scan", 5),
               rep("PET Scan", 2),
-              rep("MRI", 3),
+              rep("MRI", 5),
               rep("BUN", 1),
               rep("POC", 1),
               rep("Creatinine", 1),
               rep("CBC", 3)),
   
-  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11",
-            "2018-07-17", "2018-08-28", "2018-10-08", "2019-01-09",
+  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11", "2019-03-11",
+            "2018-07-17", "2018-08-28", "2018-10-08", "2019-01-09", "2019-02-27",
             "2018-10-08", "2018-11-28",
-            "2018-07-17", "2018-08-28", "2018-10-08",
+            "2018-07-17", "2018-08-28", "2018-10-08", "2019-02-27", "2019-03-04",
             "2018-10-18",
             "2018-10-08",
             "2018-10-08",
             "2018-09-04", "2018-09-06", "2019-01-09"),
   
-  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14",
-            NA, NA, NA, NA,
+  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16",
+            NA, NA, NA, NA, NA,
             NA, NA,
-            NA, NA, NA,
+            NA, NA, NA, NA, NA,
             NA,
             NA,
             NA,
             NA, NA, NA),
   
-  group = c(rep(NA, 4), rep("img", 9), rep("blood", 6)),
+  group = c(rep(NA, 5), rep("img", 12), rep("blood", 6)),
   
-  type = c(rep("background", 4), rep("point", 15))
+  type = c(rep("background", 5), rep("point", 18))
 )
 
 L3K_groups <- data.frame(
@@ -3168,7 +3168,7 @@ timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor =
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
 <br />
-* <b>MRIs</b> refer to Brain MRIs.
+* <b>MRIs</b> refer to Brain MRIs and one Abdomen MRI on March 4, 2019.
 <br />
 * <b>CBC</b> refers to a Complete Blood Count.
 <br />
