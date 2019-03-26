@@ -3030,7 +3030,7 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Pending       | Pending     
+2016          | Right Upper Lobe Adenocarcinoma     
 Pending       | Pending     
 
 *****
@@ -3041,10 +3041,10 @@ Pending       | Pending
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Pending       | Pending       | Pending     
-Pending       | Pending       | Pending     
-Pending       | Pending       | Pending     
-Pending       | Pending       | Pending     
+Pending       | Pending       | Limited Resection of the Chest Lesion     
+Pending       | May 2018      | Radiation Therapy of Right Upper Lobe Lesion     
+Pending       | Pending       | Radiation Therapy of Left Adrenal Gland     
+Pending       | June 2018     | Gamma Knife Therapy     
 
 *****
 
@@ -3322,7 +3322,7 @@ L3K_signif <- data.frame(
 )
 
 L3K_groups1 <- data.frame(
-  id = c("polar", "wbc", "rbc", "hgb", "hct", "rdw", "lympho", "mono", "eos", "brain","occi", "parietal", "rll", "lll", "rul", "lul", "rhilar", "liver", "hepatic",
+  id = c("polar", "wbc", "rbc", "hgb", "hct", "rdw", "lympho", "mono", "eos", "brain", "occi", "parietal", "rll", "lll", "rul", "lul", "rhilar", "liver", "hepatic",
          "adrenal", "humerus", "T11", "9thrib", "12thrib", "bone"),
   content = c("Polarity after Sessions", "White Blood Cells", "Red Blood Cells", "Hemoglobin", "Hematocrit", "RDW", "Lymphocyte %", "Monocyte %", "Eosinophil %",
               "Brain", "Left Occipitotemporal Focus", "Left Parietal Lobe Focus", "Right Lower Lobe Nodule", "Left Lower Lobe Nodule", "Right Upper Lobe Nodule",
@@ -3355,13 +3355,21 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 <br />
 * <b>Eosinophils %</b> reference range is 0.00 - 11.00 %.
 <br />
-* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
+* The <b>Left Occipitotemporal Focus</b> reduced to a small focus of residual enhancement by October 8, 2018 and continued decreasing in size as of February 27, 2019.
 <br />
-* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
+* The <b>Left Parietal Lobe Focus</b> was stable according to the CT Scan on July 17, 2018, but in August 28 of the same year a vague enhancement was noted that could represent a capillary tube digitation or development of venous anomaly. This was resolved in October 8, 2018, and has only improved since then.
 <br />
-* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
+* The <b>Left Lower Lobe Nodule</b> was described as a thinwall cystic lesion in the CT Scan on July 17, 2018, and it was noted that it previously was a solid nodule. The PET Scan on November 28, 2018 showed no suspicious lesion, but the CT Scan on February 27, 2019 showed a 0.7 cm nodule, suspicious for metastasis.
 <br />
-* <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
+* The <b>Right Upper Lobe Nodule</b> had no measurements after August, 2018, but October's PET Scan described is as considerably smaller and only mildly avid and November's PET Scan labeled it as scarring without hypermetabolism.
+<br />
+* The <b>Left Upper Lobe Nodule</b> was described as a groundglass nodule that was previously solid according to the CT Scan on July 17, 2018. The PET Scan on November 28, 2018 showed no suspicious lesion, and the CT Scan on February 27, 2019 found it stable.
+<br />
+* The <b>Right Hilar Lymph Node</b> was said to have its avidity decreased or resolved on October's PET Scan, but November's PET Scan found a right prehilar consolidation with mild diffuse hypermetabolism.
+<br />
+* The <b>Hepatic Lesions</b> described in the CT Scan on February 27, 2019 had 4 individual lesion measurements (1.5 cm, 1.1 cm, 0.4 cm, and 0.9 cm). The MRI on March 4, 2019 stated that there are 5 hepatic masses with T2 signal iso-intensity to slight intermediate signal hyperintensity ranging in size from a few milimiters to 14 mm which do not completely enhance, suspicious for metastatic disease.
+<br />
+* The <b>Marrow Activity</b> anomaly refers to diffuse increased marrow activity presumably related to marrow stimulation, which was resolved by the PET Scan on November 28, 2018.
 </font>
 </i>
 </div>
