@@ -2186,15 +2186,15 @@ timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
@@ -2518,15 +2518,15 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
@@ -2862,15 +2862,15 @@ timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
@@ -3088,15 +3088,15 @@ timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
@@ -3480,15 +3480,15 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
@@ -3724,15 +3724,15 @@ timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
@@ -3858,25 +3858,25 @@ library(timevis)
 library(dplyr)
 
 L1J_timeline <- data.frame(
-  id = 1:4,
+  id = 1:5,
   content = c("1st",
-              rep("CT Scan", 1),
+              rep("CT Scan", 2),
               rep("CEA", 1),
               rep("CA 19-9", 1)),
   
   start = c("2018-08-13",
-            "2018-04-12",
+            "2018-04-12", "2018-07-09",
             "2018-08-25",
             "2018-08-25"),
   
   end   = c("2018-09-07",
-            NA,
+            NA, NA,
             NA,
             NA),
   
-  group = c(rep(NA, 1), rep("img", 1), rep("blood", 2)),
+  group = c(rep(NA, 1), rep("img", 2), rep("blood", 2)),
   
-  type = c(rep("background", 1), rep("point", 3))
+  type = c(rep("background", 1), rep("point", 4))
 )
 
 L1J_groups <- data.frame(
@@ -3906,15 +3906,15 @@ timevis(data = L1J_timeline, groups = L1J_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
-### Outliers and Comments{.tabset .tabset-fade .tabset-pills}
+### Additional Information{.tabset .tabset-fade .tabset-pills}
 
-#### Treatment Statistics
+#### Outliers in Treatment Statistics
 
 <br />
 
 *****
 
-#### Medical Results
+#### Complete Medical Imaging Results
 
 <br />
 
