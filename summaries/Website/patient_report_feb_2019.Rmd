@@ -2762,8 +2762,75 @@ timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
-```{r L2E_signif, out.width="100%", fig.height=8}
+```{r L2E_signif, out.width="100%", fig.height=5.7}
+library(timevis)
+library(dplyr)
 
+L2E_signif <- data.frame(
+  id = 1:44,
+  content = c("", "", "", "", "", "", #sessions
+              "111.2", "35.1", "2.9", "1.9", "0.4", "5.3", #polarity
+              "3.41", "2.99", #cea
+              "4.4 x 2.2  x 2.0 cm", "4.7 x 1.9 x 1.8 cm", "5 x 2 x 2 cm", #rthyroid
+              "2.0 x 1.0 cm", "2.0 x 0.9 cm", "1.6 x 1.0 cm", #rthyroidnod
+              "4.0 x 1.0 x 1.6 cm", "4.6 x 2.1 x 1.4 cm", "5.2 x 2 x 2 cm", #lthyroid
+              "0.9 cm", "1.0 cm", "0.8 x 0.4 cm", "0.5 x 0.4 cm", "0.5 x 0.43 cm", #lthyroidnod
+              "1.1 x 0.5 x 1.0 cm", "1.29 x 0.88 cm", "Not observed", "0.9 x 0.8 x 0.9 cm", "Benign", #rll
+              "0.6 cm - Seg.VI", "No hypermetabolism", "0.8 cm - Seg.VI", "0.4 cm - Seg.III", #liver
+              "Anomaly", "Benign anomaly", "No abnormality", #adrenal
+              "5.0 cm", "No abnormality", "4.8 cm", "Benign anomaly"), #prostate
+  
+  start = c("2018-08-21", "2018-09-24", "2018-10-22", "2018-12-03", "2019-01-08", "2019-03-04", #sessions
+            "2018-09-01", "2018-10-06", "2018-11-03", "2018-12-15", "2019-01-19", "2019-03-07", #polarity
+            "2018-08-25", "2018-10-02", #cea
+            rep("2016-10-15", 1), rep("2018-08-28", 1), rep("2018-11-29", 1), #rthyroid
+            rep("2016-10-15", 1), rep("2018-08-28", 1), rep("2018-11-29", 1), #rthyroidnod
+            rep("2016-10-15", 1), rep("2018-08-28", 1), rep("2018-11-29", 1), #lthyroid
+            rep("2016-10-15", 2), rep("2018-08-28", 1), rep("2018-11-29", 2), #lthyroidnod
+            "2018-04-19", "2018-04-26", "2018-08-31", rep("2018-11-29", 2), #rll
+            rep("2018-04-26", 2), rep("2018-11-29", 2), #liver
+            "2018-04-19", "2018-04-26", "2018-11-29", #adrenal
+            rep("2018-04-26", 2), rep("2018-11-29", 2)), #prostate
+
+  end   = c("2018-09-01", "2018-10-06", "2018-11-03", "2018-12-15", "2019-01-19", "2019-03-07", #sessions
+            rep(NA, 6), #polarity
+            rep(NA, 2), #cea
+            rep(NA, 3), #rthyroid
+            rep(NA, 3), #rthyroidnod
+            rep(NA, 3), #lthyroid
+            rep(NA, 5), #lthyroidnod
+            rep(NA, 5), #rll
+            rep(NA, 4), #liver
+            rep(NA, 3), #adrenal
+            rep(NA, 4)), #prostate
+  
+  group = c(rep(NA, 6), rep("polar", 6), rep("cea", 2), rep("rthyroid", 3), rep("rthyroidnod", 3), rep("lthyroid", 3), rep("lthyroidnod", 5), rep("rll", 5),
+            rep("liver", 4), rep("adrenal", 3), rep("prostate", 4)),
+  
+  subgroup = c(rep(NA, 6), #sessions
+               rep(NA, 6), #polarity
+               rep(NA, 2), #cea
+               rep("size", 3), #rthyroid
+               rep("size", 3), #rthyroidnod
+               rep("size", 3), #lthyroid
+               "size", "other", "other", rep(c("size", "other"), 1), #lthyroidnod
+               "size", "other", "size", rep(c("size", "other"), 1), #rll
+               rep(c("size", "other"), 2), #liver
+               "other", "size", "other", #adrenal
+               rep(c("size", "other"), 2)), #prostate
+  
+  type = c(rep("background", 6), rep("point", 38))
+)
+
+L2E_groups1 <- data.frame(
+  id = c("polar", "cea", "rthyroid", "rthyroidnod", "lthyroid", "lthyroidnod", "rll", "liver", "adrenal", "prostate"),
+  content = c("Polarity after Sessions", "Carcinoembryonic Antigen (ng/mL)", "Right Thyroid Lobe", "Right Thyroid Lobe Nodule", "Left Thyroid Lobe",
+              "Left Thyroid Lobe Nodules", "Pulmonary Right Lower Lobe Nodule", "Liver Simple Microcysts", "Left Adrenal Gland", "Prostate")
+)
+
+timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 0.2,
+        options = list(zoomable = TRUE, min = "2016-10-01", max = "2019-05-01", start = "2016-10-01", end  = "2019-05-01", zoomMin = 1080000000, stack = FALSE,
+                       showCurrentTime = FALSE))
 ```
 
 <br>
@@ -2772,13 +2839,23 @@ timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor =
 <font size="1">
 * <b>Carcinoembryonic Antigen</b> reference value is < 5 ng/mL.
 <br />
-* <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
+* The <b>Thyroid Lobe</b> measurements are longitudinal x transverse x anteroposterior axes.
 <br />
-* The <b>Soft Tissue Lymph Node</b> is located at the level of the left common vessels.
+* The <b>Thyroid Lobe Nodule</b> measurements are of its largest diameters.
 <br />
-* The <b>ST Piriformis Lymph Node</b> refers to a soft tissue lymph node located to the left iliacus muscle and abutting the piriformis.
+* The <b>Prostate</b> measurements are of its transverse axis.
 <br />
-* <b>SUV max</b> refers to Standardized Uptake Value, a measure that has been shown to be useful as an imaging biomarker for assessing response to therapy.
+* The <b>Right Thyroid Lobe Nodule</b> refers to a solid hypoechoic nodule located towards the inferior and medial margin of the right thyroid lobe. According to the Ultrasound on November 2018, this nodule and a smaller micronodule with a diameter of 0.4 cm appear to be benign in nature, and doppler analysis describes them as cold with no type of vasculature.
+<br />
+* The <b>Left Thyroid Lobe Nodules</b> refer to two hypoechoic nodules located towards the midlle region and lower pole of the left thyroid lobe. According to the Ultrasound on November 2018, these nodules and two microcysts have characteristics that are very compatible with a diffuse multinodular goiter, and doppler analysis describes them as cold with no type of vasculature.
+<br />
+* The <b>Pulmonary Right Lower Lobe Nodule</b> refers to a spiculated nodule located in the upper segment of the lower lobe of the right lung. According to the PET Scan on April 26, 2018, this nodule showed an increase in density compared to the CT Scan on April 19, 2018. On both the August and November X-Ray, no pulmonary nodules were observed, within the limits of the study, but on the November CT Scan the nodule was measured and tentatively related to a venous malformation or scarring (benign).
+<br />
+* The <b>Liver Simple Microcysts</b> showed no evidence of hypermetabolic focus that would suggest tumor activity on the April PET Scan. The Ultrasound, MRI, and CT Scan  performed on November 29, 2018, all had slightly different measurements for the multiple microcysts. Thus, after referencing a [journal article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6018306/) on cystic liver lesions, the CT Scan results were used for comparison, due to its higher sensitivity.
+<br />
+* The <b>Left Adrenal Gland</b> showed mild thickening without definite evidence of a mass on April's CT Scan, then on the same month's PET Scan it showed no sign of hypermetabolism, and by November 29, it was normal according to the CT Scan and MRI results.
+<br />
+* The <b>Prostate</b> showed no focal lesions or increased FDG uptake on April's PET Scan. November's ultrasound however noted a slight hypertrophy of the central zone which caused a compressive effect on the bladder trigone and posterior wall of the bladder. Apart from this benign prostatic hyperplasia, the results found no masses or neoplasias that would suggest malignancy.
 </font>
 </i>
 </div>
