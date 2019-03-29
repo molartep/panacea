@@ -3904,6 +3904,83 @@ timevis(data = L1J_timeline, groups = L1J_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 
+##### L1-J Significant Changes
+
+<font size="0.6">
+<ul>
+  <li>Use the mouse wheel to zoom in and out.</li>
+  <li>Click on the individual items to highlight their values.</li>
+  <li>Click and drag the timeline to scroll through the dates.</li>
+  <li>The light blue shaded areas represent treatment sessions.</li>
+</ul>
+</font>
+
+<br />
+
+```{r L1J_signif, out.width="100%", fig.height=3}
+library(timevis)
+library(dplyr)
+
+L1J_signif <- data.frame(
+  id = 1:13,
+  content = c("", #sessions
+              "187.3", "15.9", #polarity
+              "1.15 ng/mL", #cea
+              "2.56 U/ml", #ca199
+              "Metastastatic", "1.3 x 0.9 cm", "Metastastatic", "1.7 x 1.3 cm", #rul
+              "Distened Airways", "0.9 x 0.9 cm", "Metastastatic", "1.8 x 0.7 cm"), #lul
+  
+  start = c("2018-08-13", #sessions
+            "2018-08-13", "2018-09-07", #polarity
+            "2018-08-25", #cea
+            "2018-08-25", #ca199
+            rep("2018-04-12", 2), rep("2018-07-09", 2), #rul
+            rep("2018-04-12", 2), rep("2018-07-09", 2)), #lul
+  
+  end   = c("2018-09-07", #sessions
+            rep(NA, 2), #polarity
+            rep(NA, 1), #cea
+            rep(NA, 1), #ca199
+            rep(NA, 4), #rul
+            rep(NA, 4)), #lul
+  
+  group = c(rep(NA, 1), rep("polar", 2), rep("cea", 1), rep("ca199", 1), rep("rul", 4), rep("lul", 4)),
+  
+  subgroup = c(rep(NA, 1), #sessions
+               rep(NA, 2), #polarity
+               rep(NA, 1), #cea
+               rep(NA, 1), #ca199
+               rep(c("size", "other"), 2), #rul
+               rep(c("size", "other"), 2)), #lul
+
+  type = c(rep("background", 1), rep("point", 12))
+)
+
+L1J_groups1 <- data.frame(
+  id = c("polar", "cea", "ca199", "rul", "lul"),
+  content = c("Polarity after Sessions", "Carcinoembryonic Antigen", "CA 19-9", "Pulmonary Right Upper Lobe Nodule", "Pulmonary Left Upper Lobe Nodule")
+)
+
+timevis(data = L1J_signif, groups = L1J_groups1, showZoom = FALSE, zoomFactor = 0.2,
+        options = list(zoomable = TRUE, min = "2018-04-01", max = Sys.Date(), start = "2018-04-01", end  = Sys.Date(), zoomMin = 1080000000, stack = FALSE,
+                       showCurrentTime = FALSE))
+```
+
+<br>
+<div align="right">
+<i>
+<font size="1">
+* <b>CAE</b> reference range is < 5 ng/mL.
+<br />
+* <b>CA 19-9</b> reference range is < 37 U/mL.
+<br />
+* <b>August 28, 2018:</b> The patient states that he is asymptomatic. He then explains that he only feels something (doesn’t know how to explain it clearly) if he digs into the right side of his chest with his finger, and that if he breathes deeply, he feels a certain sense of discomfort in the right side of his chest.
+<br />
+* <b>August 29, 2018:</b> After finishing the electrostatic-fields therapy, the patient states that he no longer feels any difficulty while breathing or any sensation when touching the right part of his chest. The patient also states that after the treatment he has felt a surge in energy levels (he feels more active and exercises more).
+</font>
+</i>
+</div>
+
 *****
 
 ### Additional Information{.tabset .tabset-fade .tabset-pills}
