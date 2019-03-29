@@ -1934,8 +1934,8 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Pending       | Pending     
-Pending       | Pending     
+Pending       | Colorectal Cancer     
+Pending       | Pulmonary Metastasis     
 
 *****
 
@@ -1945,8 +1945,8 @@ Pending       | Pending
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Pending       | Pending       | Pending     
-Pending       | Pending       | Pending     
+Pending       | Pending       | Resection     
+Pending       | Pending       | Chemoradiation Therapy     
 Pending       | Pending       | Pending     
 Pending       | Pending       | Pending     
 
@@ -2908,7 +2908,7 @@ __Place of Residence:__ Panama
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Pending       | Pending     
+Pending       | Benign Thyroid Lesion     
 Pending       | Pending     
 
 *****
@@ -3134,8 +3134,9 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-2016          | Right Upper Lobe Adenocarcinoma     
-Pending       | Pending     
+2016          | Stage IV Non-Small Cell Lung Cancer EGFR Exon 20 Mutation     
+2016          | Left Adrenal Gland Metastasis     
+2018          | Brain Metastasis     
 
 *****
 
@@ -3143,12 +3144,21 @@ Pending       | Pending
 
 <br />
 
-Start Date    | End Date      | Treatment
-:-----------: | :-----------: | :-----------:
-Pending       | Pending       | Limited Resection of the Chest Lesion     
-Pending       | May 2018      | Radiation Therapy of Right Upper Lobe Lesion     
-Pending       | Pending       | Radiation Therapy of Left Adrenal Gland     
-Pending       | June 2018     | Gamma Knife Therapy     
+Start Date    | End Date         | Treatment
+:-----------: | :-----------:    | :-----------:
+Summer 2016   | Summer 2016      | 6 Doses of Cisplatin and Alimta     
+Pending       | Pending          | Alimta and Afatinib Maintenance     
+Pending       | Pending          | Phase 1 Trial with 80 mg Dose of Takeda 32788     
+August 2017   | Pending          | Trial with 16 mg Daily Dose of TKI Poziotinib
+May 2018      | June 2018        | 3 Weeks of Radiation of the Right Upper Lobe Lesion 
+May 2018      | June 2018        | 2 Weeks of Radiation of the Left Adrenal Gland Tumor     
+Pending       | Pending          | Limited Resection of the Chest Lesion     
+June 2018     | June 2018        | Gamma Knife Therapy
+June 10, 2018 | October 14, 2018 | 6 - IV Doses every 3 Weeks of Carboplatin  
+June 10, 2018 | October 14, 2018 | 6 - IV Doses every 3 Weeks of Taxol  
+June 10, 2018 | Pending          | 6 - IV Doses every 3 Weeks of Avastin  
+June 10, 2018 | Pending          | 6 - IV Doses every 3 Weeks of Tecentriq  
+June 2018     | June 2018        | Gamma Knife Therapy 
 
 *****
 
@@ -3526,8 +3536,8 @@ __Place of Residence:__ United States of America
 
 Date          | Diagnosis
 :-----------: | :-----------:
-Pending       | Pending     
-Pending       | Pending     
+Pending       | Gastric Adenocarcinoma Arising from a Duplication Cyst     
+Pending       | Pelvic Cyst     
 
 *****
 
@@ -3537,7 +3547,7 @@ Pending       | Pending
 
 Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
-Pending       | Pending       | Pending     
+September 2012| September 2012| Resection and Partial Gastrectomy     
 Pending       | Pending       | Pending     
 Pending       | Pending       | Pending     
 Pending       | Pending       | Pending     
@@ -3769,9 +3779,8 @@ __Place of Residence:__ United States of America
 <br />
 
 Date          | Diagnosis
-:-----------: | :-----------:
-Pending       | Pending     
-Pending       | Pending     
+:-----------: | :----------------------------------------------------------------------:
+Pending       | Metastatic Papillary Type II Renal Cell Carcinoma of the Left Kidney     
 
 *****
 
