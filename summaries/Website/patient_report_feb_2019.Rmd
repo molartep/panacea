@@ -2186,27 +2186,45 @@ timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Additional Information{.tabset .tabset-fade .tabset-pills}
-
-#### Outliers in Treatment Statistics
-
-<br />
-
-* C1-J's fourth treatment session hours were inconsistent and possibly inaccurate due to the uncertainty of the effectiveness of the smaller portable device prototype.
-
-* C1-J's fifth and sixth treatment sessions were occasionally interrupted by an increased number of bathroom breaks and medical complications (including anxiety attacks and bleeding from a small cut in the left leg).
-
-*****
-
 #### Complete Medical Imaging Results
 
 <br />
+<div>
+<font size= "1.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1BBK7SVux7efDi8dDAOpUXCLPDlxIHJ3kVIymf3TK7Ek/edit?usp=sharing).
 
 <br>
 
 All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
+### Additional Information{.tabset .tabset-fade .tabset-pills}
+
+#### Outliers in Treatment Statistics
+
+<div>
+<font size= "1.5">
+<br />
+
+* C1-J's fourth treatment session hours were inconsistent and possibly inaccurate due to the uncertainty of the effectiveness of the smaller portable device prototype.
+
+* C1-J's fifth and sixth treatment sessions were occasionally interrupted by an increased number of bathroom breaks and medical complications (including anxiety attacks and bleeding from a small cut in the left leg).
+
+<br>
+</font>
+</div>
+
+*****
+
+#### Electrode Placement
+
+![C1-J Electrode Placement](images/male_anatomy.jpg)
 
 *****
 
@@ -2528,11 +2546,31 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
+#### Complete Medical Imaging Results
+
+<br />
+<div>
+<font size= "1.5">
+
+For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1upbbCU90POa5JrrjzdgzpqO66mETNGnzH8I_jRCWq9A/edit?usp=sharing).
+
+<br>
+
+All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
 ### Additional Information{.tabset .tabset-fade .tabset-pills}
 
 #### Outliers in Treatment Statistics
 
 <br />
+<div>
+<font size= "1.5">
 
 * B1-S's third treatment session was extremely short compared to the previous two, and thus had a lack of polarity measurements to accurately monitor the response of the patient.
 
@@ -2540,17 +2578,13 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
 
 * B1-S had been diagnosed with an aggressive recurrence of inflammatory breast cancer before her third treatment session.
 
+<br>
+</font>
+</div>
+
 *****
 
-#### Complete Medical Imaging Results
-
-<br />
-
-For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1upbbCU90POa5JrrjzdgzpqO66mETNGnzH8I_jRCWq9A/edit?usp=sharing).
-
-<br>
-
-All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+#### Electrode Placement
 
 *****
 
@@ -2884,11 +2918,31 @@ timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
+#### Complete Medical Imaging Results
+
+<br />
+<div>
+<font size= "1.5">
+
+For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1LkH110HYONRUhDW3eTolswifr5HN6nzLMz7KQHNJyV0/edit?usp=sharing).
+
+<br>
+
+All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
 ### Additional Information{.tabset .tabset-fade .tabset-pills}
 
 #### Outliers in Treatment Statistics
 
 <br />
+<div>
+<font size= "1.5">
 
 * L2-E's third session saw a drastic increase in the use of the Tumor Treating Fields (TTF) Device, as well as an increase in overall treatment hours.
 
@@ -2898,17 +2952,13 @@ timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 
 
 * L2-E's fifth treatment session hours increased compared to previous sessions, but were possibly inaccurate due to the uncertainty of the effectiveness of the smaller portable device prototype.
 
+<br>
+</font>
+</div>
+
 *****
 
-#### Complete Medical Imaging Results
-
-<br />
-
-For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1LkH110HYONRUhDW3eTolswifr5HN6nzLMz7KQHNJyV0/edit?usp=sharing).
-
-<br>
-
-All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+#### Electrode Placement
 
 *****
 
@@ -3124,23 +3174,39 @@ timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
+#### Complete Medical Imaging Results
+
+<br />
+<div>
+<font size= "1.5">
+
+All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
 ### Additional Information{.tabset .tabset-fade .tabset-pills}
 
 #### Outliers in Treatment Statistics
 
 <br />
+<div>
+<font size= "1.5">
 
 * H1-A's fourth treatment session had very few polarity measurements and inconsistent number of hours per day. 
 
 * According to the analysis of treatment-response data, H1A probably crossed a possible "effectiveness threshold" on her second, fourth, and fifth sessions. The relation between treatment hours and polarity seems to transition from linear to exponential decay after polarity is less than 7. However, a potential confounding variable could be the significance of short treatments (18 hours in 5 days and 16 hours in 4 days).
 
+<br>
+</font>
+</div>
+
 *****
 
-#### Complete Medical Imaging Results
-
-<br />
-
-All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+#### Electrode Placement
 
 *****
 
@@ -3532,27 +3598,43 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Additional Information{.tabset .tabset-fade .tabset-pills}
-
-#### Outliers in Treatment Statistics
-
-<br />
-
-* L3-K's fourth treatment session was very short (4 days, 31.5 hours) and the few polarity measurements were inconsistent (some were after treatment and others mid-treatment).
-
-* L3-K's fourth treatment session was constantly interrupted by an increased number of bathroom breaks.
-
-*****
-
 #### Complete Medical Imaging Results
 
 <br />
+<div>
+<font size= "1.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1zHLbsnk78Lv4K7ndgFIV5qRjGZRrGaVWhwUE0yI4G78/edit?usp=sharing).
 
 <br>
 
 All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
+### Additional Information{.tabset .tabset-fade .tabset-pills}
+
+#### Outliers in Treatment Statistics
+
+<br />
+<div>
+<font size= "1.5">
+
+* L3-K's fourth treatment session was very short (4 days, 31.5 hours) and the few polarity measurements were inconsistent (some were after treatment and others mid-treatment).
+
+* L3-K's fourth treatment session was constantly interrupted by an increased number of bathroom breaks.
+
+<br>
+</font>
+</div>
+
+*****
+
+#### Electrode Placement
 
 *****
 
@@ -3786,21 +3868,37 @@ timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor =
 
 *****
 
+#### Complete Medical Imaging Results
+
+<br />
+<div>
+<font size= "1.5">
+
+All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
 ### Additional Information{.tabset .tabset-fade .tabset-pills}
 
 #### Outliers in Treatment Statistics
 
 <br />
+<div>
+<font size= "1.5">
 
 * G1-D's treatment sessions were all very short (less than 20 hours) and the few polarity measurements are all within the 0-10 range, which might not truly represent the totality of the treatment effect.
 
+<br>
+</font>
+</div>
+
 *****
 
-#### Complete Medical Imaging Results
-
-<br />
-
-All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+#### Electrode Placement
 
 *****
 
@@ -4048,25 +4146,41 @@ timevis(data = L1J_signif, groups = L1J_groups1, showZoom = FALSE, zoomFactor = 
 
 *****
 
-### Additional Information{.tabset .tabset-fade .tabset-pills}
-
-#### Outliers in Treatment Statistics
-
-<br />
-
-* L1-J had only one treatment session, which results in a limited sample of data that is probably not representative of the treatment effect. However, this unique treatment session was exemplary regarding total duration, consistent hours per day, and regular polarity measurements. 
-
-*****
-
 #### Complete Medical Imaging Results
 
 <br />
+<div>
+<font size= "1.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/133LdxhdJiFiF8lWkp7CQeCUIFngbFXye0HY5lf20sus/edit?usp=sharing).
 
 <br>
 
 All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
+
+<br>
+</font>
+</div>
+
+*****
+
+### Additional Information{.tabset .tabset-fade .tabset-pills}
+
+#### Outliers in Treatment Statistics
+
+<br />
+<div>
+<font size= "1.5">
+
+* L1-J had only one treatment session, which results in a limited sample of data that is probably not representative of the treatment effect. However, this unique treatment session was exemplary regarding total duration, consistent hours per day, and regular polarity measurements. 
+
+<br>
+</font>
+</div>
+
+*****
+
+#### Electrode Placement
 
 *****
 
