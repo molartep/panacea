@@ -2224,7 +2224,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 #### Electrode Placement
 
-![C1-J Electrode Placement](images/male_anatomy.jpg)
+![C1-J Electrode Placement](images/C1-J.png)
 
 *****
 
@@ -3635,6 +3635,8 @@ All relevant medical files can be found in the following [Google Drive folder](h
 *****
 
 #### Electrode Placement
+
+![L3-K Electrode Placement](images/L3-K.png)
 
 *****
 
