@@ -1779,14 +1779,6 @@ L1J_df_stats1 <- data.frame(Interval = c("1st"),
 
 ```
 
-# Abstract
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-________________________________________________________________________________________________________________________________________________________________
-
 # Treatments{.tabset .tabset-fade}
 
 ## Cellular Repolarization{.tabset .tabset-fade .tabset-pills}
@@ -4218,7 +4210,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
   * The __p-values__ refer to the [asymptotic significance of the R estimates](https://en.wikipedia.org/wiki/P-value#Definition_and_interpretation); for each specific linear model, they describe the probability that the correlation estimate would be greater than or equal to the actual correlation, assuming that the true correlation is equal to 0 (true null hypothesis). The p-values were calculated using a t-distribution with n – 2 degrees of freedom, and a significance level of 0.05 was used. Thus, a sample with a p-value less than 0.05 provides reasonable evidence to support the alternative hypothesis (true correlation is not equal to 0). 
 
-  * The __CI bounds__ refer to a 95% asymptotic confidence interval for the correlation coefficient (R) estimates based on [Fisher's Z transform](https://en.wikipedia.org/wiki/Fisher_transformation), on cases of at least 4 complete pairs of observations (polarity value and therapy hours).
+  * The __CI bounds__ refer to a 95% asymptotic compatibility interval for the correlation coefficient (R) estimates based on [Fisher's Z transform](https://en.wikipedia.org/wiki/Fisher_transformation), on cases of at least 4 complete pairs of observations (polarity value and therapy hours).
 
   * The __adjusted R-squared__ values were calculated using the [unbiased correlation coefficients and number of observations in each sample](https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf#page=227). They represent the percentage of variation explained by only the independent variable (treatment hours) that actually affect the dependent variable (polarity). Thus, this value increases only if a new term improves the model more than would be expected by chance, and decreases when a predictor improves the model by less than expected by chance.
 
@@ -4230,24 +4222,17 @@ ________________________________________________________________________________
 
 # General Conclusions
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ________________________________________________________________________________________________________________________________________________________________
 
 # Study Limitations
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ________________________________________________________________________________________________________________________________________________________________
 # About Panacea
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ________________________________________________________________________________________________________________________________________________________________
 
