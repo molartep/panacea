@@ -1798,7 +1798,9 @@ The resting membrane potential across the plasma membrane of normal human cells 
 The plasma membrane, like all biological membranes, acts like a capacitor; a device consisting of a thin sheet of nonconducting material (the hydrophobic interior) surrounded on both sides by electrically conducting material (the polar head groups and the ions in the surrounding aqueous medium) that can store positive charges on one side and negative charges on the other. The variation in membrane potentials is what allows for cellular and subcellular communication.  
 <br />
 
-Cancer cells and tumors have higher percentages of water and are highly permeable, which results in increased conductivity and decreased membrane potential. Since their membrane potential drops significantly, these cells lose their ability to communicate and essentially enter a _panic mode_, reproducing themselves without control. Additionally, these cells lose the ability to exchange ions, causing them to reproduce in an anaerobic state, which then leads to the acidification of their environment.  
+Cancer cells and tumors have higher percentages of water and are highly permeable, which results in increased conductivity and decreased membrane potential. Since their membrane potential drops significantly, these cells lose their ability to communicate and essentially enter a _panic mode_, reproducing themselves without control. Additionally, these cells lose the ability to exchange ions, causing them to reproduce in an anaerobic state, which then leads to the acidification of their environment.
+
+<br />
 
 ________________________________________________________________________________________________________________________________________________________________
 
@@ -1811,6 +1813,8 @@ The repolarization device sends orthogonal electromagnetic waves through the bod
 <br />
 
 Affected cells undergo metabolic changes in their cellular membranes that induce them to become apoptotic, regaining the memory to die. Additionally, specific proteins on the cell membranes of cancer cells, which are involved in uncontrollable cell reproduction, are also targeted by the treatment, thereby preventing the accelerated cellular division.
+
+<br />
 
 ________________________________________________________________________________________________________________________________________________________________
 
@@ -1826,23 +1830,56 @@ ________________________________________________________________________________
 
 Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
 
-________________________________________________________________________________________________________________________________________________________________
-
-### Limitations & Recommendations
-
 <br />
 
 ________________________________________________________________________________________________________________________________________________________________
 
-## Tumor Treating Fields (TTF){.tabset .tabset-fade .tabset-pills}
+## Tumor Treating Fields (TTFs){.tabset .tabset-fade .tabset-pills}
 
 ### Background
+
+<br />
+
+Tumor Treating Fields (TTFs) treatment is a type of electromagnetic field treatment that uses low-intensity electrical fields delivered through noninvasive transducer arrays that are placed locoregionally around the anatomic region of the tumor, in order to suppress cancer cell proliferation in the body. The effectiveness of TTFs is considered to be similar to that of chemotherapy. However, chemotherapy has various side effects that affect normal cells, and is not recommended to be used for long term treatment due to drug resistance and accumulation of toxicity. On the other hand, TTFs is considered a safe treatment with no association to drug resistance or accumulation of toxicity. Also, it is possible to use TTFs with other conventional treatments such as chemotherapy, and there is even thought to be synergistic effects using TTFs with immunotherapy for specific types of cancer.
+
+<br />
+
+TTFs' effects on dividing cells result from the multitude of charged macromolecules and organelles responsible for key processes in the mitotic process. Structural change or dislocation of those cellular components may alter their physiologic function, and ultimately disrupt normal mitosis. The effects of
+TTFs on various cellular processes can be explained by two fundamental physical principles: dipole alignment and dielectrophoresis.
+
+<br />
+
+* A dipole refers to the separation of positive and negative charges within a molecule. Under a uniform alternating electric field, any charged molecule will oscillate in an attempt to align itself appropriately parallel to the direction of the electric force vector it is exposed to. Key macromolecules and organelles responsible for mitosis and cytokinesis are highly polar, and their random movement, which is critical for their function, can be disrupted by the application of localized electric fields.
+
+<br />
+
+* Dielectrophoresis refers to the phenomenom where, in a nonuniform electric field, a force is exerted on polar molecules, which leads them to migrate toward a region of high-field density.
 
 <br />
 
 ________________________________________________________________________________________________________________________________________________________________
 
 ### How it Works
+
+<br />
+
+TTFs are nonuniformly distributed within the treated region based on multiple parameters, which include the geometry of the treated organ, the distance between transducer arrays applied to the patient's skin, and the tissue's dielectric properties. The fields do not attenuate in correlation to the distance from the array, and may therefore be used for the treatment of deeply located tumors. As electric fields do not have a half-life time, TTFs are continuously delivered during the course of treatment.
+
+<br />
+
+The electromagnetic fields affect cells at different stages of mitosis differently:
+
+<br />
+
+* In cells at an early stage of mitosis (before the mitotic spindle is formed), electromagnetic fields impede the polymerization of microtubules by eliminating the normal randomized movement of the tubulin subunits within the cytoplasm during metaphase. This, in turn, leads to metaphase arrest, prolonged mitosis, and ultimately cell death.
+
+<br />
+
+* Alternatively, in the cells where the spindle formation has completed, the electric field distribution becomes uneven and a high-intensity field is formed at the narrow furrow region because of the dividing cell's hour-glass shape during metaphase. The Septin complex, which is responsible for the physiologic localization of contractile proteins leading to the normal division of the cell into two daughter cells, is dislocated as a result of TTF-exerted dielectrophoresis. This effect, which happens towards the end of telophase, can lead to violent cytoplasmic blebbing and cellular death, or to abnormal chromosomal segregation leading to aneuploidy in daughter cells, and a subsequent decrease in clonogenic potential. Septin has a greater dipole moment than tubulin (2711 Debyes vs. 1660 Debyes). However, due to the faster dynamics of assembly/disassembly of tubulin, the effects of TTFs on microtubules might be more significant.
+
+<br />
+
+The above effects of TTFs ultimately lead to caspase-dependent or independent apoptosis, and also increase the cellular expression of immunogenic cell death markers.
 
 <br />
 
@@ -1858,41 +1895,11 @@ ________________________________________________________________________________
 
 <br />
 
-________________________________________________________________________________________________________________________________________________________________
-
-### Limitations & Recommendations
+To date, no TTF-related adverse events have been reported as a result of genetic alterations or other mitotic effects in normally dividing tissues. Further experiments would clarify these effects in greater detail, both in healthy and pathologic tissues.
 
 <br />
 
-________________________________________________________________________________________________________________________________________________________________
-
-## Vascular Rehabilitation{.tabset .tabset-fade .tabset-pills}
-
-### Background
-
-<br />
-
-________________________________________________________________________________________________________________________________________________________________
-
-### How it Works
-
-<br />
-
-________________________________________________________________________________________________________________________________________________________________
-
-### Potential Benefits
-
-<br />
-
-________________________________________________________________________________________________________________________________________________________________
-
-### Adverse-Effects
-
-<br />
-
-________________________________________________________________________________________________________________________________________________________________
-
-### Limitations & Recommendations
+Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
 
 <br />
 
@@ -2936,7 +2943,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 <div>
 <font size= "1.5">
 
-* L2-E's third session saw a drastic increase in the use of the Tumor Treating Fields (TTF) Device, as well as an increase in overall treatment hours.
+* L2-E's third session saw a drastic increase in the use of the Tumor Treating Fields (TTFs) Device, as well as an increase in overall treatment hours.
 
 * According to the analysis of treatment-response data, L2E probably crossed a possible "effectiveness threshold" on his third session. The relation between treatment hours and polarity seems to transition from linear to exponential decay after polarity is less than 8.
 
@@ -4227,12 +4234,43 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________________________________
 
 # Study Limitations
+  
+  <h4>Statistic Limitations:</h4> 
+  * Inaccuracies due to human error in data collection and analysis.
+  * Inaccuracies and inconsistencies in medical test results.
+  * Lack of consistent polarity measurements affects the accuracy and significance of statistical analysis.
+  * Extrapolation between patients and to larger populations is not recommended due to abundant individual distinctions between patients.
+  
+  <br>
+  
+  <h4>Study design flaws:</h4>
+  * Lack of a control group to properly compare and measure progress against a baseline (completely healthy patient).
+  * Irregular monitoring (polarity measurements and medical test results) of each patient.
+  * Small patient sample size without randomized selection.
+  * Treatment session hours and break irregularity.
 
+________________________________________________________________________________________________________________________________________________________________
+# About Velvack and Panacea
 
 
 ________________________________________________________________________________________________________________________________________________________________
-# About Panacea
 
+# References
+
+[Tumor Treating Fields (TTFs)](http://clincancerres.aacrjournals.org/content/clincanres/24/2/266.full.pdf)
+
+[De-identification Procedure - HIPAA](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#protected)
+
+[Adhesive Electrode Precautions - ITO](http://www.itocoltd.com/notice/adhesive-electrode.html)
+
+[SUV max - NIH](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026294/)
+
+[Leukocytes - NCI](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/leukocyte)
+
+[Lymph Node Measurement Procedure - University Hospital of Leipzig](http://ceur-ws.org/Vol-1476/Proceedings_CURAC_2011_Paper_10.pdf)
+
+[Prostate Measurement Procedure - NIH](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2842183/)
+
+[Multinodular Goiter - Columbia University](http://columbiasurgery.org/conditions-and-treatments/multinodular-goiter)
 
 ________________________________________________________________________________________________________________________________________________________________
-
