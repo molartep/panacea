@@ -12,12 +12,14 @@ L3_K_second_hours <- L3_K_hours[9:20, c(1,2,6)]
 L3_K_third_hours <- L3_K_hours[22:28, c(1,2,6)]
 L3_K_fourth_hours <- L3_K_hours[30:34, c(1,2,6)]
 L3_K_fifth_hours <- L3_K_hours[36:42, c(1,2,6)]
+L3_K_sixth_hours <- L3_K_hours[44:50, c(1,2,6)]
 
 L3_K_first_hours[,3] <- cumsum(L3_K_first_hours[,3])
 L3_K_second_hours[,3] <- cumsum(L3_K_second_hours[,3])
 L3_K_third_hours[,3] <- cumsum(L3_K_third_hours[,3])
 L3_K_fourth_hours[,3] <- cumsum(L3_K_fourth_hours[,3])
 L3_K_fifth_hours[,3] <- cumsum(L3_K_fifth_hours[,3])
+L3_K_sixth_hours[,3] <- cumsum(L3_K_sixth_hours[,3])
 
 corr.func <- function(data, method = "pearson"){
   
@@ -33,7 +35,7 @@ model.func <- function(data){
   
 }
 
-L3_K_all <- list(L3_K_first_hours, L3_K_second_hours, L3_K_third_hours, L3_K_fourth_hours, L3_K_fifth_hours)
+L3_K_all <- list(L3_K_first_hours, L3_K_second_hours, L3_K_third_hours, L3_K_fourth_hours, L3_K_fifth_hours, L3_K_sixth_hours)
 
 L3_K_all_stat <- lapply(X = L3_K_all, FUN = corr.func)
 L3_K_all_stat_model <- lapply(X = L3_K_all, FUN = model.func)
@@ -48,13 +50,13 @@ L3_K_adj_r_sq <- unlist(lapply(X = c(1:length(L3_K_all)), FUN = function(x){L3_K
 
 
 
-L3K_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+L3K_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            R = signif(L3_K_estims, 4),
                            Pval = signif(L3_K_pvalues, 4),
                            Lower = signif(L3_K_lower, 4),
                            Upper = signif(L3_K_upper, 4))
 
-L3K_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+L3K_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            Adj_R_sq = signif(L3_K_adj_r_sq, 4),
                            RSE = signif(L3_K_RSE, 4),
                            DFs = signif(L3_K_dfs, 4))

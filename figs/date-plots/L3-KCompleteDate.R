@@ -15,14 +15,16 @@ second_L3_K <- L3_K_hours[9:20,]
 third_L3_K <- L3_K_hours[22:28,]
 fourth_L3_K <- L3_K_hours[30:34,]
 fifth_L3_K <- L3_K_hours[36:42,]
+sixth_L3_K <- L3_K_hours[44:50,]
 
 first_L3_K_dates <- L3_K_dates[2:7,]
 second_L3_K_dates <- L3_K_dates[38:48,]
 third_L3_K_dates <- L3_K_dates[79:84,]
 fourth_L3_K_dates <- L3_K_dates[107:110,]
 fifth_L3_K_dates <- L3_K_dates[135:140,]
+sixth_L3_K_dates <- L3_K_dates[162:168,]
 
-lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-05-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 L3K_dates <- L3_K_dates[,c(1,3)]
 
@@ -65,9 +67,16 @@ L3K_segment4 <- list(x1 = fourth_L3_K_dates$date[which.min(fourth_L3_K_dates$p_l
 L3K_lab4x <- as.POSIXct((as.numeric(L3K_segment4$x1) + as.numeric(L3K_segment4$x2)) / 2, origin = '1970-01-01')
 L3K_lab4y <- (L3K_segment4$y1 + L3K_segment4$y2)/2
 
+L3K_segment5 <- list(x1 = fifth_L3_K_dates$date[which.min(fifth_L3_K_dates$p_level)], 
+                     y1 = fifth_L3_K_dates$p_level[which.min(fifth_L3_K_dates$p_level)],
+                     x2 = sixth_L3_K_dates$date[which.max(sixth_L3_K_dates$p_level)],
+                     y2 = sixth_L3_K_dates$p_level[which.max(sixth_L3_K_dates$p_level)]) 
+L3K_lab5x <- as.POSIXct((as.numeric(L3K_segment5$x1) + as.numeric(L3K_segment5$x2)) / 2, origin = '1970-01-01')
+L3K_lab5y <- (L3K_segment5$y1 + L3K_segment5$y2)/2
+
 L3K_first_day <- as.POSIXct(first_L3_K$Day[which(first_L3_K$`Total therapy duration (Hrs)`>0)][1],
                             origin = '1970-01-01')
-L3K_last_day <- as.POSIXct(tail(fifth_L3_K$Day[which(fifth_L3_K$`Total therapy duration (Hrs)`>0)],1),
+L3K_last_day <- as.POSIXct(tail(sixth_L3_K$Day[which(sixth_L3_K$`Total therapy duration (Hrs)`>0)],1),
                            origin = '1970-01-01')
 
 L3K_label_first <- L3K_first_day %>% format(., "%B %d %Y")
@@ -75,7 +84,7 @@ L3K_label_last <- L3K_last_day %>% format(., "%B %d %Y")
 
 L3K_final_date_graph <- L3K_dategraph + geom_text(aes(x = L3K_first_day, y = first_L3_K$`Polarity level`[which(first_L3_K$`Polarity level`>0)][1],
                                                       label = L3K_label_first), hjust = -0.1, vjust = 0, size = 3.5) +
-  geom_text(aes(x = L3K_last_day, y = tail(fifth_L3_K$`Polarity level`[which(fifth_L3_K$`Polarity level`>0)],1),
+  geom_text(aes(x = L3K_last_day, y = tail(sixth_L3_K$`Polarity level`[which(sixth_L3_K$`Polarity level`>0)],1),
                 label = L3K_label_last), hjust = -0.1, vjust = 0, size = 3.5) +
   geom_segment(aes(x = L3K_segment1$x1, y = L3K_segment1$y1,
                    xend = L3K_segment1$x2, yend = L3K_segment1$y2, color = "30"),
@@ -96,6 +105,11 @@ L3K_final_date_graph <- L3K_dategraph + geom_text(aes(x = L3K_first_day, y = fir
                  xend = L3K_segment4$x2, yend = L3K_segment4$y2, color = "25"),
              linetype = "dashed") +
   geom_text(aes(x = L3K_lab4x, y = L3K_lab4y + 5, color = "25", label = "+ 43.6",
+                angle = 45)) +
+  geom_segment(aes(x = L3K_segment5$x1, y = L3K_segment5$y1,
+                 xend = L3K_segment5$x2, yend = L3K_segment5$y2, color = "23"),
+             linetype = "dashed") +
+  geom_text(aes(x = L3K_lab5x, y = L3K_lab5y + 5, color = "23", label = "+ 41.8",
                 angle = 45)) + labs(color = "Days Without\nTreatment")
 
 L3K_final_date_graph
