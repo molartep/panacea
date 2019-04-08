@@ -1822,13 +1822,41 @@ ________________________________________________________________________________
 
 <br />
 
+Cellular Repolarization focuses on the primary pathology and reducing uncontrolled cell proliferation, but according to patients' testimonies it also has various additional benefits:
+
+<br />
+
+* Reduced fatigue and increased levels of energy throughout the day.
+
+<br />
+
+* Neuropathic and muscular pain relief.
+
+<br />
+
+* Increased apettite.
+
+<br />
+
+* Reduced skin redness and return to normal pigmentation.
+
+<br />
+
+* Reduction of other side-effects caused by alternative, simultaneous treatments like radiation or chemotherapy.
+
+<br />
+
 ________________________________________________________________________________________________________________________________________________________________
 
 ### Adverse-Effects
 
 <br />
 
-Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
+* Dermatitis at the site of electrodes, which is promptly treated by isolation of affected skin surfaces from adhesives or pressure.
+
+<br />
+
+* Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
 
 <br />
 
@@ -1853,7 +1881,7 @@ TTFs on various cellular processes can be explained by two fundamental physical 
 
 <br />
 
-* Dielectrophoresis refers to the phenomenom where, in a nonuniform electric field, a force is exerted on polar molecules, which leads them to migrate toward a region of high-field density.
+* Dielectrophoresis refers to the phenomenon where, in a nonuniform electric field, a force is exerted on polar molecules, which leads them to migrate toward a region of high-field density.
 
 <br />
 
@@ -1889,17 +1917,21 @@ ________________________________________________________________________________
 
 <br />
 
+Tumor Treating Fields focus on reducing the size and activity of the primary tumor while reducing uncontrolled cell proliferation.
+
+<br />
+
 ________________________________________________________________________________________________________________________________________________________________
 
 ### Adverse-Effects
 
 <br />
 
-To date, no TTF-related adverse events have been reported as a result of genetic alterations or other mitotic effects in normally dividing tissues. Further experiments would clarify these effects in greater detail, both in healthy and pathologic tissues.
+* To date, no TTF-related adverse events have been reported as a result of genetic alterations or other mitotic effects in normally dividing tissues. Further experiments would clarify these effects in greater detail, both in healthy and pathologic tissues.
 
 <br />
 
-Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
+* Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
 
 <br />
 
@@ -1946,7 +1978,7 @@ Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
 Pending       | Pending       | Resection     
 Pending       | Pending       | Chemoradiation Therapy     
-Pending       | Pending       | Pending     
+April 9, 2019 | April 9, 2019 | Ureteric Stent     
 Pending       | Pending       | Pending     
 
 *****
@@ -2272,7 +2304,7 @@ Start Date    | End Date      | Treatment
 :-----------: | :-----------: | :-----------:
 Pending       | Pending       | Left-Breast Chemotherapy
 Pending       | Pending       | Right-Breast Chemotherapy
-Pending       | Pending       | Left Masectomy
+Pending       | Pending       | Left Mastectomy
 Pending       | Pending       | Left Axillary Dissection
 Pending       | Pending       | Hormonal Therapy
 
@@ -2900,9 +2932,9 @@ timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 
 <br />
 * The <b>Prostate</b> measurements are of its transverse axis.
 <br />
-* The <b>Right Thyroid Lobe Nodule</b> refers to a solid hypoechoic nodule located towards the inferior and medial margin of the right thyroid lobe. According to the Ultrasound on November 2018, this nodule and a smaller micronodule with a diameter of 0.4 cm appear to be benign in nature, and doppler analysis describes them as cold with no type of vasculature.
+* The <b>Right Thyroid Lobe Nodule</b> refers to a solid hypoechoic nodule located towards the inferior and medial margin of the right thyroid lobe. According to the Ultrasound on November 2018, this nodule and a smaller micronodule with a diameter of 0.4 cm appear to be benign in nature, and Doppler analysis describes them as cold with no type of vasculature.
 <br />
-* The <b>Left Thyroid Lobe Nodules</b> refer to two hypoechoic nodules located towards the midlle region and lower pole of the left thyroid lobe. According to the Ultrasound on November 2018, these nodules and two microcysts have characteristics that are very compatible with a diffuse multinodular goiter, and doppler analysis describes them as cold with no type of vasculature.
+* The <b>Left Thyroid Lobe Nodules</b> refer to two hypoechoic nodules located towards the middle region and lower pole of the left thyroid lobe. According to the Ultrasound on November 2018, these nodules and two microcysts have characteristics that are very compatible with a diffuse multinodular goiter, and Doppler analysis describes them as cold with no type of vasculature.
 <br />
 * The <b>Pulmonary Right Lower Lobe Nodule</b> refers to a spiculated nodule located in the upper segment of the lower lobe of the right lung. According to the PET Scan on April 26, 2018, this nodule showed an increase in density compared to the CT Scan on April 19, 2018. On both the August and November X-Ray, no pulmonary nodules were observed, within the limits of the study, but on the November CT Scan the nodule was measured and tentatively related to a venous malformation or scarring (benign).
 <br />
@@ -3578,7 +3610,7 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 <br />
 * The <b>Left Occipitotemporal Focus</b> reduced to a small focus of residual enhancement by October 8, 2018 and continued decreasing in size as of February 27, 2019.
 <br />
-* The <b>Left Parietal Lobe Focus</b> was stable according to the CT Scan on July 17, 2018, but in August 28 of the same year a vague enhancement was noted that could represent a capillary tube digitation or development of venous anomaly. This was resolved in October 8, 2018, and has only improved since then.
+* The <b>Left Parietal Lobe Focus</b> was stable according to the CT Scan on July 17, 2018, but in August 28 of the same year a vague enhancement was noted that could represent a capillary tube dilatation or development of venous anomaly. This was resolved in October 8, 2018, and has only improved since then.
 <br />
 * The <b>Left Lower Lobe Nodule</b> was described as a thinwall cystic lesion in the CT Scan on July 17, 2018, and it was noted that it previously was a solid nodule. The PET Scan on November 28, 2018 showed no suspicious lesion, but the CT Scan on February 27, 2019 showed a 0.7 cm nodule, suspicious for metastasis.
 <br />
@@ -3588,7 +3620,7 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 <br />
 * The <b>Right Hilar Lymph Node</b> was said to have its avidity decreased or resolved on October's PET Scan, but November's PET Scan found a right prehilar consolidation with mild diffuse hypermetabolism.
 <br />
-* The <b>Hepatic Lesions</b> described in the CT Scan on February 27, 2019 had 4 individual lesion measurements (1.5 cm, 1.1 cm, 0.4 cm, and 0.9 cm). The MRI on March 4, 2019 stated that there are 5 hepatic masses with T2 signal iso-intensity to slight intermediate signal hyperintensity ranging in size from a few milimiters to 14 mm which do not completely enhance, suspicious for metastatic disease.
+* The <b>Hepatic Lesions</b> described in the CT Scan on February 27, 2019 had 4 individual lesion measurements (1.5 cm, 1.1 cm, 0.4 cm, and 0.9 cm). The MRI on March 4, 2019 stated that there are 5 hepatic masses with T2 signal iso-intensity to slight intermediate signal hyperintensity ranging in size from a few millimeters to 14 mm which do not completely enhance, suspicious for metastatic disease.
 <br />
 * The <b>Marrow Activity</b> anomaly refers to diffuse increased marrow activity presumably related to marrow stimulation, which was resolved by the PET Scan on November 28, 2018.
 </font>
