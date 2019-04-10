@@ -1014,6 +1014,7 @@ L3_K_second_hours <- L3_K_hours[9:20, c(1,2,6)]
 L3_K_third_hours <- L3_K_hours[22:28, c(1,2,6)]
 L3_K_fourth_hours <- L3_K_hours[30:34, c(1,2,6)]
 L3_K_fifth_hours <- L3_K_hours[36:42, c(1,2,6)]
+L3_K_sixth_hours <- L3_K_hours[44:50, c(1,2,6)]
 
 start1 <- L3_K_first_hours[L3_K_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(L3_K_first_hours[L3_K_first_hours[,3] > 0, 1], n = 1)
@@ -1025,18 +1026,22 @@ start4 <- L3_K_fourth_hours[L3_K_fourth_hours[,3] > 0, 1][1,1]
 end4 <- tail(L3_K_fourth_hours[L3_K_fourth_hours[,3] > 0, 1], n = 1)
 start5 <- L3_K_fifth_hours[L3_K_fifth_hours[,3] > 0, 1][1,1]
 end5 <- tail(L3_K_fifth_hours[L3_K_fifth_hours[,3] > 0, 1], n = 1)
+start6 <- L3_K_sixth_hours[L3_K_sixth_hours[,3] > 0, 1][1,1]
+end6 <- tail(L3_K_sixth_hours[L3_K_sixth_hours[,3] > 0, 1], n = 1)
 
 L3K_dates1 <- sum(L3_K_first_hours[,3] > 0)
 L3K_dates2 <- sum(L3_K_second_hours[,3] > 0)
 L3K_dates3 <- sum(L3_K_third_hours[,3] > 0)
 L3K_dates4 <- sum(L3_K_fourth_hours[,3] > 0)
 L3K_dates5 <- sum(L3_K_fifth_hours[,3] > 0)
+L3K_dates6 <- sum(L3_K_sixth_hours[,3] > 0)
 
 L3_K_first_hours[,3] <- cumsum(L3_K_first_hours[,3])
 L3_K_second_hours[,3] <- cumsum(L3_K_second_hours[,3])
 L3_K_third_hours[,3] <- cumsum(L3_K_third_hours[,3])
 L3_K_fourth_hours[,3] <- cumsum(L3_K_fourth_hours[,3])
 L3_K_fifth_hours[,3] <- cumsum(L3_K_fifth_hours[,3])
+L3_K_sixth_hours[,3] <- cumsum(L3_K_sixth_hours[,3])
 
 maxP1 <- max(L3_K_first_hours$`Polarity level`, na.rm = T)
 minP1 <- min(L3_K_first_hours$`Polarity level`, na.rm = T)
@@ -1048,12 +1053,15 @@ maxP4 <- max(L3_K_fourth_hours$`Polarity level`, na.rm = T)
 minP4 <- min(L3_K_fourth_hours$`Polarity level`, na.rm = T)
 maxP5 <- max(L3_K_fifth_hours$`Polarity level`, na.rm = T)
 minP5 <- min(L3_K_fifth_hours$`Polarity level`, na.rm = T)
+maxP6 <- max(L3_K_sixth_hours$`Polarity level`, na.rm = T)
+minP6 <- min(L3_K_sixth_hours$`Polarity level`, na.rm = T)
 
 totalL3KHours <- c(max(L3_K_first_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L3_K_second_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L3_K_third_hours$`Total therapy duration (Hrs)`, na.rm = T),
                    max(L3_K_fourth_hours$`Total therapy duration (Hrs)`, na.rm = T),
-                   max(L3_K_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T))
+                   max(L3_K_fifth_hours$`Total therapy duration (Hrs)`, na.rm = T),
+                   max(L3_K_sixth_hours$`Total therapy duration (Hrs)`, na.rm = T))
 
 totalL3KDays <- c(L3K_dates1, 
                   (start2 - end1)$Day,
@@ -1063,23 +1071,25 @@ totalL3KDays <- c(L3K_dates1,
                   (start4 - end3)$Day,
                   L3K_dates4,
                   (start5 - end4)$Day,
-                  L3K_dates5)
+                  L3K_dates5,
+                  (start6 - end5)$Day,
+                  L3K_dates6)
 
 
-L3K_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
-                              start_date = mapply(format, c(start1, start2, start3, start4, start5), format = "%b %d %Y"),
-                              end_date = mapply(format, c(end1, end2, end3, end4, end5), format = "%b %d %Y"),
+L3K_df_sessions <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
+                              start_date = mapply(format, c(start1, start2, start3, start4, start5, start6), format = "%b %d %Y"),
+                              end_date = mapply(format, c(end1, end2, end3, end4, end5, end6), format = "%b %d %Y"),
                               Hours = totalL3KHours,
                               Days = totalL3KDays[seq(1, length(totalL3KDays), 2)],
-                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5),
-                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5),
-                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5))
+                              Starting_Polarity = c(maxP1,maxP2,maxP3,maxP4,maxP5,maxP6),
+                              Final_Polarity = c(minP1,minP2,minP3,minP4,minP5,minP6),
+                              Change = c(minP1-maxP1, minP2-maxP2, minP3-maxP3, minP4-maxP4, minP5-maxP5, minP6-maxP6))
 
 L3K_df_sessions <- L3K_df_sessions %>% mutate(Change_per_hr = round(Change/Hours, digits = 3))
 
-L3K_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th"),
+L3K_df_breaks <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
                             Days = totalL3KDays[seq(2, length(totalL3KDays), 2)],
-                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4))
+                            Increase_in_Polarity = c(maxP2-minP1, maxP3-minP2, maxP4-minP3, maxP5-minP4, maxP6-minP5))
 
 L3K_df_breaks <- L3K_df_breaks %>% mutate(Increase_per_day = round(Increase_in_Polarity/Days, digits = 3))
 
@@ -1091,14 +1101,16 @@ second_L3_K <- L3_K_hours[9:20,]
 third_L3_K <- L3_K_hours[22:28,]
 fourth_L3_K <- L3_K_hours[30:34,]
 fifth_L3_K <- L3_K_hours[36:42,]
+sixth_L3_K <- L3_K_hours[44:50,]
 
 first_L3_K_dates <- L3_K_dates[2:7,]
 second_L3_K_dates <- L3_K_dates[38:48,]
 third_L3_K_dates <- L3_K_dates[79:84,]
 fourth_L3_K_dates <- L3_K_dates[107:110,]
 fifth_L3_K_dates <- L3_K_dates[135:140,]
+sixth_L3_K_dates <- L3_K_dates[162:168,]
 
-lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-04-20 01:00"), format = "%Y-%m-%d %H:%M"))
+lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-05-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
 L3K_dates <- L3_K_dates[,c(1,3)]
 
@@ -1133,6 +1145,11 @@ L3K_segment4 <- list(x1 = fourth_L3_K_dates$date[which.min(fourth_L3_K_dates$p_l
                      x2 = fifth_L3_K_dates$date[which.max(fifth_L3_K_dates$p_level)],
                      y2 = fifth_L3_K_dates$p_level[which.max(fifth_L3_K_dates$p_level)]) 
 
+L3K_segment5 <- list(x1 = fifth_L3_K_dates$date[which.min(fifth_L3_K_dates$p_level)], 
+                     y1 = fifth_L3_K_dates$p_level[which.min(fifth_L3_K_dates$p_level)],
+                     x2 = sixth_L3_K_dates$date[which.max(sixth_L3_K_dates$p_level)],
+                     y2 = sixth_L3_K_dates$p_level[which.max(sixth_L3_K_dates$p_level)]) 
+
 L3K_final_date_graph <- L3K_dategraph +
   
   geom_segment(aes(x = L3K_segment1$x1, y = L3K_segment1$y1,
@@ -1146,6 +1163,9 @@ L3K_final_date_graph <- L3K_dategraph +
                linetype = "dashed") + labs(color = "Days Without\nTreatment") + 
   geom_segment(aes(x = L3K_segment4$x1, y = L3K_segment4$y1,
                  xend = L3K_segment4$x2, yend = L3K_segment4$y2, color = "25"),
+             linetype = "dashed") +
+  geom_segment(aes(x = L3K_segment5$x1, y = L3K_segment5$y1,
+                 xend = L3K_segment5$x2, yend = L3K_segment5$y2, color = "23"),
              linetype = "dashed") + theme(legend.position = "none", axis.title.x = element_text(margin = margin(t = 15, r = 0, b = 0, l = 0)), axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0)))
 
 
@@ -1156,6 +1176,7 @@ second_L3_K <- L3_K_hours[9:20,] %>% mutate(days_after = 0:11)
 third_L3_K <- L3_K_hours[22:28,] %>% mutate(days_after = 0:6)
 fourth_L3_K <- L3_K_hours[30:34,] %>% mutate(days_after = 0:4)
 fifth_L3_K <- L3_K_hours[36:42,] %>% mutate(days_after = 0:6)
+sixth_L3_K <- L3_K_hours[44:50,] %>% mutate(days_after = 0:6)
 
 y_max1 <- max(first_L3_K$`Polarity level`, na.rm = T)
 
@@ -1164,12 +1185,14 @@ s1 <- max(second_L3_K[complete.cases(second_L3_K[,2]),]$days_after) + 1
 t1 <- max(third_L3_K[complete.cases(third_L3_K[,2]),]$days_after) + 1
 fo1 <- max(fourth_L3_K[complete.cases(fourth_L3_K[,2]),]$days_after) + 1
 fi1 <- max(fifth_L3_K[complete.cases(fifth_L3_K[,2]),]$days_after) + 1
+si1 <- max(sixth_L3_K[complete.cases(sixth_L3_K[,2]),]$days_after) + 1
 
 first_L3_K[,6] <- cumsum(first_L3_K[,6])
 second_L3_K[,6] <- cumsum(second_L3_K[,6])
 third_L3_K[,6] <- cumsum(third_L3_K[,6])
 fourth_L3_K[,6] <- cumsum(fourth_L3_K[,6])
 fifth_L3_K[,6] <- cumsum(fifth_L3_K[,6])
+sixth_L3_K[,6] <- cumsum(sixth_L3_K[,6])
 
 first_graph_L3_K <- first_L3_K %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
   ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
@@ -1230,6 +1253,16 @@ fifth_graph_L3_K <- fifth_L3_K %>% select(`Total therapy duration (Hrs)`, `Polar
             nudge_x = -2.5,
             size = 3)
 
+sixth_graph_L3_K <- sixth_L3_K %>% select(`Total therapy duration (Hrs)`, `Polarity level`) %>%
+  ggplot(aes(x=`Total therapy duration (Hrs)`, y= `Polarity level`)) + geom_point() + 
+  scale_x_continuous(breaks = pretty_breaks()) +
+  scale_y_continuous(limits = c(0, y_max1)) +
+  labs(subtitle = "Sixth Session Results", x = "Total Therapy Duration (Hrs)", y = "Polarity Level") +
+  geom_smooth(method = "lm", size = 0.5) +
+  geom_text(data = sixth_L3_K[c(1,si1),c(6,2)],
+            label = sixth_L3_K$`Polarity level`[c(1, si1)],
+            nudge_y = 28,
+            size = 3)
 
 
 
@@ -1674,7 +1707,7 @@ H1A_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th
                             RSE = c(signif(H1_A_RSE[c(1,2)], 4), NA, signif(H1_A_RSE[c(3,4,5)], 4)),
                             DFs = c(signif(H1_A_dfs[c(1,2)], 4), NA, signif(H1_A_dfs[c(3,4,5)], 4)))
 
-L3_K_all <- list(L3_K_first_hours, L3_K_second_hours, L3_K_third_hours, L3_K_fourth_hours, L3_K_fifth_hours)
+L3_K_all <- list(L3_K_first_hours, L3_K_second_hours, L3_K_third_hours, L3_K_fourth_hours, L3_K_fifth_hours, L3_K_sixth_hours)
 
 L3_K_all_stat <- lapply(X = L3_K_all, FUN = corr.func)
 L3_K_all_stat_model <- lapply(X = L3_K_all, FUN = model.func)
@@ -1689,13 +1722,13 @@ L3_K_adj_r_sq <- unlist(lapply(X = c(1:length(L3_K_all)), FUN = function(x){L3_K
 
 
 
-L3K_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+L3K_df_stats <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            R = signif(L3_K_estims, 4),
-                           Pval = formatC(L3_K_pvalues, format = "e", digits = 4),
-                           Lower = signif(L3_K_lower, 4),
-                           Upper = signif(L3_K_upper, 4))
+                           Pval = signif(L3_K_pvalues, 4),
+                           Lower = c(signif(L3_K_lower, 4), NA),
+                           Upper = c(signif(L3_K_upper, 4), NA))
 
-L3K_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th"),
+L3K_df_stats1 <- data.frame(Interval = c("1st", "2nd", "3rd", "4th", "5th", "6th"),
                            Adj_R_sq = signif(L3_K_adj_r_sq, 4),
                            RSE = signif(L3_K_RSE, 4),
                            DFs = signif(L3_K_dfs, 4))
@@ -3318,7 +3351,7 @@ kable(L3K_df_breaks, caption = "L3-K Retrogression Summary", col.names = c("Brea
 #### Treatment Sessions Plots
 
 ```{r L3K_hour_plot, out.width="100%", fig.height=6}
-grid.arrange(top = "L3-K Polarity", first_graph_L3_K, second_graph_L3_K, third_graph_L3_K, fourth_graph_L3_K, fifth_graph_L3_K, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
+grid.arrange(top = "L3-K Polarity", first_graph_L3_K, second_graph_L3_K, third_graph_L3_K, fourth_graph_L3_K, fifth_graph_L3_K, sixth_graph_L3_K, ncol=2, left = "Polarity", bottom = "Total Treatment Duration (Hrs)")
 ```
 
 <br />
@@ -3372,8 +3405,8 @@ library(timevis)
 library(dplyr)
 
 L3K_timeline <- data.frame(
-  id = 1:23,
-  content = c("1st", "2nd", "3rd", "4th", "5th",
+  id = 1:24,
+  content = c("1st", "2nd", "3rd", "4th", "5th", "6th",
               rep("CT Scan", 5),
               rep("PET Scan", 2),
               rep("MRI", 5),
@@ -3382,7 +3415,7 @@ L3K_timeline <- data.frame(
               rep("Creatinine", 1),
               rep("CBC", 3)),
   
-  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11", "2019-03-11",
+  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11", "2019-03-11", "2019-04-08",
             "2018-07-17", "2018-08-28", "2018-10-08", "2019-01-09", "2019-02-27",
             "2018-10-08", "2018-11-28",
             "2018-07-17", "2018-08-28", "2018-10-08", "2019-02-27", "2019-03-04",
@@ -3391,7 +3424,7 @@ L3K_timeline <- data.frame(
             "2018-10-08",
             "2018-09-04", "2018-09-06", "2019-01-09"),
   
-  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16",
+  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", "2019-04-13",
             NA, NA, NA, NA, NA,
             NA, NA,
             NA, NA, NA, NA, NA,
@@ -3400,9 +3433,9 @@ L3K_timeline <- data.frame(
             NA,
             NA, NA, NA),
   
-  group = c(rep(NA, 5), rep("img", 12), rep("blood", 6)),
+  group = c(rep(NA, 6), rep("img", 12), rep("blood", 6)),
   
-  type = c(rep("background", 5), rep("point", 18))
+  type = c(rep("background", 6), rep("point", 18))
 )
 
 L3K_groups <- data.frame(
@@ -3410,7 +3443,7 @@ L3K_groups <- data.frame(
   content = c("Session", "Imaging Tests", "Blood Tests")
 )
 
-timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2018-07-01", max = "2019-04-01", start = "2018-07-01", end  = "2019-04-01", zoomMin = 1080000000))
+timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor = 0.2, options = list(zoomable = TRUE, min = "2018-07-01", max = "2019-05-20", start = "2018-07-01", end  = "2019-05-20", zoomMin = 1080000000))
 ```
 
 <br>
@@ -3456,9 +3489,9 @@ library(timevis)
 library(dplyr)
 
 L3K_signif <- data.frame(
-  id = 1:94,
-  content = c("", "", "", "", "", #sessions
-              "197.6", "167.1", "148.7", "146.2", "161.2", #polarity
+  id = 1:96,
+  content = c("", "", "", "", "", "", #sessions
+              "197.6", "167.1", "148.7", "146.2", "161.2", "", #polarity
               "5.8  10x3/uL", "4.4  10x3/uL", "4.2  10x3/uL", #wbc
               "3.65 10x6/uL", "3.97 10x6/uL", "4.07 10x6/uL", #rbc
               "11.7 g/dL", "12.6 g/dL", "12.8 g/dL", #hgb
@@ -3484,8 +3517,8 @@ L3K_signif <- data.frame(
               "Stable", "No abnormality", "Stable", "Increased activity", #12thrib
               "Anomaly", "Resolved"), #bone
   
-  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11", "2019-03-11", #sessions
-            "2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", #polarity
+  start = c("2018-10-29", "2018-12-03", "2019-01-14", "2019-02-11", "2019-03-11", "2019-04-08",#sessions
+            "2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", "2019-04-13", #polarity
             rep(c("2018-09-04", "2018-11-28", "2019-01-09"), 8), #wbc, rbc, hgb, hct, rdw, lympho, mono, eos
             "2018-10-08", "2019-02-27", #brain
             "2018-07-17", "2018-08-28", "2018-10-08", "2018-11-28", "2019-02-27", #occi
@@ -3504,8 +3537,8 @@ L3K_signif <- data.frame(
             "2018-08-28", "2018-11-28", "2019-01-09", "2019-02-27", #12thrib
             "2018-10-08", "2018-11-28"), #bone
   
-  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", #sessions
-            rep(NA, 5), #polarity
+  end   = c("2018-11-03", "2018-12-15", "2019-01-19", "2019-02-14", "2019-03-16", "2019-04-08", #sessions
+            rep(NA, 6), #polarity
             rep(NA, 24), #wbc, rbc, hgb, hct, rdw, lympho, mono, eos
             rep(NA, 2), #brain
             rep(NA, 5), #occi
@@ -3524,8 +3557,8 @@ L3K_signif <- data.frame(
             rep(NA, 4), #12thrib
             rep(NA, 2)), #bone
   
-  group = c(rep(NA, 5), #sessions
-            rep("polar", 5), #polarity
+  group = c(rep(NA, 6), #sessions
+            rep("polar", 6), #polarity
             rep("wbc", 3), #wbc
             rep("rbc", 3), #rbc
             rep("hgb", 3), #hgb
@@ -3551,8 +3584,8 @@ L3K_signif <- data.frame(
             rep("12thrib", 4), #12thrib
             rep("bone", 2)), #bone
   
-  subgroup = c(rep(NA, 5), #sessions
-               rep(NA, 5), #polarity
+  subgroup = c(rep(NA, 6), #sessions
+               rep(NA, 6), #polarity
                rep(NA, 24), #wbc, rbc, hgb, hct, rdw, lympho, mono, eos
                rep(NA, 2), #brain
                rep(NA, 5), #occi
@@ -3571,7 +3604,7 @@ L3K_signif <- data.frame(
                rep(NA, 4), #12thrib
                rep(NA, 2)), #bone
   
-  type = c(rep("background", 5), rep("point", 89))
+  type = c(rep("background", 6), rep("point", 90))
 )
 
 L3K_groups1 <- data.frame(
@@ -4289,20 +4322,30 @@ ________________________________________________________________________________
 
 # References
 
-[Tumor Treating Fields (TTFs)](http://clincancerres.aacrjournals.org/content/clincanres/24/2/266.full.pdf)
+* [De-identification Procedure - HIPAA](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#protected)
 
-[De-identification Procedure - HIPAA](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#protected)
+* [Adhesive Electrode Precautions - ITO](http://www.itocoltd.com/notice/adhesive-electrode.html)
 
-[Adhesive Electrode Precautions - ITO](http://www.itocoltd.com/notice/adhesive-electrode.html)
+* [SUV max - NIH](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026294/)
 
-[SUV max - NIH](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3026294/)
+* [Leukocytes - NCI](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/leukocyte)
 
-[Leukocytes - NCI](https://www.cancer.gov/publications/dictionaries/cancer-terms/def/leukocyte)
+* [Lymph Node Measurement Procedure - University Hospital of Leipzig](http://ceur-ws.org/Vol-1476/Proceedings_CURAC_2011_Paper_10.pdf)
 
-[Lymph Node Measurement Procedure - University Hospital of Leipzig](http://ceur-ws.org/Vol-1476/Proceedings_CURAC_2011_Paper_10.pdf)
+* [Prostate Measurement Procedure - NIH](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2842183/)
 
-[Prostate Measurement Procedure - NIH](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2842183/)
+* [Multinodular Goiter - Columbia University](http://columbiasurgery.org/conditions-and-treatments/multinodular-goiter)
 
-[Multinodular Goiter - Columbia University](http://columbiasurgery.org/conditions-and-treatments/multinodular-goiter)
+<br>
+
+* ["Tumor-Treating Fields: A Fourth Modality in Cancer Treatment"](http://clincancerres.aacrjournals.org/content/clincanres/24/2/266.full.pdf)
+
+* ["Targeted treatment of cancer with radiofrequency electromagnetic fields amplitude-modulated at tumor-specific frequencies"](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3845545/)
+
+* ["Mitotic Spindle Disruption by Alternating Electric Fields Leads to Improper Chromosome Segregation and Mitotic Catastrophe in Cancer Cells"](https://www.nature.com/articles/srep18046)
+
+* ["Treating cancer with amplitude-modulated electromagnetic fields: a potential paradigm shift, again?"](https://www.nature.com/articles/bjc2011576)
+
+* ["Cancer cell proliferation is inhibited by specific modulation frequencies"](https://www.nature.com/articles/bjc2011523)
 
 ________________________________________________________________________________________________________________________________________________________________
