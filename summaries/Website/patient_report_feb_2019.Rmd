@@ -1861,19 +1861,11 @@ Cellular Repolarization focuses on the primary pathology and reducing uncontroll
 
 * Reduced fatigue and increased levels of energy throughout the day.
 
-<br />
-
 * Neuropathic and muscular pain relief.
-
-<br />
 
 * Increased apettite.
 
-<br />
-
 * Reduced skin redness and return to normal pigmentation.
-
-<br />
 
 * Reduction of other side-effects caused by alternative, simultaneous treatments like radiation or chemotherapy.
 
@@ -1886,8 +1878,6 @@ ________________________________________________________________________________
 <br />
 
 * Dermatitis at the site of electrodes, which is promptly treated by isolation of affected skin surfaces from adhesives or pressure.
-
-<br />
 
 * Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
 
@@ -1912,8 +1902,6 @@ TTFs on various cellular processes can be explained by two fundamental physical 
 
 * A dipole refers to the separation of positive and negative charges within a molecule. Under a uniform alternating electric field, any charged molecule will oscillate in an attempt to align itself appropriately parallel to the direction of the electric force vector it is exposed to. Key macromolecules and organelles responsible for mitosis and cytokinesis are highly polar, and their random movement, which is critical for their function, can be disrupted by the application of localized electric fields.
 
-<br />
-
 * Dielectrophoresis refers to the phenomenon where, in a nonuniform electric field, a force is exerted on polar molecules, which leads them to migrate toward a region of high-field density.
 
 <br />
@@ -1933,8 +1921,6 @@ The electromagnetic fields affect cells at different stages of mitosis different
 <br />
 
 * In cells at an early stage of mitosis (before the mitotic spindle is formed), electromagnetic fields impede the polymerization of microtubules by eliminating the normal randomized movement of the tubulin subunits within the cytoplasm during metaphase. This, in turn, leads to metaphase arrest, prolonged mitosis, and ultimately cell death.
-
-<br />
 
 * Alternatively, in the cells where the spindle formation has completed, the electric field distribution becomes uneven and a high-intensity field is formed at the narrow furrow region because of the dividing cell's hour-glass shape during metaphase. The Septin complex, which is responsible for the physiologic localization of contractile proteins leading to the normal division of the cell into two daughter cells, is dislocated as a result of TTF-exerted dielectrophoresis. This effect, which happens towards the end of telophase, can lead to violent cytoplasmic blebbing and cellular death, or to abnormal chromosomal segregation leading to aneuploidy in daughter cells, and a subsequent decrease in clonogenic potential. Septin has a greater dipole moment than tubulin (2711 Debyes vs. 1660 Debyes). However, due to the faster dynamics of assembly/disassembly of tubulin, the effects of TTFs on microtubules might be more significant.
 
@@ -1961,8 +1947,6 @@ ________________________________________________________________________________
 <br />
 
 * To date, no TTF-related adverse events have been reported as a result of genetic alterations or other mitotic effects in normally dividing tissues. Further experiments would clarify these effects in greater detail, both in healthy and pathologic tissues.
-
-<br />
 
 * Cell death occurs instantly, so depending on the stage and type of cancer currently affecting the patient, initial treatments may cause swelling of the lymph nodes and increased white blood cell counts, due to the release of cellular waste that needs to be detoxified and drained by the patient’s body.
 
@@ -2288,7 +2272,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 #### Electrode Placement
 
-![C1-J Electrode Placement](images/C1-J.png)
+![C1J Electrode Placement](images/C1-J.png)
 
 *****
 
@@ -3700,7 +3684,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 #### Electrode Placement
 
-![L3-K Electrode Placement](images/L3-K.png)
+![L3K Electrode Placement](images/L3-K.png)
 
 *****
 
