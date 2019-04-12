@@ -15,14 +15,14 @@ second_L3_K <- L3_K_hours[9:20,]
 third_L3_K <- L3_K_hours[22:28,]
 fourth_L3_K <- L3_K_hours[30:34,]
 fifth_L3_K <- L3_K_hours[36:42,]
-sixth_L3_K <- L3_K_hours[44:50,]
+sixth_L3_K <- L3_K_hours[44:48,]
 
 first_L3_K_dates <- L3_K_dates[2:7,]
 second_L3_K_dates <- L3_K_dates[38:48,]
 third_L3_K_dates <- L3_K_dates[79:84,]
 fourth_L3_K_dates <- L3_K_dates[107:110,]
 fifth_L3_K_dates <- L3_K_dates[135:140,]
-sixth_L3_K_dates <- L3_K_dates[162:168,]
+sixth_L3_K_dates <- L3_K_dates[162:166,]
 
 lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-05-20 01:00"), format = "%Y-%m-%d %H:%M"))
 

@@ -14,7 +14,7 @@ second_L3_K <- L3_K_hours[9:20,] %>% mutate(days_after = 0:11)
 third_L3_K <- L3_K_hours[22:28,] %>% mutate(days_after = 0:6)
 fourth_L3_K <- L3_K_hours[30:34,] %>% mutate(days_after = 0:4)
 fifth_L3_K <- L3_K_hours[36:42,] %>% mutate(days_after = 0:6)
-sixth_L3_K <- L3_K_hours[44:50,] %>% mutate(days_after = 0:6)
+sixth_L3_K <- L3_K_hours[44:48,] %>% mutate(days_after = 0:4)
 
 y_max1 <- max(first_L3_K$`Polarity level`, na.rm = T)
 

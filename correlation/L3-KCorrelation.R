@@ -12,7 +12,7 @@ L3_K_second_hours <- L3_K_hours[9:20, c(1,2,6)]
 L3_K_third_hours <- L3_K_hours[22:28, c(1,2,6)]
 L3_K_fourth_hours <- L3_K_hours[30:34, c(1,2,6)]
 L3_K_fifth_hours <- L3_K_hours[36:42, c(1,2,6)]
-L3_K_sixth_hours <- L3_K_hours[44:50, c(1,2,6)]
+L3_K_sixth_hours <- L3_K_hours[44:48, c(1,2,6)]
 
 L3_K_first_hours[,3] <- cumsum(L3_K_first_hours[,3])
 L3_K_second_hours[,3] <- cumsum(L3_K_second_hours[,3])
