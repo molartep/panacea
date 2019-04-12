@@ -1,7 +1,7 @@
 ---
-title: "Panacea Patient Report"
+title: "Velvack & Panacea Patient Report"
 author: "Martin Olarte"
-date: "2/4/2019"
+date: "2/4/2019 - 4/12/2019"
 output:
   html_document:
     css: style.css
@@ -1014,7 +1014,7 @@ L3_K_second_hours <- L3_K_hours[9:20, c(1,2,6)]
 L3_K_third_hours <- L3_K_hours[22:28, c(1,2,6)]
 L3_K_fourth_hours <- L3_K_hours[30:34, c(1,2,6)]
 L3_K_fifth_hours <- L3_K_hours[36:42, c(1,2,6)]
-L3_K_sixth_hours <- L3_K_hours[44:50, c(1,2,6)]
+L3_K_sixth_hours <- L3_K_hours[44:48, c(1,2,6)]
 
 start1 <- L3_K_first_hours[L3_K_first_hours[,3] > 0, 1][1,1]
 end1 <- tail(L3_K_first_hours[L3_K_first_hours[,3] > 0, 1], n = 1)
@@ -1101,14 +1101,14 @@ second_L3_K <- L3_K_hours[9:20,]
 third_L3_K <- L3_K_hours[22:28,]
 fourth_L3_K <- L3_K_hours[30:34,]
 fifth_L3_K <- L3_K_hours[36:42,]
-sixth_L3_K <- L3_K_hours[44:50,]
+sixth_L3_K <- L3_K_hours[44:48,]
 
 first_L3_K_dates <- L3_K_dates[2:7,]
 second_L3_K_dates <- L3_K_dates[38:48,]
 third_L3_K_dates <- L3_K_dates[79:84,]
 fourth_L3_K_dates <- L3_K_dates[107:110,]
 fifth_L3_K_dates <- L3_K_dates[135:140,]
-sixth_L3_K_dates <- L3_K_dates[162:168,]
+sixth_L3_K_dates <- L3_K_dates[162:166,]
 
 lims <- as.POSIXct(strptime(c("2018-10-25 01:00","2019-05-20 01:00"), format = "%Y-%m-%d %H:%M"))
 
@@ -1176,7 +1176,7 @@ second_L3_K <- L3_K_hours[9:20,] %>% mutate(days_after = 0:11)
 third_L3_K <- L3_K_hours[22:28,] %>% mutate(days_after = 0:6)
 fourth_L3_K <- L3_K_hours[30:34,] %>% mutate(days_after = 0:4)
 fifth_L3_K <- L3_K_hours[36:42,] %>% mutate(days_after = 0:6)
-sixth_L3_K <- L3_K_hours[44:50,] %>% mutate(days_after = 0:6)
+sixth_L3_K <- L3_K_hours[44:48,] %>% mutate(days_after = 0:4)
 
 y_max1 <- max(first_L3_K$`Polarity level`, na.rm = T)
 
@@ -1822,14 +1822,9 @@ L1J_df_stats1 <- data.frame(Interval = c("1st"),
 
 In order to understand the treatment, it is crucial to first discuss the molecular structure of cells and the movement of ions across plasma and organelle membrane membranes, from the perspective of an electrical-engineer or physicist. The specific ionic composition of the cytosol (the aqueous component of the cytoplasm of a cell, within which various organelles and particles are suspended) usually differs greatly from that of the surrounding fluid. In virtually all cells, the cytosolic pH is kept near 7.2 and the cytosolic concentration of K^+^ is much higher than that of Na^+^. In addition, the concentration of K^+^ is 20 to 40 times higher in cells than in blood, while the concentration of Na^+^ is 8 to 12 times lower in cells than in blood. In all cases, the rate and extent of ion transportation across membranes is influenced not only by the ion concentrations on the two sides of the membrane but also by the voltage (i.e. the electric potential) that exists across the membrane.
 
-<br />
-
 The resting membrane potential across the plasma membrane of normal human cells is about __-90 mV__, where the cytosolic face is negative with respect to the exoplasmic (outside) face. This value does not seem like much, but it is important to note that the plasma membrane is only about __3.5 nm__ thick. Thus, the voltage gradient across the plasma membrane is __0.09 V / 3.5 x 10^-7^ cm__, or __300,000 V / cm__. To understand this magnitude, consider that high-voltage transmission lines for electricity have gradients of around __200,000 V / km__.
 
-<br />
-
-The plasma membrane, like all biological membranes, acts like a capacitor; a device consisting of a thin sheet of nonconducting material (the hydrophobic interior) surrounded on both sides by electrically conducting material (the polar head groups and the ions in the surrounding aqueous medium) that can store positive charges on one side and negative charges on the other. The variation in membrane potentials is what allows for cellular and subcellular communication.  
-<br />
+The plasma membrane, like all biological membranes, acts like a capacitor; a device consisting of a thin sheet of nonconducting material (the hydrophobic interior) surrounded on both sides by electrically conducting material (the polar head groups and the ions in the surrounding aqueous medium) that can store positive charges on one side and negative charges on the other. The variation in membrane potentials is what allows for cellular and subcellular communication.
 
 Cancer cells and tumors have higher percentages of water and are highly permeable, which results in increased conductivity and decreased membrane potential. Since their membrane potential drops significantly, these cells lose their ability to communicate and essentially enter a _panic mode_, reproducing themselves without control. Additionally, these cells lose the ability to exchange ions, causing them to reproduce in an anaerobic state, which then leads to the acidification of their environment.
 
@@ -1843,8 +1838,6 @@ ________________________________________________________________________________
 
 The repolarization device sends orthogonal electromagnetic waves through the body to identify the areas were the membrane potential is altered, thereby measuring the patient's polarity. The electromagnetic waves are recognized by cancer cells, because of their physiological state, without affecting _normal_ cells. Therefore, the electromagnetic waves are transparent for cells that are in a homeostatic balanced state, but not for cells that have had there communication ability impaired and are in a _panic state_.
 
-<br />
-
 Affected cells undergo metabolic changes in their cellular membranes that induce them to become apoptotic, regaining the memory to die. Additionally, specific proteins on the cell membranes of cancer cells, which are involved in uncontrollable cell reproduction, are also targeted by the treatment, thereby preventing the accelerated cellular division.
 
 <br />
@@ -1856,8 +1849,6 @@ ________________________________________________________________________________
 <br />
 
 Cellular Repolarization focuses on the primary pathology and reducing uncontrolled cell proliferation, but according to patients' testimonies it also has various additional benefits:
-
-<br />
 
 * Reduced fatigue and increased levels of energy throughout the day.
 
@@ -1893,16 +1884,12 @@ ________________________________________________________________________________
 
 Tumor Treating Fields (TTFs) treatment is a type of electromagnetic field treatment that uses low-intensity electrical fields delivered through noninvasive transducer arrays that are placed locoregionally around the anatomic region of the tumor, in order to suppress cancer cell proliferation in the body. The effectiveness of TTFs is considered to be similar to that of chemotherapy. However, chemotherapy has various side effects that affect normal cells, and is not recommended to be used for long term treatment due to drug resistance and accumulation of toxicity. On the other hand, TTFs is considered a safe treatment with no association to drug resistance or accumulation of toxicity. Also, it is possible to use TTFs with other conventional treatments such as chemotherapy, and there is even thought to be synergistic effects using TTFs with immunotherapy for specific types of cancer.
 
-<br />
-
 TTFs' effects on dividing cells result from the multitude of charged macromolecules and organelles responsible for key processes in the mitotic process. Structural change or dislocation of those cellular components may alter their physiologic function, and ultimately disrupt normal mitosis. The effects of
-TTFs on various cellular processes can be explained by two fundamental physical principles: dipole alignment and dielectrophoresis.
+TTFs on various cellular processes can be explained by two fundamental physical principles: _dipole alignment_ and _dielectrophoresis_.
 
-<br />
+* A _dipole_ refers to the separation of positive and negative charges within a molecule. Under a uniform alternating electric field, any charged molecule will oscillate in an attempt to align itself appropriately parallel to the direction of the electric force vector it is exposed to. Key macromolecules and organelles responsible for mitosis and cytokinesis are highly polar, and their random movement, which is critical for their function, can be disrupted by the application of localized electric fields.
 
-* A dipole refers to the separation of positive and negative charges within a molecule. Under a uniform alternating electric field, any charged molecule will oscillate in an attempt to align itself appropriately parallel to the direction of the electric force vector it is exposed to. Key macromolecules and organelles responsible for mitosis and cytokinesis are highly polar, and their random movement, which is critical for their function, can be disrupted by the application of localized electric fields.
-
-* Dielectrophoresis refers to the phenomenon where, in a nonuniform electric field, a force is exerted on polar molecules, which leads them to migrate toward a region of high-field density.
+* The process of _dielectrophoresis_ refers to the phenomenon where, in a nonuniform electric field, a force is exerted on polar molecules, which leads them to migrate toward a region of high-field density.
 
 <br />
 
@@ -1914,17 +1901,11 @@ ________________________________________________________________________________
 
 TTFs are nonuniformly distributed within the treated region based on multiple parameters, which include the geometry of the treated organ, the distance between transducer arrays applied to the patient's skin, and the tissue's dielectric properties. The fields do not attenuate in correlation to the distance from the array, and may therefore be used for the treatment of deeply located tumors. As electric fields do not have a half-life time, TTFs are continuously delivered during the course of treatment.
 
-<br />
-
 The electromagnetic fields affect cells at different stages of mitosis differently:
-
-<br />
 
 * In cells at an early stage of mitosis (before the mitotic spindle is formed), electromagnetic fields impede the polymerization of microtubules by eliminating the normal randomized movement of the tubulin subunits within the cytoplasm during metaphase. This, in turn, leads to metaphase arrest, prolonged mitosis, and ultimately cell death.
 
 * Alternatively, in the cells where the spindle formation has completed, the electric field distribution becomes uneven and a high-intensity field is formed at the narrow furrow region because of the dividing cell's hour-glass shape during metaphase. The Septin complex, which is responsible for the physiologic localization of contractile proteins leading to the normal division of the cell into two daughter cells, is dislocated as a result of TTF-exerted dielectrophoresis. This effect, which happens towards the end of telophase, can lead to violent cytoplasmic blebbing and cellular death, or to abnormal chromosomal segregation leading to aneuploidy in daughter cells, and a subsequent decrease in clonogenic potential. Septin has a greater dipole moment than tubulin (2711 Debyes vs. 1660 Debyes). However, due to the faster dynamics of assembly/disassembly of tubulin, the effects of TTFs on microtubules might be more significant.
-
-<br />
 
 The above effects of TTFs ultimately lead to caspase-dependent or independent apoptosis, and also increase the cellular expression of immunogenic cell death markers.
 
@@ -1971,8 +1952,6 @@ __Age:__ 55
 __Gender:__ Male
 
 <br />
-
-__Place of Residence:__ United States of America
 
 *****
 
@@ -2112,7 +2091,7 @@ timevis(data = C1J_timeline, groups = C1J_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Abdominal and Pelvic and Chest CT Scans.
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
@@ -2218,7 +2197,7 @@ timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>Carcinoembryonic Antigen</b> reference value is < 5 ng/mL.
 <br />
 * <b>Para-aortic Lymph Node</b> refers to a Para-aortic lymph node below the renal vessels.
@@ -2238,7 +2217,7 @@ timevis(data = C1J_signif, groups = C1J_groups1, showZoom = FALSE, zoomFactor = 
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1BBK7SVux7efDi8dDAOpUXCLPDlxIHJ3kVIymf3TK7Ek/edit?usp=sharing).
 
@@ -2257,7 +2236,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 #### Outliers in Treatment Statistics
 
 <div>
-<font size= "1.5">
+<font size= "2.5">
 <br />
 
 * C1-J's fourth treatment session hours were inconsistent and possibly inaccurate due to the uncertainty of the effectiveness of the smaller portable device prototype.
@@ -2297,8 +2276,6 @@ __Age:__ 31
 __Gender:__ Female
 
 <br />
-
-__Place of Residence:__ United States of America
 
 *****
 
@@ -2446,7 +2423,7 @@ timevis(data = B1S_timeline, groups = B1S_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Chest CT Scans.
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
@@ -2560,7 +2537,7 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
 <br>
 <div align="left">
 <i>
-<font size="1">
+<font size="2">
 * <b>August 22, 2018:</b> The patient had stopped taking medication that left her menopausal at the start of the year, but her menstrual cycle finally resumed for two days after starting treatment. 
 <br />
 * <b>August 27, 2018:</b> Before the treatment, the patient compared the consistency of the mass in her right breast to a stone (similar to a golf ball), and now she describes it has noticeably softened  (diffused). Also, the left side of her upper chest, from the side of the neck to the breast, has reduced in redness significantly. 
@@ -2574,7 +2551,7 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CA 15-3</b> reference values are < 25 U/mL and < 31.3 U/mL respectively.
 <br />
 * The <b>Right Breast Masses</b> were initially consolidated in one region, and then separated into two main parts located in the Upper and Lower Outer Quadrants of the right breast.
@@ -2598,7 +2575,7 @@ timevis(data = B1S_signif, groups = B1S_groups1, showZoom = FALSE, zoomFactor = 
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1upbbCU90POa5JrrjzdgzpqO66mETNGnzH8I_jRCWq9A/edit?usp=sharing).
 
@@ -2618,7 +2595,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 * B1-S's third treatment session was extremely short compared to the previous two, and thus had a lack of polarity measurements to accurately monitor the response of the patient.
 
@@ -2657,8 +2634,6 @@ __Age:__ 57
 __Gender:__ Male
 
 <br />
-
-__Place of Residence:__ Panama
 
 *****
 
@@ -2825,7 +2800,7 @@ timevis(data = L2E_timeline, groups = L2E_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Chest CT Scans and one Abdominal CT Scan on November 29, 2018.
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
@@ -2940,7 +2915,7 @@ timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>Carcinoembryonic Antigen</b> reference value is < 5 ng/mL.
 <br />
 * The <b>Thyroid Lobe</b> measurements are longitudinal x transverse x anteroposterior axes.
@@ -2970,7 +2945,7 @@ timevis(data = L2E_signif, groups = L2E_groups1, showZoom = FALSE, zoomFactor = 
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1LkH110HYONRUhDW3eTolswifr5HN6nzLMz7KQHNJyV0/edit?usp=sharing).
 
@@ -2990,7 +2965,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 * L2-E's third session saw a drastic increase in the use of the Tumor Treating Fields (TTFs) Device, as well as an increase in overall treatment hours.
 
@@ -3031,8 +3006,6 @@ __Age:__ 57
 __Gender:__ Female
 
 <br />
-
-__Place of Residence:__ Panama
 
 *****
 
@@ -3202,7 +3175,7 @@ timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Chest CT Scans.
 <br />
 * <b>Ultrasounds</b> refer to Neck and Abdomen Ultrasounds.
@@ -3226,7 +3199,7 @@ timevis(data = H1A_timeline, groups = H1A_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
 
@@ -3242,7 +3215,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 * H1-A's fourth treatment session had very few polarity measurements and inconsistent number of hours per day. 
 
@@ -3279,8 +3252,6 @@ __Age:__ 62
 __Gender:__ Male
 
 <br />
-
-__Place of Residence:__ United States of America
 
 *****
 
@@ -3433,7 +3404,7 @@ timevis(data = L3K_timeline, groups = L3K_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Chest, Abdomen, and Pelvis CT Scans.
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
@@ -3608,7 +3579,7 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>WBC</b> reference range is 4.0 - 10.0 10x3/uL.
 <br />
 * <b>RBC</b> reference range is 4.60 - 6.10 10x6/uL.
@@ -3650,7 +3621,7 @@ timevis(data = L3K_signif, groups = L3K_groups1, showZoom = FALSE, zoomFactor = 
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/1zHLbsnk78Lv4K7ndgFIV5qRjGZRrGaVWhwUE0yI4G78/edit?usp=sharing).
 
@@ -3670,7 +3641,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 * L3-K's fourth treatment session was very short (4 days, 31.5 hours) and the few polarity measurements were inconsistent (some were after treatment and others mid-treatment).
 
@@ -3710,9 +3681,7 @@ __Gender:__ Male
 
 <br />
 
-__Place of Residence:__ United States of America
-
-*****
+*******
 
 #### Diagnoses
 
@@ -3723,7 +3692,7 @@ Date          | Diagnosis
 Pending       | Gastric Adenocarcinoma Arising from a Duplication Cyst     
 Pending       | Pelvic Cyst     
 
-*****
+*******
 
 #### Alternative Treatments and Procedures
 
@@ -3736,7 +3705,7 @@ Pending       | Pending       | Pending
 Pending       | Pending       | Pending     
 Pending       | Pending       | Pending     
 
-*****
+*******
 
 ### Treatment Information{.tabset .tabset-fade .tabset-pills}
 
@@ -3880,7 +3849,7 @@ timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Cardiac CT Scans for Calcium Scoring.
 <br />
 * <b>PET Scans</b> refer to Skull Base to Mid-Thigh PET Scans.
@@ -3922,7 +3891,7 @@ timevis(data = G1D_timeline, groups = G1D_groups, showZoom = FALSE, zoomFactor =
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 All relevant medical files can be found in the following [Google Drive folder](https://drive.google.com/drive/folders/1QId8TCvgYymfDGUkzqxN2vRbonSJ3rm2?usp=sharing). For patient privacy reasons, most documents are password protected, so in order to view them, you must have been previously authorized by Velvack S.A.S and Panacea Quantum Leap Technology LLC. If you have valid proof of such clearance and would like to request access, you can email Martin Olarte at martin.olarte@velvack.com or Nathalie Velasco at nathalievel@hotmail.com.
 
@@ -3938,7 +3907,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 * G1-D's treatment sessions were all very short (less than 20 hours) and the few polarity measurements are all within the 0-10 range, which might not truly represent the totality of the treatment effect.
 
@@ -3973,8 +3942,6 @@ __Age:__ 55
 __Gender:__ Male
 
 <br />
-
-__Place of Residence:__ United States of America
 
 *****
 
@@ -4103,7 +4070,7 @@ timevis(data = L1J_timeline, groups = L1J_groups, showZoom = FALSE, zoomFactor =
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CT Scans</b> refer to Abdominal and Pelvic CT Scans.
 <br />
 * <b>CEA</b> refers to a Carcinoembryonic Antigen Test.
@@ -4182,7 +4149,7 @@ timevis(data = L1J_signif, groups = L1J_groups1, showZoom = FALSE, zoomFactor = 
 <br>
 <div align="right">
 <i>
-<font size="1">
+<font size="2">
 * <b>CAE</b> reference range is < 5 ng/mL.
 <br />
 * <b>CA 19-9</b> reference range is < 37 U/mL.
@@ -4200,7 +4167,7 @@ timevis(data = L1J_signif, groups = L1J_groups1, showZoom = FALSE, zoomFactor = 
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 For a complete report of all medical imaging test results please visit the following [online spreadsheet](https://docs.google.com/spreadsheets/d/133LdxhdJiFiF8lWkp7CQeCUIFngbFXye0HY5lf20sus/edit?usp=sharing).
 
@@ -4220,7 +4187,7 @@ All relevant medical files can be found in the following [Google Drive folder](h
 
 <br />
 <div>
-<font size= "1.5">
+<font size= "2.5">
 
 * L1-J had only one treatment session, which results in a limited sample of data that is probably not representative of the treatment effect. However, this unique treatment session was exemplary regarding total duration, consistent hours per day, and regular polarity measurements. 
 
@@ -4241,38 +4208,44 @@ All relevant medical files can be found in the following [Google Drive folder](h
 *****
 
 # Notes
+  
+<h4> Study design flaws:</h4>
+  * Lack of a control group to properly compare and measure progress against a baseline (completely healthy patient).
+  * Irregular monitoring (polarity measurements and medical test results) of each patient.
+  * Small patient sample size (n = 7) without randomized selection.
+  * Treatment session hours and break irregularity.
+  
+  <br />
 
-<h4> Data Collection Method:</h4>
+<h4> Statistic Limitations:</h4> 
+  * Inaccuracies due to human error in data collection and analysis.
+  * Inaccuracies and inconsistencies in medical test results.
+  * Lack of consistent polarity measurements affects the accuracy and significance of statistical analysis.
+  * Extrapolation between patients and to larger populations is not recommended due to abundant individual distinctions between patients.
 
-  * 
+  <br />
+<h4> Statistic Information:</h4>
 
-<br />
+  * Regarding _Total Treatment Hours vs Polarity_ plots:
+  
+      + The linear regression models were fitted using the `geom_smooth(method = "lm", y ~ x)` function in R.
+      
+      <br>
 
-<h4> Regarding _Total Treatment Hours vs Polarity_ plots:</h4>
+  * Regarding _Polarity through Time_ plots:
+  
+      + The dashed linear segments represent the overall change in polarity during breaks. However, they do not accurately model the nature of these changes due to a lack of intermediary measurements.
+      
+      <br>
 
-  * The linear regression models were fitted using the `geom_smooth(method = "lm", y ~ x)` function in R.
-
-<br />
-
-<h4> Regarding _Polarity through Time_ plots:</h4>
-
-  * The dashed linear segments represent the overall change in polarity during breaks. However, they do not accurately model the nature of these changes due to a lack of intermediary measurements.
-
-<br />
-
-<h4> Regarding _Correlation Summaries_:</h4>
-
-  * The __correlation coefficients__ (R) refer to the [Pearson product-moment correlation coefficients](https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php). According to the [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality) it has a value between 1 and -1, where 1 represents a total positive linear correlation, 0 no linear correlation, and -1 a total negative correlation.
-
-  * The __p-values__ refer to the [asymptotic significance of the R estimates](https://en.wikipedia.org/wiki/P-value#Definition_and_interpretation); for each specific linear model, they describe the probability that the correlation estimate would be greater than or equal to the actual correlation, assuming that the true correlation is equal to 0 (true null hypothesis). The p-values were calculated using a t-distribution with n – 2 degrees of freedom, and a significance level of 0.05 was used. Thus, a sample with a p-value less than 0.05 provides reasonable evidence to support the alternative hypothesis (true correlation is not equal to 0). 
-
-  * The __CI bounds__ refer to a 95% asymptotic compatibility interval for the correlation coefficient (R) estimates based on [Fisher's Z transform](https://en.wikipedia.org/wiki/Fisher_transformation), on cases of at least 4 complete pairs of observations (polarity value and therapy hours).
-
-  * The __adjusted R-squared__ values were calculated using the [unbiased correlation coefficients and number of observations in each sample](https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf#page=227). They represent the percentage of variation explained by only the independent variable (treatment hours) that actually affect the dependent variable (polarity). Thus, this value increases only if a new term improves the model more than would be expected by chance, and decreases when a predictor improves the model by less than expected by chance.
-
-  * The __residual standard error__ [(RSE)](http://statweb.stanford.edu/~susan/courses/s60/split/node60.html) values were calculated by taking the positive square root of the mean square error of the residuals for each linear model. The smaller the RSE, the better the model fits the data.
-
-  * The __degrees of freedom__ refer to the number of independent pieces of information on which the correlation estimate is based, [according to David M. Lane](http://onlinestatbook.com/2/estimation/df.html), associate professor at Rice University. They were calculated by subtracting the number of parameters estimated (2) from the number of observations within each linear model (sample sizes).
+  * Regarding _Correlation Summaries_:
+  
+      + The __correlation coefficients__ (R) refer to the [Pearson product-moment correlation coefficients](https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php). According to the [Cauchy-Schwarz inequality](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality) it has a value between 1 and -1, where 1 represents a total positive linear correlation, 0 no linear correlation, and -1 a total negative correlation.
+      + The __p-values__ refer to the [asymptotic significance of the R estimates](https://en.wikipedia.org/wiki/P-value#Definition_and_interpretation); for each specific linear model, they describe the probability that the correlation estimate would be greater than or equal to the actual correlation, assuming that the true correlation is equal to 0 (true null hypothesis). The p-values were calculated using a t-distribution with n – 2 degrees of freedom, and a significance level of 0.05 was used. Thus, a sample with a p-value less than 0.05 provides reasonable evidence to support the alternative hypothesis (true correlation is not equal to 0).
+      + The __CI bounds__ refer to a 95% asymptotic compatibility interval for the correlation coefficient (R) estimates based on [Fisher's Z transform](https://en.wikipedia.org/wiki/Fisher_transformation), on cases of at least 4 complete pairs of observations (polarity value and therapy hours).
+      + The __adjusted R-squared__ values were calculated using the [unbiased correlation coefficients and number of observations in each sample](https://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf#page=227). They represent the percentage of variation explained by only the independent variable (treatment hours) that actually affect the dependent variable (polarity). Thus, this value increases only if a new term improves the model more than would be expected by chance, and decreases when a predictor improves the model by less than expected by chance.
+      + The __residual standard error__ [(RSE)](http://statweb.stanford.edu/~susan/courses/s60/split/node60.html) values were calculated by taking the positive square root of the mean square error of the residuals for each linear model. The smaller the RSE, the better the model fits the data.
+      + The __degrees of freedom__ refer to the number of independent pieces of information on which the correlation estimate is based, [according to David M. Lane](http://onlinestatbook.com/2/estimation/df.html), associate professor at Rice University. They were calculated by subtracting the number of parameters estimated (2) from the number of observations within each linear model (sample sizes).
   
 ________________________________________________________________________________________________________________________________________________________________
 
@@ -4282,23 +4255,6 @@ ________________________________________________________________________________
 
 ________________________________________________________________________________________________________________________________________________________________
 
-# Study Limitations
-  
-  <h4>Statistic Limitations:</h4> 
-  * Inaccuracies due to human error in data collection and analysis.
-  * Inaccuracies and inconsistencies in medical test results.
-  * Lack of consistent polarity measurements affects the accuracy and significance of statistical analysis.
-  * Extrapolation between patients and to larger populations is not recommended due to abundant individual distinctions between patients.
-  
-  <br>
-  
-  <h4>Study design flaws:</h4>
-  * Lack of a control group to properly compare and measure progress against a baseline (completely healthy patient).
-  * Irregular monitoring (polarity measurements and medical test results) of each patient.
-  * Small patient sample size without randomized selection.
-  * Treatment session hours and break irregularity.
-
-________________________________________________________________________________________________________________________________________________________________
 # About Velvack and Panacea
 
 
@@ -4332,4 +4288,3 @@ ________________________________________________________________________________
 
 * ["Cancer cell proliferation is inhibited by specific modulation frequencies"](https://www.nature.com/articles/bjc2011523)
 
-________________________________________________________________________________________________________________________________________________________________

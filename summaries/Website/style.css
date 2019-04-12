@@ -1,7 +1,12 @@
+body {
+  font-size: small;
+  text-align: justify;
+}
+
 #TOC {
-  background: url("http://i3inc.ca/wp-content/uploads/2015/02/panacea_logo.png");
+  background: url(images/Logos.png);
   background-size: contain;
-  padding-top: 80px !important;
+  padding-top: 120px !important;
   background-repeat: no-repeat;
 }
 
@@ -16,15 +21,19 @@
 }
 
 
-h1, .h1, h3, .h3 {
-  padding-top: 50px;
-  padding-bottom: 50px;
+h1, .h1{
+  padding-top: 25px; 
+  padding-bottom: 25px;
+}
+
+h3, .h3{
+  font-size: medium !important;
 }
 
 h2, .h2{
   text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 40px;
+  padding-bottom: 25px;
   color: #008cba;
   font-weight: bold;
 }
@@ -55,6 +64,12 @@ h2, .h2{
     font-size: 12px;
     font-weight: normal;
 }
+
+.vis-group {
+    vertical-align: middle;
+}
+
+
 
 
 
